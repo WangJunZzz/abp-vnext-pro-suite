@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Lion.AbpSuite</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Lion.AbpSuite.Domain\Lion.AbpSuite.Domain.csproj" />
+        <ProjectReference Include="..\Lion.AbpSuite.Application.Contracts\Lion.AbpSuite.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Lion.AbpSuite.FreeSqlRepository\Lion.AbpSuite.FreeSqlRepository.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+
+        <PackageReference Include="Volo.Abp.BackgroundJobs.HangFire" />
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Application" />
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Application" />
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application" />
+    </ItemGroup>
+
+</Project>

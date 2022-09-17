@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>Lion.AbpSuite</RootNamespace>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Localization\AbpSuite\*.json" />
+        <Content Remove="Localization\AbpSuite\*.json" />
+
+
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.Extension"/>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Domain.Shared"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Domain.Shared"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain.Shared"/>
+    </ItemGroup>
+
+</Project>

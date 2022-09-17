@@ -1,0 +1,799 @@
+2022-08-24 21:18:11.015 +08:00 [INF] Start installing Hangfire SQL objects...
+2022-08-24 21:18:11.265 +08:00 [INF] Hangfire SQL objects installed.
+2022-08-24 21:18:11.298 +08:00 [INF] Creating key {bc80c3ed-c10c-416e-a803-1f61d81c9728} with creation date 2022-08-24 13:18:11Z, activation date 2022-08-24 13:18:11Z, and expiration date 2022-11-22 13:18:11Z.
+2022-08-24 21:18:11.307 +08:00 [WRN] No XML encryptor configured. Key {bc80c3ed-c10c-416e-a803-1f61d81c9728} may be persisted to storage in unencrypted form.
+2022-08-24 21:18:11.328 +08:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@MyCompanyNameMyProjectNameDB'
+2022-08-24 21:18:11.329 +08:00 [INF] Using the following options for SQL Server job storage:
+2022-08-24 21:18:11.341 +08:00 [INF]     Queue poll interval: 00:00:15.
+2022-08-24 21:18:11.342 +08:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-08-24 21:18:11.364 +08:00 [INF] Loaded ABP modules:
+2022-08-24 21:18:11.364 +08:00 [INF] - MyCompanyName.MyProjectName.MyProjectNameHttpApiHostModule
+2022-08-24 21:18:11.365 +08:00 [INF]   - MyCompanyName.MyProjectName.MyProjectNameHttpApiModule
+2022-08-24 21:18:11.366 +08:00 [INF]     - MyCompanyName.MyProjectName.MyProjectNameApplicationContractsModule
+2022-08-24 21:18:11.367 +08:00 [INF]       - MyCompanyName.MyProjectName.MyProjectNameDomainSharedModule
+2022-08-24 21:18:11.367 +08:00 [INF]         - Lion.AbpPro.BasicManagement.BasicManagementDomainSharedModule
+2022-08-24 21:18:11.375 +08:00 [INF]           - Volo.Abp.AuditLogging.AbpAuditLoggingDomainSharedModule
+2022-08-24 21:18:11.375 +08:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainSharedModule
+2022-08-24 21:18:11.376 +08:00 [INF]           - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainSharedModule
+2022-08-24 21:18:11.376 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationModule
+2022-08-24 21:18:11.377 +08:00 [INF]               - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-08-24 21:18:11.377 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2022-08-24 21:18:11.378 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-08-24 21:18:11.378 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2022-08-24 21:18:11.379 +08:00 [INF]                   - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-08-24 21:18:11.380 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2022-08-24 21:18:11.380 +08:00 [INF]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-08-24 21:18:11.381 +08:00 [INF]                     - Volo.Abp.Data.AbpDataModule
+2022-08-24 21:18:11.381 +08:00 [INF]                       - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-08-24 21:18:11.389 +08:00 [INF]                       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-08-24 21:18:11.389 +08:00 [INF]                       - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-08-24 21:18:11.390 +08:00 [INF]           - Volo.Abp.Identity.AbpIdentityDomainSharedModule
+2022-08-24 21:18:11.390 +08:00 [INF]             - Volo.Abp.Users.AbpUsersDomainSharedModule
+2022-08-24 21:18:11.391 +08:00 [INF]             - Volo.Abp.Features.AbpFeaturesModule
+2022-08-24 21:18:11.391 +08:00 [INF]               - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2022-08-24 21:18:11.392 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule
+2022-08-24 21:18:11.392 +08:00 [INF]           - Volo.Abp.SettingManagement.AbpSettingManagementDomainSharedModule
+2022-08-24 21:18:11.393 +08:00 [INF]           - Volo.Abp.TenantManagement.AbpTenantManagementDomainSharedModule
+2022-08-24 21:18:11.393 +08:00 [INF]       - Lion.AbpPro.BasicManagement.BasicManagementApplicationContractsModule
+2022-08-24 21:18:11.394 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationContractsModule
+2022-08-24 21:18:11.395 +08:00 [INF]           - Volo.Abp.Auditing.AbpAuditingContractsModule
+2022-08-24 21:18:11.395 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationModule
+2022-08-24 21:18:11.396 +08:00 [INF]         - Volo.Abp.Account.AbpAccountApplicationContractsModule
+2022-08-24 21:18:11.400 +08:00 [INF]           - Volo.Abp.Identity.AbpIdentityApplicationContractsModule
+2022-08-24 21:18:11.400 +08:00 [INF]             - Volo.Abp.Users.AbpUsersAbstractionModule
+2022-08-24 21:18:11.401 +08:00 [INF]               - Volo.Abp.EventBus.AbpEventBusModule
+2022-08-24 21:18:11.402 +08:00 [INF]                 - Volo.Abp.Json.AbpJsonModule
+2022-08-24 21:18:11.402 +08:00 [INF]                   - Volo.Abp.Timing.AbpTimingModule
+2022-08-24 21:18:11.403 +08:00 [INF]                 - Volo.Abp.Guids.AbpGuidsModule
+2022-08-24 21:18:11.403 +08:00 [INF]                 - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-08-24 21:18:11.405 +08:00 [INF]                   - Volo.Abp.Threading.AbpThreadingModule
+2022-08-24 21:18:11.406 +08:00 [INF]                 - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2022-08-24 21:18:11.406 +08:00 [INF]             - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule
+2022-08-24 21:18:11.407 +08:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationContractsModule
+2022-08-24 21:18:11.407 +08:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementApplicationContractsModule
+2022-08-24 21:18:11.408 +08:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementApplicationContractsModule
+2022-08-24 21:18:11.408 +08:00 [INF]       - Lion.AbpPro.NotificationManagement.NotificationManagementApplicationContractsModule
+2022-08-24 21:18:11.409 +08:00 [INF]         - Lion.AbpPro.NotificationManagement.NotificationManagementDomainSharedModule
+2022-08-24 21:18:11.409 +08:00 [INF]     - Lion.AbpPro.BasicManagement.BasicManagementHttpApiModule
+2022-08-24 21:18:11.410 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2022-08-24 21:18:11.411 +08:00 [INF]         - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2022-08-24 21:18:11.411 +08:00 [INF]           - Volo.Abp.Auditing.AbpAuditingModule
+2022-08-24 21:18:11.412 +08:00 [INF]           - Volo.Abp.Http.AbpHttpModule
+2022-08-24 21:18:11.414 +08:00 [INF]             - Volo.Abp.Http.AbpHttpAbstractionsModule
+2022-08-24 21:18:11.415 +08:00 [INF]             - Volo.Abp.Minify.AbpMinifyModule
+2022-08-24 21:18:11.415 +08:00 [INF]           - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-08-24 21:18:11.416 +08:00 [INF]         - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2022-08-24 21:18:11.416 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2022-08-24 21:18:11.417 +08:00 [INF]         - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2022-08-24 21:18:11.417 +08:00 [INF]           - Volo.Abp.UI.AbpUiModule
+2022-08-24 21:18:11.418 +08:00 [INF]         - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2022-08-24 21:18:11.418 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationModule
+2022-08-24 21:18:11.419 +08:00 [INF]           - Volo.Abp.Domain.AbpDddDomainModule
+2022-08-24 21:18:11.419 +08:00 [INF]             - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-08-24 21:18:11.420 +08:00 [INF]             - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-08-24 21:18:11.420 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.NotificationManagementHttpApiModule
+2022-08-24 21:18:11.421 +08:00 [INF]   - Lion.AbpPro.Shared.Hosting.Microservices.SharedHostingMicroserviceModule
+2022-08-24 21:18:11.421 +08:00 [INF]     - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2022-08-24 21:18:11.422 +08:00 [INF]     - Volo.Abp.Autofac.AbpAutofacModule
+2022-08-24 21:18:11.423 +08:00 [INF]       - Volo.Abp.Castle.AbpCastleCoreModule
+2022-08-24 21:18:11.423 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule
+2022-08-24 21:18:11.425 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule
+2022-08-24 21:18:11.425 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule
+2022-08-24 21:18:11.426 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule
+2022-08-24 21:18:11.427 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule
+2022-08-24 21:18:11.427 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2022-08-24 21:18:11.428 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule
+2022-08-24 21:18:11.431 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2022-08-24 21:18:11.433 +08:00 [INF]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule
+2022-08-24 21:18:11.435 +08:00 [INF]   - MyCompanyName.MyProjectName.EntityFrameworkCore.MyProjectNameEntityFrameworkCoreModule
+2022-08-24 21:18:11.435 +08:00 [INF]     - MyCompanyName.MyProjectName.MyProjectNameDomainModule
+2022-08-24 21:18:11.436 +08:00 [INF]       - Lion.AbpPro.BasicManagement.BasicManagementDomainModule
+2022-08-24 21:18:11.436 +08:00 [INF]         - Volo.Abp.AuditLogging.AbpAuditLoggingDomainModule
+2022-08-24 21:18:11.437 +08:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainModule
+2022-08-24 21:18:11.437 +08:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsModule
+2022-08-24 21:18:11.438 +08:00 [INF]             - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule
+2022-08-24 21:18:11.438 +08:00 [INF]           - Volo.Abp.AutoMapper.AbpAutoMapperModule
+2022-08-24 21:18:11.439 +08:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainModule
+2022-08-24 21:18:11.439 +08:00 [INF]           - Volo.Abp.Caching.AbpCachingModule
+2022-08-24 21:18:11.440 +08:00 [INF]             - Volo.Abp.Serialization.AbpSerializationModule
+2022-08-24 21:18:11.440 +08:00 [INF]         - Volo.Abp.Identity.AbpIdentityDomainModule
+2022-08-24 21:18:11.441 +08:00 [INF]           - Volo.Abp.Users.AbpUsersDomainModule
+2022-08-24 21:18:11.441 +08:00 [INF]         - Volo.Abp.PermissionManagement.Identity.AbpPermissionManagementDomainIdentityModule
+2022-08-24 21:18:11.442 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule
+2022-08-24 21:18:11.442 +08:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementDomainModule
+2022-08-24 21:18:11.443 +08:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementDomainModule
+2022-08-24 21:18:11.443 +08:00 [INF]       - Lion.AbpPro.NotificationManagement.NotificationManagementDomainModule
+2022-08-24 21:18:11.447 +08:00 [INF]     - Lion.AbpPro.BasicManagement.EntityFrameworkCore.BasicManagementEntityFrameworkCoreModule
+2022-08-24 21:18:11.448 +08:00 [INF]       - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-08-24 21:18:11.449 +08:00 [INF]       - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule
+2022-08-24 21:18:11.449 +08:00 [INF]         - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule
+2022-08-24 21:18:11.450 +08:00 [INF]       - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule
+2022-08-24 21:18:11.450 +08:00 [INF]       - Volo.Abp.SettingManagement.EntityFrameworkCore.AbpSettingManagementEntityFrameworkCoreModule
+2022-08-24 21:18:11.451 +08:00 [INF]       - Volo.Abp.BackgroundJobs.EntityFrameworkCore.AbpBackgroundJobsEntityFrameworkCoreModule
+2022-08-24 21:18:11.451 +08:00 [INF]       - Volo.Abp.AuditLogging.EntityFrameworkCore.AbpAuditLoggingEntityFrameworkCoreModule
+2022-08-24 21:18:11.452 +08:00 [INF]       - Volo.Abp.TenantManagement.EntityFrameworkCore.AbpTenantManagementEntityFrameworkCoreModule
+2022-08-24 21:18:11.453 +08:00 [INF]       - Volo.Abp.FeatureManagement.EntityFrameworkCore.AbpFeatureManagementEntityFrameworkCoreModule
+2022-08-24 21:18:11.453 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-08-24 21:18:11.455 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.EntityFrameworkCore.NotificationManagementEntityFrameworkCoreModule
+2022-08-24 21:18:11.455 +08:00 [INF]   - Volo.Abp.AspNetCore.Authentication.JwtBearer.AbpAspNetCoreAuthenticationJwtBearerModule
+2022-08-24 21:18:11.456 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2022-08-24 21:18:11.456 +08:00 [INF]   - Volo.Abp.Account.Web.AbpAccountWebModule
+2022-08-24 21:18:11.457 +08:00 [INF]     - Volo.Abp.Identity.AspNetCore.AbpIdentityAspNetCoreModule
+2022-08-24 21:18:11.457 +08:00 [INF]   - MyCompanyName.MyProjectName.MyProjectNameApplicationModule
+2022-08-24 21:18:11.458 +08:00 [INF]     - Lion.AbpPro.BasicManagement.BasicManagementApplicationModule
+2022-08-24 21:18:11.459 +08:00 [INF]       - Volo.Abp.Account.AbpAccountApplicationModule
+2022-08-24 21:18:11.459 +08:00 [INF]         - Volo.Abp.Identity.AbpIdentityApplicationModule
+2022-08-24 21:18:11.460 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule
+2022-08-24 21:18:11.463 +08:00 [INF]         - Volo.Abp.Emailing.AbpEmailingModule
+2022-08-24 21:18:11.465 +08:00 [INF]           - Volo.Abp.TextTemplating.AbpTextTemplatingModule
+2022-08-24 21:18:11.466 +08:00 [INF]             - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule
+2022-08-24 21:18:11.466 +08:00 [INF] Server szqh003802c:30732:f5ab8334 successfully announced in 105.2945 ms
+2022-08-24 21:18:11.467 +08:00 [INF]               - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule
+2022-08-24 21:18:11.468 +08:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementApplicationModule
+2022-08-24 21:18:11.469 +08:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationModule
+2022-08-24 21:18:11.471 +08:00 [INF] Server szqh003802c:30732:f5ab8334 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-08-24 21:18:11.472 +08:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementApplicationModule
+2022-08-24 21:18:11.476 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.NotificationManagementApplicationModule
+2022-08-24 21:18:11.490 +08:00 [INF]       - Volo.Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule
+2022-08-24 21:18:11.510 +08:00 [INF]     - MyCompanyName.MyProjectName.FreeSqlRepository.MyProjectNameFreeSqlModule
+2022-08-24 21:18:11.550 +08:00 [INF]     - Volo.Abp.BackgroundJobs.Hangfire.AbpBackgroundJobsHangfireModule
+2022-08-24 21:18:11.564 +08:00 [INF] Server szqh003802c:30732:f5ab8334 all the dispatchers started
+2022-08-24 21:18:11.571 +08:00 [INF]       - Volo.Abp.Hangfire.AbpHangfireModule
+2022-08-24 21:18:11.579 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.AbpAspNetCoreMvcUiBasicThemeModule
+2022-08-24 21:18:11.580 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-08-24 21:18:11.778 +08:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@MyCompanyNameMyProjectNameDB'
+2022-08-24 21:18:11.778 +08:00 [INF] Using the following options for SQL Server job storage:
+2022-08-24 21:18:11.779 +08:00 [INF]     Queue poll interval: 00:00:15.
+2022-08-24 21:18:11.780 +08:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-08-24 21:18:11.798 +08:00 [INF] Server szqh003802c:30732:86f244d4 successfully announced in 14.4996 ms
+2022-08-24 21:18:11.799 +08:00 [INF] Server szqh003802c:30732:86f244d4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-08-24 21:18:11.893 +08:00 [INF] Server szqh003802c:30732:86f244d4 all the dispatchers started
+2022-08-24 21:18:12.227 +08:00 [INF] Connecting to Redis endpoints: localhost. Using Server Name: SZQH003802C_0b3019c8d67b411d8bcfc54e36de5150
+2022-08-24 21:18:12.262 +08:00 [INF] Connected to Redis.
+2022-08-24 21:18:12.363 +08:00 [INF] Initialized all ABP modules.
+2022-08-24 21:18:12.402 +08:00 [INF] Now listening on: http://localhost:44315
+2022-08-24 21:18:12.405 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-08-24 21:18:12.407 +08:00 [INF] Hosting environment: Development
+2022-08-24 21:18:12.408 +08:00 [INF] Content root path: D:\github\MyProjectName\aspnet-core\services\host\MyCompanyName.MyProjectName.HttpApi.Host
+2022-08-24 21:18:16.173 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/ - -
+2022-08-24 21:18:18.389 +08:00 [INF] Executing endpoint 'MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host)'
+2022-08-24 21:18:18.415 +08:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller MyCompanyName.MyProjectName.Controllers.HomeController (MyCompanyName.MyProjectName.HttpApi.Host).
+2022-08-24 21:18:18.439 +08:00 [INF] Executing action method MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host) - Validation state: "Valid"
+2022-08-24 21:18:18.444 +08:00 [INF] Executed action method MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.3291ms.
+2022-08-24 21:18:18.451 +08:00 [INF] Executing RedirectResult, redirecting to /Login.
+2022-08-24 21:18:18.455 +08:00 [INF] Executed action MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host) in 35.6665ms
+2022-08-24 21:18:18.456 +08:00 [INF] Executed endpoint 'MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host)'
+2022-08-24 21:18:18.473 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/ - - - 302 0 - 2301.9716ms
+2022-08-24 21:18:18.477 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/Login - -
+2022-08-24 21:18:26.135 +08:00 [INF] Executing endpoint '/Login'
+2022-08-24 21:18:26.144 +08:00 [INF] Route matched with {page = "/Login", action = "", controller = "", area = ""}. Executing page /Login
+2022-08-24 21:18:26.145 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:18:26.739 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Login.OnGet - ModelState is "Valid"
+2022-08-24 21:18:26.741 +08:00 [INF] Executed handler method OnGet, returned result .
+2022-08-24 21:18:26.744 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:18:26.745 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:18:26.793 +08:00 [INF] Executed page /Login in 647.8685ms
+2022-08-24 21:18:26.794 +08:00 [INF] Executed endpoint '/Login'
+2022-08-24 21:18:26.800 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/Login - - - 200 - text/html;+charset=utf-8 8323.9540ms
+2022-08-24 21:18:28.617 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/Login application/x-www-form-urlencoded 214
+2022-08-24 21:18:28.621 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:28.622 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:28.628 +08:00 [INF] Executing endpoint '/Login'
+2022-08-24 21:18:28.629 +08:00 [INF] Route matched with {page = "/Login", action = "", controller = "", area = ""}. Executing page /Login
+2022-08-24 21:18:28.630 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:18:28.635 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Login.OnPost - ModelState is "Valid"
+2022-08-24 21:18:29.272 +08:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-08-24 21:18:29.392 +08:00 [INF] Executed handler method OnPost, returned result .
+2022-08-24 21:18:29.393 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:18:29.393 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:18:29.406 +08:00 [INF] Executed page /Login in 776.7342ms
+2022-08-24 21:18:29.408 +08:00 [INF] Executed endpoint '/Login'
+2022-08-24 21:18:29.410 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/monitor - -
+2022-08-24 21:18:29.645 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/Login application/x-www-form-urlencoded 214 - 302 - text/html;+charset=utf-8 1027.9274ms
+2022-08-24 21:18:29.848 +08:00 [INF] Executing endpoint '/Monitor'
+2022-08-24 21:18:29.850 +08:00 [INF] Route matched with {page = "/Monitor", action = "", controller = "", area = ""}. Executing page /Monitor
+2022-08-24 21:18:29.851 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:18:29.853 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Monitor.OnGet - ModelState is "Valid"
+2022-08-24 21:18:29.854 +08:00 [INF] Executed handler method OnGet, returned result .
+2022-08-24 21:18:29.854 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:18:29.855 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:18:29.861 +08:00 [INF] Executed page /Monitor in 9.3352ms
+2022-08-24 21:18:29.862 +08:00 [INF] Executed endpoint '/Monitor'
+2022-08-24 21:18:29.863 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/monitor - - - 200 - text/html;+charset=utf-8 453.3481ms
+2022-08-24 21:18:32.062 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/swagger/index.html - -
+2022-08-24 21:18:32.095 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/swagger/index.html - - - 200 - text/html;charset=utf-8 33.9051ms
+2022-08-24 21:18:32.340 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/swagger/MyProjectName/swagger.json - -
+2022-08-24 21:18:32.561 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/swagger/MyProjectName/swagger.json - - - 200 - application/json;charset=utf-8 220.2215ms
+2022-08-24 21:18:34.348 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/hangfire - -
+2022-08-24 21:18:34.461 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/hangfire - - - 200 - text/html 112.6001ms
+2022-08-24 21:18:34.483 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/hangfire/css17290 - -
+2022-08-24 21:18:34.484 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/hangfire/js17290 - -
+2022-08-24 21:18:34.504 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/hangfire/css17290 - - - 200 - text/css 20.6754ms
+2022-08-24 21:18:34.504 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/hangfire/js17290 - - - 200 - application/javascript 20.3032ms
+2022-08-24 21:18:34.569 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/hangfire/fonts/glyphicons-halflings-regular/woff2 - -
+2022-08-24 21:18:34.571 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:34.571 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:34.574 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/hangfire/fonts/glyphicons-halflings-regular/woff2 - - - 200 - font/woff2 4.5424ms
+2022-08-24 21:18:36.604 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:36.606 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:36.606 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:36.633 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 28.5661ms
+2022-08-24 21:18:39.045 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:39.046 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:39.047 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:39.064 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 18.7298ms
+2022-08-24 21:18:42.045 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:42.046 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:42.047 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:42.061 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 16.0220ms
+2022-08-24 21:18:45.049 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:45.050 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:45.051 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:45.067 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.9901ms
+2022-08-24 21:18:48.054 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:48.055 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:48.055 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:48.071 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.6533ms
+2022-08-24 21:18:51.044 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:51.046 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:51.046 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:51.063 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 19.1871ms
+2022-08-24 21:18:54.046 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:54.047 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:54.048 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:54.068 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 21.5812ms
+2022-08-24 21:18:57.043 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:18:57.044 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:18:57.044 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:18:57.060 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.6105ms
+2022-08-24 21:19:00.050 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:19:00.051 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:19:00.052 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:19:00.066 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 16.3502ms
+2022-08-24 21:19:03.039 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:19:03.040 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:19:03.040 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:19:03.056 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.5789ms
+2022-08-24 21:20:16.483 +08:00 [INF] DB tables already exist. Exit install
+2022-08-24 21:20:16.547 +08:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@MyCompanyNameMyProjectNameDB'
+2022-08-24 21:20:16.548 +08:00 [INF] Using the following options for SQL Server job storage:
+2022-08-24 21:20:16.549 +08:00 [INF]     Queue poll interval: 00:00:15.
+2022-08-24 21:20:16.549 +08:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-08-24 21:20:16.569 +08:00 [INF] Loaded ABP modules:
+2022-08-24 21:20:16.570 +08:00 [INF] - MyCompanyName.MyProjectName.MyProjectNameHttpApiHostModule
+2022-08-24 21:20:16.571 +08:00 [INF]   - MyCompanyName.MyProjectName.MyProjectNameHttpApiModule
+2022-08-24 21:20:16.571 +08:00 [INF]     - MyCompanyName.MyProjectName.MyProjectNameApplicationContractsModule
+2022-08-24 21:20:16.572 +08:00 [INF]       - MyCompanyName.MyProjectName.MyProjectNameDomainSharedModule
+2022-08-24 21:20:16.572 +08:00 [INF]         - Lion.AbpPro.BasicManagement.BasicManagementDomainSharedModule
+2022-08-24 21:20:16.572 +08:00 [INF]           - Volo.Abp.AuditLogging.AbpAuditLoggingDomainSharedModule
+2022-08-24 21:20:16.579 +08:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainSharedModule
+2022-08-24 21:20:16.580 +08:00 [INF]           - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainSharedModule
+2022-08-24 21:20:16.581 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationModule
+2022-08-24 21:20:16.581 +08:00 [INF]               - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-08-24 21:20:16.582 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2022-08-24 21:20:16.582 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-08-24 21:20:16.583 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2022-08-24 21:20:16.583 +08:00 [INF]                   - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-08-24 21:20:16.584 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2022-08-24 21:20:16.584 +08:00 [INF]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-08-24 21:20:16.585 +08:00 [INF]                     - Volo.Abp.Data.AbpDataModule
+2022-08-24 21:20:16.585 +08:00 [INF]                       - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-08-24 21:20:16.593 +08:00 [INF]                       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-08-24 21:20:16.593 +08:00 [INF]                       - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-08-24 21:20:16.594 +08:00 [INF]           - Volo.Abp.Identity.AbpIdentityDomainSharedModule
+2022-08-24 21:20:16.594 +08:00 [INF]             - Volo.Abp.Users.AbpUsersDomainSharedModule
+2022-08-24 21:20:16.595 +08:00 [INF]             - Volo.Abp.Features.AbpFeaturesModule
+2022-08-24 21:20:16.595 +08:00 [INF]               - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2022-08-24 21:20:16.596 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule
+2022-08-24 21:20:16.596 +08:00 [INF]           - Volo.Abp.SettingManagement.AbpSettingManagementDomainSharedModule
+2022-08-24 21:20:16.597 +08:00 [INF]           - Volo.Abp.TenantManagement.AbpTenantManagementDomainSharedModule
+2022-08-24 21:20:16.597 +08:00 [INF]       - Lion.AbpPro.BasicManagement.BasicManagementApplicationContractsModule
+2022-08-24 21:20:16.598 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationContractsModule
+2022-08-24 21:20:16.598 +08:00 [INF]           - Volo.Abp.Auditing.AbpAuditingContractsModule
+2022-08-24 21:20:16.599 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationModule
+2022-08-24 21:20:16.599 +08:00 [INF]         - Volo.Abp.Account.AbpAccountApplicationContractsModule
+2022-08-24 21:20:16.600 +08:00 [INF]           - Volo.Abp.Identity.AbpIdentityApplicationContractsModule
+2022-08-24 21:20:16.600 +08:00 [INF]             - Volo.Abp.Users.AbpUsersAbstractionModule
+2022-08-24 21:20:16.601 +08:00 [INF]               - Volo.Abp.EventBus.AbpEventBusModule
+2022-08-24 21:20:16.601 +08:00 [INF]                 - Volo.Abp.Json.AbpJsonModule
+2022-08-24 21:20:16.602 +08:00 [INF]                   - Volo.Abp.Timing.AbpTimingModule
+2022-08-24 21:20:16.602 +08:00 [INF]                 - Volo.Abp.Guids.AbpGuidsModule
+2022-08-24 21:20:16.603 +08:00 [INF]                 - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-08-24 21:20:16.604 +08:00 [INF]                   - Volo.Abp.Threading.AbpThreadingModule
+2022-08-24 21:20:16.604 +08:00 [INF]                 - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2022-08-24 21:20:16.605 +08:00 [INF]             - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule
+2022-08-24 21:20:16.605 +08:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationContractsModule
+2022-08-24 21:20:16.607 +08:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementApplicationContractsModule
+2022-08-24 21:20:16.608 +08:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementApplicationContractsModule
+2022-08-24 21:20:16.609 +08:00 [INF]       - Lion.AbpPro.NotificationManagement.NotificationManagementApplicationContractsModule
+2022-08-24 21:20:16.609 +08:00 [INF]         - Lion.AbpPro.NotificationManagement.NotificationManagementDomainSharedModule
+2022-08-24 21:20:16.610 +08:00 [INF]     - Lion.AbpPro.BasicManagement.BasicManagementHttpApiModule
+2022-08-24 21:20:16.610 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2022-08-24 21:20:16.611 +08:00 [INF]         - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2022-08-24 21:20:16.611 +08:00 [INF]           - Volo.Abp.Auditing.AbpAuditingModule
+2022-08-24 21:20:16.611 +08:00 [INF]           - Volo.Abp.Http.AbpHttpModule
+2022-08-24 21:20:16.612 +08:00 [INF]             - Volo.Abp.Http.AbpHttpAbstractionsModule
+2022-08-24 21:20:16.612 +08:00 [INF]             - Volo.Abp.Minify.AbpMinifyModule
+2022-08-24 21:20:16.613 +08:00 [INF]           - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-08-24 21:20:16.614 +08:00 [INF]         - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2022-08-24 21:20:16.614 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2022-08-24 21:20:16.615 +08:00 [INF]         - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2022-08-24 21:20:16.615 +08:00 [INF]           - Volo.Abp.UI.AbpUiModule
+2022-08-24 21:20:16.616 +08:00 [INF]         - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2022-08-24 21:20:16.616 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationModule
+2022-08-24 21:20:16.617 +08:00 [INF]           - Volo.Abp.Domain.AbpDddDomainModule
+2022-08-24 21:20:16.617 +08:00 [INF]             - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-08-24 21:20:16.618 +08:00 [INF]             - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-08-24 21:20:16.618 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.NotificationManagementHttpApiModule
+2022-08-24 21:20:16.619 +08:00 [INF]   - Lion.AbpPro.Shared.Hosting.Microservices.SharedHostingMicroserviceModule
+2022-08-24 21:20:16.619 +08:00 [INF]     - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2022-08-24 21:20:16.619 +08:00 [INF]     - Volo.Abp.Autofac.AbpAutofacModule
+2022-08-24 21:20:16.620 +08:00 [INF]       - Volo.Abp.Castle.AbpCastleCoreModule
+2022-08-24 21:20:16.624 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule
+2022-08-24 21:20:16.626 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule
+2022-08-24 21:20:16.626 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule
+2022-08-24 21:20:16.627 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule
+2022-08-24 21:20:16.627 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule
+2022-08-24 21:20:16.628 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2022-08-24 21:20:16.628 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule
+2022-08-24 21:20:16.629 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2022-08-24 21:20:16.629 +08:00 [INF]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule
+2022-08-24 21:20:16.630 +08:00 [INF]   - MyCompanyName.MyProjectName.EntityFrameworkCore.MyProjectNameEntityFrameworkCoreModule
+2022-08-24 21:20:16.631 +08:00 [INF]     - MyCompanyName.MyProjectName.MyProjectNameDomainModule
+2022-08-24 21:20:16.631 +08:00 [INF]       - Lion.AbpPro.BasicManagement.BasicManagementDomainModule
+2022-08-24 21:20:16.632 +08:00 [INF]         - Volo.Abp.AuditLogging.AbpAuditLoggingDomainModule
+2022-08-24 21:20:16.632 +08:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainModule
+2022-08-24 21:20:16.633 +08:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsModule
+2022-08-24 21:20:16.633 +08:00 [INF]             - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule
+2022-08-24 21:20:16.634 +08:00 [INF]           - Volo.Abp.AutoMapper.AbpAutoMapperModule
+2022-08-24 21:20:16.634 +08:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainModule
+2022-08-24 21:20:16.635 +08:00 [INF]           - Volo.Abp.Caching.AbpCachingModule
+2022-08-24 21:20:16.635 +08:00 [INF]             - Volo.Abp.Serialization.AbpSerializationModule
+2022-08-24 21:20:16.636 +08:00 [INF]         - Volo.Abp.Identity.AbpIdentityDomainModule
+2022-08-24 21:20:16.636 +08:00 [INF]           - Volo.Abp.Users.AbpUsersDomainModule
+2022-08-24 21:20:16.639 +08:00 [INF]         - Volo.Abp.PermissionManagement.Identity.AbpPermissionManagementDomainIdentityModule
+2022-08-24 21:20:16.639 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule
+2022-08-24 21:20:16.640 +08:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementDomainModule
+2022-08-24 21:20:16.640 +08:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementDomainModule
+2022-08-24 21:20:16.641 +08:00 [INF]       - Lion.AbpPro.NotificationManagement.NotificationManagementDomainModule
+2022-08-24 21:20:16.641 +08:00 [INF]     - Lion.AbpPro.BasicManagement.EntityFrameworkCore.BasicManagementEntityFrameworkCoreModule
+2022-08-24 21:20:16.642 +08:00 [INF]       - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-08-24 21:20:16.642 +08:00 [INF]       - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule
+2022-08-24 21:20:16.643 +08:00 [INF]         - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule
+2022-08-24 21:20:16.643 +08:00 [INF]       - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule
+2022-08-24 21:20:16.644 +08:00 [INF]       - Volo.Abp.SettingManagement.EntityFrameworkCore.AbpSettingManagementEntityFrameworkCoreModule
+2022-08-24 21:20:16.644 +08:00 [INF]       - Volo.Abp.BackgroundJobs.EntityFrameworkCore.AbpBackgroundJobsEntityFrameworkCoreModule
+2022-08-24 21:20:16.645 +08:00 [INF]       - Volo.Abp.AuditLogging.EntityFrameworkCore.AbpAuditLoggingEntityFrameworkCoreModule
+2022-08-24 21:20:16.646 +08:00 [INF]       - Volo.Abp.TenantManagement.EntityFrameworkCore.AbpTenantManagementEntityFrameworkCoreModule
+2022-08-24 21:20:16.646 +08:00 [INF]       - Volo.Abp.FeatureManagement.EntityFrameworkCore.AbpFeatureManagementEntityFrameworkCoreModule
+2022-08-24 21:20:16.647 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-08-24 21:20:16.647 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.EntityFrameworkCore.NotificationManagementEntityFrameworkCoreModule
+2022-08-24 21:20:16.648 +08:00 [INF]   - Volo.Abp.AspNetCore.Authentication.JwtBearer.AbpAspNetCoreAuthenticationJwtBearerModule
+2022-08-24 21:20:16.648 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2022-08-24 21:20:16.649 +08:00 [INF]   - Volo.Abp.Account.Web.AbpAccountWebModule
+2022-08-24 21:20:16.649 +08:00 [INF]     - Volo.Abp.Identity.AspNetCore.AbpIdentityAspNetCoreModule
+2022-08-24 21:20:16.650 +08:00 [INF]   - MyCompanyName.MyProjectName.MyProjectNameApplicationModule
+2022-08-24 21:20:16.650 +08:00 [INF]     - Lion.AbpPro.BasicManagement.BasicManagementApplicationModule
+2022-08-24 21:20:16.651 +08:00 [INF]       - Volo.Abp.Account.AbpAccountApplicationModule
+2022-08-24 21:20:16.651 +08:00 [INF]         - Volo.Abp.Identity.AbpIdentityApplicationModule
+2022-08-24 21:20:16.652 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule
+2022-08-24 21:20:16.652 +08:00 [INF]         - Volo.Abp.Emailing.AbpEmailingModule
+2022-08-24 21:20:16.657 +08:00 [INF]           - Volo.Abp.TextTemplating.AbpTextTemplatingModule
+2022-08-24 21:20:16.657 +08:00 [INF]             - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule
+2022-08-24 21:20:16.658 +08:00 [INF]               - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule
+2022-08-24 21:20:16.659 +08:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementApplicationModule
+2022-08-24 21:20:16.659 +08:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationModule
+2022-08-24 21:20:16.660 +08:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementApplicationModule
+2022-08-24 21:20:16.660 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.NotificationManagementApplicationModule
+2022-08-24 21:20:16.661 +08:00 [INF]       - Volo.Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule
+2022-08-24 21:20:16.662 +08:00 [INF]     - MyCompanyName.MyProjectName.FreeSqlRepository.MyProjectNameFreeSqlModule
+2022-08-24 21:20:16.662 +08:00 [INF]     - Volo.Abp.BackgroundJobs.Hangfire.AbpBackgroundJobsHangfireModule
+2022-08-24 21:20:16.663 +08:00 [INF]       - Volo.Abp.Hangfire.AbpHangfireModule
+2022-08-24 21:20:16.663 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.AbpAspNetCoreMvcUiBasicThemeModule
+2022-08-24 21:20:16.664 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-08-24 21:20:16.664 +08:00 [INF] Server szqh003802c:9324:cd9f9e36 successfully announced in 97.8523 ms
+2022-08-24 21:20:16.668 +08:00 [INF] Server szqh003802c:9324:cd9f9e36 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-08-24 21:20:16.754 +08:00 [INF] Server szqh003802c:9324:cd9f9e36 all the dispatchers started
+2022-08-24 21:20:16.842 +08:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@MyCompanyNameMyProjectNameDB'
+2022-08-24 21:20:16.843 +08:00 [INF] Using the following options for SQL Server job storage:
+2022-08-24 21:20:16.844 +08:00 [INF]     Queue poll interval: 00:00:15.
+2022-08-24 21:20:16.844 +08:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-08-24 21:20:16.858 +08:00 [INF] Server szqh003802c:9324:7dc59d4a successfully announced in 10.161 ms
+2022-08-24 21:20:16.859 +08:00 [INF] Server szqh003802c:9324:7dc59d4a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-08-24 21:20:16.951 +08:00 [INF] Server szqh003802c:9324:7dc59d4a all the dispatchers started
+2022-08-24 21:20:17.263 +08:00 [INF] Connecting to Redis endpoints: localhost. Using Server Name: SZQH003802C_9527a230e0b04d7c9b887c74750a6497
+2022-08-24 21:20:17.307 +08:00 [INF] Connected to Redis.
+2022-08-24 21:20:17.458 +08:00 [INF] Initialized all ABP modules.
+2022-08-24 21:20:17.494 +08:00 [INF] Now listening on: http://localhost:44315
+2022-08-24 21:20:17.497 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-08-24 21:20:17.498 +08:00 [INF] Hosting environment: Development
+2022-08-24 21:20:17.499 +08:00 [INF] Content root path: D:\github\MyProjectName\aspnet-core\services\host\MyCompanyName.MyProjectName.HttpApi.Host
+2022-08-24 21:20:17.950 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/ - -
+2022-08-24 21:20:19.177 +08:00 [INF] Executing endpoint 'MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host)'
+2022-08-24 21:20:19.206 +08:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller MyCompanyName.MyProjectName.Controllers.HomeController (MyCompanyName.MyProjectName.HttpApi.Host).
+2022-08-24 21:20:19.233 +08:00 [INF] Executing action method MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host) - Validation state: "Valid"
+2022-08-24 21:20:19.241 +08:00 [INF] Executed action method MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.6423ms.
+2022-08-24 21:20:19.249 +08:00 [INF] Executing RedirectResult, redirecting to /Login.
+2022-08-24 21:20:19.253 +08:00 [INF] Executed action MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host) in 42.8698ms
+2022-08-24 21:20:19.255 +08:00 [INF] Executed endpoint 'MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host)'
+2022-08-24 21:20:19.274 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/ - - - 302 0 - 1325.3200ms
+2022-08-24 21:20:19.280 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/Login - -
+2022-08-24 21:20:22.263 +08:00 [INF] Executing endpoint '/Login'
+2022-08-24 21:20:22.276 +08:00 [INF] Route matched with {page = "/Login", action = "", controller = "", area = ""}. Executing page /Login
+2022-08-24 21:20:22.277 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:20:22.924 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Login.OnGet - ModelState is "Valid"
+2022-08-24 21:20:22.925 +08:00 [INF] Executed handler method OnGet, returned result .
+2022-08-24 21:20:22.929 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:20:22.930 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:20:22.985 +08:00 [INF] Executed page /Login in 707.4041ms
+2022-08-24 21:20:22.986 +08:00 [INF] Executed endpoint '/Login'
+2022-08-24 21:20:22.991 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/Login - - - 200 - text/html;+charset=utf-8 3711.6031ms
+2022-08-24 21:30:57.511 +08:00 [INF] Start installing Hangfire SQL objects...
+2022-08-24 21:30:57.786 +08:00 [INF] Hangfire SQL objects installed.
+2022-08-24 21:30:57.827 +08:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@MyCompanyNameMyProjectNameDB'
+2022-08-24 21:30:57.828 +08:00 [INF] Using the following options for SQL Server job storage:
+2022-08-24 21:30:57.829 +08:00 [INF]     Queue poll interval: 00:00:15.
+2022-08-24 21:30:57.830 +08:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-08-24 21:30:57.850 +08:00 [INF] Loaded ABP modules:
+2022-08-24 21:30:57.851 +08:00 [INF] - MyCompanyName.MyProjectName.MyProjectNameHttpApiHostModule
+2022-08-24 21:30:57.851 +08:00 [INF]   - MyCompanyName.MyProjectName.MyProjectNameHttpApiModule
+2022-08-24 21:30:57.852 +08:00 [INF]     - MyCompanyName.MyProjectName.MyProjectNameApplicationContractsModule
+2022-08-24 21:30:57.852 +08:00 [INF]       - MyCompanyName.MyProjectName.MyProjectNameDomainSharedModule
+2022-08-24 21:30:57.853 +08:00 [INF]         - Lion.AbpPro.BasicManagement.BasicManagementDomainSharedModule
+2022-08-24 21:30:57.861 +08:00 [INF]           - Volo.Abp.AuditLogging.AbpAuditLoggingDomainSharedModule
+2022-08-24 21:30:57.862 +08:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainSharedModule
+2022-08-24 21:30:57.862 +08:00 [INF]           - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainSharedModule
+2022-08-24 21:30:57.862 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationModule
+2022-08-24 21:30:57.863 +08:00 [INF]               - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-08-24 21:30:57.864 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2022-08-24 21:30:57.864 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-08-24 21:30:57.865 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2022-08-24 21:30:57.866 +08:00 [INF]                   - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-08-24 21:30:57.866 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2022-08-24 21:30:57.867 +08:00 [INF]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-08-24 21:30:57.868 +08:00 [INF]                     - Volo.Abp.Data.AbpDataModule
+2022-08-24 21:30:57.875 +08:00 [INF]                       - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-08-24 21:30:57.876 +08:00 [INF]                       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-08-24 21:30:57.879 +08:00 [INF]                       - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-08-24 21:30:57.880 +08:00 [INF]           - Volo.Abp.Identity.AbpIdentityDomainSharedModule
+2022-08-24 21:30:57.880 +08:00 [INF]             - Volo.Abp.Users.AbpUsersDomainSharedModule
+2022-08-24 21:30:57.881 +08:00 [INF]             - Volo.Abp.Features.AbpFeaturesModule
+2022-08-24 21:30:57.881 +08:00 [INF]               - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2022-08-24 21:30:57.882 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule
+2022-08-24 21:30:57.883 +08:00 [INF]           - Volo.Abp.SettingManagement.AbpSettingManagementDomainSharedModule
+2022-08-24 21:30:57.883 +08:00 [INF]           - Volo.Abp.TenantManagement.AbpTenantManagementDomainSharedModule
+2022-08-24 21:30:57.884 +08:00 [INF]         - Lion.AbpPro.NotificationManagement.NotificationManagementDomainSharedModule
+2022-08-24 21:30:57.884 +08:00 [INF]         - Lion.AbpPro.DataDictionaryManagement.DataDictionaryManagementDomainSharedModule
+2022-08-24 21:30:57.886 +08:00 [INF]       - Lion.AbpPro.BasicManagement.BasicManagementApplicationContractsModule
+2022-08-24 21:30:57.887 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationContractsModule
+2022-08-24 21:30:57.890 +08:00 [INF]           - Volo.Abp.Auditing.AbpAuditingContractsModule
+2022-08-24 21:30:57.891 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationModule
+2022-08-24 21:30:57.891 +08:00 [INF]         - Volo.Abp.Account.AbpAccountApplicationContractsModule
+2022-08-24 21:30:57.892 +08:00 [INF]           - Volo.Abp.Identity.AbpIdentityApplicationContractsModule
+2022-08-24 21:30:57.892 +08:00 [INF]             - Volo.Abp.Users.AbpUsersAbstractionModule
+2022-08-24 21:30:57.893 +08:00 [INF]               - Volo.Abp.EventBus.AbpEventBusModule
+2022-08-24 21:30:57.893 +08:00 [INF]                 - Volo.Abp.Json.AbpJsonModule
+2022-08-24 21:30:57.894 +08:00 [INF]                   - Volo.Abp.Timing.AbpTimingModule
+2022-08-24 21:30:57.895 +08:00 [INF]                 - Volo.Abp.Guids.AbpGuidsModule
+2022-08-24 21:30:57.895 +08:00 [INF]                 - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-08-24 21:30:57.896 +08:00 [INF]                   - Volo.Abp.Threading.AbpThreadingModule
+2022-08-24 21:30:57.896 +08:00 [INF]                 - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2022-08-24 21:30:57.897 +08:00 [INF]             - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule
+2022-08-24 21:30:57.897 +08:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationContractsModule
+2022-08-24 21:30:57.898 +08:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementApplicationContractsModule
+2022-08-24 21:30:57.899 +08:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementApplicationContractsModule
+2022-08-24 21:30:57.899 +08:00 [INF]       - Lion.AbpPro.NotificationManagement.NotificationManagementApplicationContractsModule
+2022-08-24 21:30:57.900 +08:00 [INF]       - Lion.AbpPro.DataDictionaryManagement.DataDictionaryManagementApplicationContractsModule
+2022-08-24 21:30:57.901 +08:00 [INF]     - Lion.AbpPro.BasicManagement.BasicManagementHttpApiModule
+2022-08-24 21:30:57.901 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2022-08-24 21:30:57.902 +08:00 [INF]         - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2022-08-24 21:30:57.902 +08:00 [INF]           - Volo.Abp.Auditing.AbpAuditingModule
+2022-08-24 21:30:57.903 +08:00 [INF]           - Volo.Abp.Http.AbpHttpModule
+2022-08-24 21:30:57.904 +08:00 [INF]             - Volo.Abp.Http.AbpHttpAbstractionsModule
+2022-08-24 21:30:57.906 +08:00 [INF]             - Volo.Abp.Minify.AbpMinifyModule
+2022-08-24 21:30:57.907 +08:00 [INF]           - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-08-24 21:30:57.907 +08:00 [INF]         - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2022-08-24 21:30:57.908 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2022-08-24 21:30:57.910 +08:00 [INF]         - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2022-08-24 21:30:57.910 +08:00 [INF]           - Volo.Abp.UI.AbpUiModule
+2022-08-24 21:30:57.911 +08:00 [INF]         - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2022-08-24 21:30:57.911 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationModule
+2022-08-24 21:30:57.912 +08:00 [INF]           - Volo.Abp.Domain.AbpDddDomainModule
+2022-08-24 21:30:57.912 +08:00 [INF]             - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-08-24 21:30:57.913 +08:00 [INF]             - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-08-24 21:30:57.913 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.NotificationManagementHttpApiModule
+2022-08-24 21:30:57.914 +08:00 [INF]     - Lion.AbpPro.DataDictionaryManagement.DataDictionaryManagementHttpApiModule
+2022-08-24 21:30:57.914 +08:00 [INF]   - Lion.AbpPro.Shared.Hosting.Microservices.SharedHostingMicroserviceModule
+2022-08-24 21:30:57.915 +08:00 [INF]     - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2022-08-24 21:30:57.916 +08:00 [INF]     - Volo.Abp.Autofac.AbpAutofacModule
+2022-08-24 21:30:57.916 +08:00 [INF]       - Volo.Abp.Castle.AbpCastleCoreModule
+2022-08-24 21:30:57.917 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule
+2022-08-24 21:30:57.917 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule
+2022-08-24 21:30:57.918 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule
+2022-08-24 21:30:57.918 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule
+2022-08-24 21:30:57.919 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule
+2022-08-24 21:30:57.922 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2022-08-24 21:30:57.924 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule
+2022-08-24 21:30:57.925 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2022-08-24 21:30:57.926 +08:00 [INF]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule
+2022-08-24 21:30:57.926 +08:00 [INF]   - MyCompanyName.MyProjectName.EntityFrameworkCore.MyProjectNameEntityFrameworkCoreModule
+2022-08-24 21:30:57.927 +08:00 [INF]     - MyCompanyName.MyProjectName.MyProjectNameDomainModule
+2022-08-24 21:30:57.928 +08:00 [INF]       - Lion.AbpPro.BasicManagement.BasicManagementDomainModule
+2022-08-24 21:30:57.928 +08:00 [INF]         - Volo.Abp.AuditLogging.AbpAuditLoggingDomainModule
+2022-08-24 21:30:57.929 +08:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainModule
+2022-08-24 21:30:57.929 +08:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsModule
+2022-08-24 21:30:57.930 +08:00 [INF]             - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule
+2022-08-24 21:30:57.930 +08:00 [INF]           - Volo.Abp.AutoMapper.AbpAutoMapperModule
+2022-08-24 21:30:57.931 +08:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainModule
+2022-08-24 21:30:57.932 +08:00 [INF]           - Volo.Abp.Caching.AbpCachingModule
+2022-08-24 21:30:57.932 +08:00 [INF]             - Volo.Abp.Serialization.AbpSerializationModule
+2022-08-24 21:30:57.933 +08:00 [INF]         - Volo.Abp.Identity.AbpIdentityDomainModule
+2022-08-24 21:30:57.933 +08:00 [INF]           - Volo.Abp.Users.AbpUsersDomainModule
+2022-08-24 21:30:57.934 +08:00 [INF]         - Volo.Abp.PermissionManagement.Identity.AbpPermissionManagementDomainIdentityModule
+2022-08-24 21:30:57.936 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule
+2022-08-24 21:30:57.937 +08:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementDomainModule
+2022-08-24 21:30:57.938 +08:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementDomainModule
+2022-08-24 21:30:57.938 +08:00 [INF]       - Lion.AbpPro.NotificationManagement.NotificationManagementDomainModule
+2022-08-24 21:30:57.939 +08:00 [INF]       - Lion.AbpPro.DataDictionaryManagement.DataDictionaryManagementDomainModule
+2022-08-24 21:30:57.939 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-08-24 21:30:57.940 +08:00 [INF]       - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-08-24 21:30:57.940 +08:00 [INF]     - Lion.AbpPro.BasicManagement.EntityFrameworkCore.BasicManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.941 +08:00 [INF]       - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule
+2022-08-24 21:30:57.942 +08:00 [INF]         - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule
+2022-08-24 21:30:57.942 +08:00 [INF]       - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.943 +08:00 [INF]       - Volo.Abp.SettingManagement.EntityFrameworkCore.AbpSettingManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.943 +08:00 [INF]       - Volo.Abp.BackgroundJobs.EntityFrameworkCore.AbpBackgroundJobsEntityFrameworkCoreModule
+2022-08-24 21:30:57.944 +08:00 [INF]       - Volo.Abp.AuditLogging.EntityFrameworkCore.AbpAuditLoggingEntityFrameworkCoreModule
+2022-08-24 21:30:57.945 +08:00 [INF]       - Volo.Abp.TenantManagement.EntityFrameworkCore.AbpTenantManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.945 +08:00 [INF]       - Volo.Abp.FeatureManagement.EntityFrameworkCore.AbpFeatureManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.946 +08:00 [INF]     - Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore.DataDictionaryManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.947 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.EntityFrameworkCore.NotificationManagementEntityFrameworkCoreModule
+2022-08-24 21:30:57.948 +08:00 [INF]   - Volo.Abp.AspNetCore.Authentication.JwtBearer.AbpAspNetCoreAuthenticationJwtBearerModule
+2022-08-24 21:30:57.948 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2022-08-24 21:30:57.949 +08:00 [INF]   - Volo.Abp.Account.Web.AbpAccountWebModule
+2022-08-24 21:30:57.950 +08:00 [INF] Server szqh003802c:28916:423f9ffa successfully announced in 102.8586 ms
+2022-08-24 21:30:57.954 +08:00 [INF]     - Volo.Abp.Identity.AspNetCore.AbpIdentityAspNetCoreModule
+2022-08-24 21:30:57.956 +08:00 [INF]   - MyCompanyName.MyProjectName.MyProjectNameApplicationModule
+2022-08-24 21:30:57.956 +08:00 [INF]     - Lion.AbpPro.BasicManagement.BasicManagementApplicationModule
+2022-08-24 21:30:57.957 +08:00 [INF]       - Volo.Abp.Account.AbpAccountApplicationModule
+2022-08-24 21:30:57.958 +08:00 [INF] Server szqh003802c:28916:423f9ffa is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-08-24 21:30:57.960 +08:00 [INF]         - Volo.Abp.Identity.AbpIdentityApplicationModule
+2022-08-24 21:30:57.967 +08:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule
+2022-08-24 21:30:57.974 +08:00 [INF]         - Volo.Abp.Emailing.AbpEmailingModule
+2022-08-24 21:30:57.992 +08:00 [INF]           - Volo.Abp.TextTemplating.AbpTextTemplatingModule
+2022-08-24 21:30:58.020 +08:00 [INF]             - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule
+2022-08-24 21:30:58.046 +08:00 [INF]               - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule
+2022-08-24 21:30:58.047 +08:00 [INF] Server szqh003802c:28916:423f9ffa all the dispatchers started
+2022-08-24 21:30:58.050 +08:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementApplicationModule
+2022-08-24 21:30:58.052 +08:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationModule
+2022-08-24 21:30:58.053 +08:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementApplicationModule
+2022-08-24 21:30:58.053 +08:00 [INF]     - Lion.AbpPro.NotificationManagement.NotificationManagementApplicationModule
+2022-08-24 21:30:58.059 +08:00 [INF]       - Volo.Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule
+2022-08-24 21:30:58.060 +08:00 [INF]     - Lion.AbpPro.DataDictionaryManagement.DataDictionaryManagementApplicationModule
+2022-08-24 21:30:58.061 +08:00 [INF]     - MyCompanyName.MyProjectName.FreeSqlRepository.MyProjectNameFreeSqlModule
+2022-08-24 21:30:58.062 +08:00 [INF]     - Volo.Abp.BackgroundJobs.Hangfire.AbpBackgroundJobsHangfireModule
+2022-08-24 21:30:58.062 +08:00 [INF]       - Volo.Abp.Hangfire.AbpHangfireModule
+2022-08-24 21:30:58.063 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.AbpAspNetCoreMvcUiBasicThemeModule
+2022-08-24 21:30:58.064 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-08-24 21:30:58.149 +08:00 [INF] Starting Hangfire Server using job storage: 'Server: localhost@MyCompanyNameMyProjectNameDB'
+2022-08-24 21:30:58.150 +08:00 [INF] Using the following options for SQL Server job storage:
+2022-08-24 21:30:58.150 +08:00 [INF]     Queue poll interval: 00:00:15.
+2022-08-24 21:30:58.151 +08:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-08-24 21:30:58.165 +08:00 [INF] Server szqh003802c:28916:a6b6ea8a successfully announced in 9.7211 ms
+2022-08-24 21:30:58.168 +08:00 [INF] Server szqh003802c:28916:a6b6ea8a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-08-24 21:30:58.242 +08:00 [INF] Server szqh003802c:28916:a6b6ea8a all the dispatchers started
+2022-08-24 21:30:58.545 +08:00 [INF] Connecting to Redis endpoints: localhost. Using Server Name: SZQH003802C_2de4cd45e89a40da994019bc94de911c
+2022-08-24 21:30:58.575 +08:00 [INF] Connected to Redis.
+2022-08-24 21:30:58.667 +08:00 [INF] Initialized all ABP modules.
+2022-08-24 21:30:58.699 +08:00 [INF] Now listening on: http://localhost:44315
+2022-08-24 21:30:58.701 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-08-24 21:30:58.702 +08:00 [INF] Hosting environment: Development
+2022-08-24 21:30:58.702 +08:00 [INF] Content root path: D:\github\MyProjectName\aspnet-core\services\host\MyCompanyName.MyProjectName.HttpApi.Host
+2022-08-24 21:30:59.020 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/ - -
+2022-08-24 21:31:00.115 +08:00 [INF] Executing endpoint 'MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host)'
+2022-08-24 21:31:00.138 +08:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller MyCompanyName.MyProjectName.Controllers.HomeController (MyCompanyName.MyProjectName.HttpApi.Host).
+2022-08-24 21:31:00.159 +08:00 [INF] Executing action method MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host) - Validation state: "Valid"
+2022-08-24 21:31:00.165 +08:00 [INF] Executed action method MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.3456ms.
+2022-08-24 21:31:00.172 +08:00 [INF] Executing RedirectResult, redirecting to /Login.
+2022-08-24 21:31:00.176 +08:00 [INF] Executed action MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host) in 34.7238ms
+2022-08-24 21:31:00.177 +08:00 [INF] Executed endpoint 'MyCompanyName.MyProjectName.Controllers.HomeController.Index (MyCompanyName.MyProjectName.HttpApi.Host)'
+2022-08-24 21:31:00.192 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/ - - - 302 0 - 1173.3580ms
+2022-08-24 21:31:00.197 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/Login - -
+2022-08-24 21:31:02.798 +08:00 [INF] Executing endpoint '/Login'
+2022-08-24 21:31:02.806 +08:00 [INF] Route matched with {page = "/Login", action = "", controller = "", area = ""}. Executing page /Login
+2022-08-24 21:31:02.806 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:31:03.488 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Login.OnGet - ModelState is "Valid"
+2022-08-24 21:31:03.489 +08:00 [INF] Executed handler method OnGet, returned result .
+2022-08-24 21:31:03.492 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:31:03.493 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:31:03.539 +08:00 [INF] Executed page /Login in 732.4342ms
+2022-08-24 21:31:03.540 +08:00 [INF] Executed endpoint '/Login'
+2022-08-24 21:31:03.544 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/Login - - - 200 - text/html;+charset=utf-8 3346.8392ms
+2022-08-24 21:31:06.253 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/Login application/x-www-form-urlencoded 214
+2022-08-24 21:31:06.257 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:31:06.258 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:31:06.264 +08:00 [INF] Executing endpoint '/Login'
+2022-08-24 21:31:06.265 +08:00 [INF] Route matched with {page = "/Login", action = "", controller = "", area = ""}. Executing page /Login
+2022-08-24 21:31:06.266 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:31:06.271 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Login.OnPost - ModelState is "Valid"
+2022-08-24 21:31:06.896 +08:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-08-24 21:31:06.942 +08:00 [INF] Executed handler method OnPost, returned result .
+2022-08-24 21:31:06.943 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:31:06.944 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:31:06.958 +08:00 [INF] Executed page /Login in 692.1862ms
+2022-08-24 21:31:06.959 +08:00 [INF] Executed endpoint '/Login'
+2022-08-24 21:31:06.962 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/monitor - -
+2022-08-24 21:31:07.216 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/Login application/x-www-form-urlencoded 214 - 302 - text/html;+charset=utf-8 963.2097ms
+2022-08-24 21:31:07.364 +08:00 [INF] Executing endpoint '/Monitor'
+2022-08-24 21:31:07.366 +08:00 [INF] Route matched with {page = "/Monitor", action = "", controller = "", area = ""}. Executing page /Monitor
+2022-08-24 21:31:07.367 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2022-08-24 21:31:07.369 +08:00 [INF] Executing handler method MyCompanyName.MyProjectName.Pages.Monitor.OnGet - ModelState is "Valid"
+2022-08-24 21:31:07.369 +08:00 [INF] Executed handler method OnGet, returned result .
+2022-08-24 21:31:07.370 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2022-08-24 21:31:07.371 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2022-08-24 21:31:07.378 +08:00 [INF] Executed page /Monitor in 10.8678ms
+2022-08-24 21:31:07.379 +08:00 [INF] Executed endpoint '/Monitor'
+2022-08-24 21:31:07.381 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/monitor - - - 200 - text/html;+charset=utf-8 418.8504ms
+2022-08-24 21:31:38.611 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/swagger/MyProjectName/swagger.json - -
+2022-08-24 21:31:38.823 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/swagger/MyProjectName/swagger.json - - - 200 - application/json;charset=utf-8 212.0001ms
+2022-08-24 21:32:36.389 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/hangfire - -
+2022-08-24 21:32:36.493 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/hangfire - - - 200 - text/html 103.6164ms
+2022-08-24 21:32:38.644 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:38.645 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:38.646 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:38.675 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 31.3323ms
+2022-08-24 21:32:40.685 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:40.686 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:40.686 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:40.702 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 16.8118ms
+2022-08-24 21:32:42.722 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:42.723 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:42.723 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:42.738 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 16.0303ms
+2022-08-24 21:32:44.749 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:44.751 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:44.752 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:44.775 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 26.2568ms
+2022-08-24 21:32:46.784 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:46.785 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:46.786 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:46.803 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 19.3155ms
+2022-08-24 21:32:48.824 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:48.827 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:48.828 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:48.849 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 24.7072ms
+2022-08-24 21:32:50.856 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:50.857 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:50.857 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:50.873 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.1640ms
+2022-08-24 21:32:52.889 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:52.891 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:52.891 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:52.907 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.8816ms
+2022-08-24 21:32:54.915 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:54.916 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:54.917 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:54.937 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 22.5134ms
+2022-08-24 21:32:56.947 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:56.948 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:56.949 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:56.964 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 17.2222ms
+2022-08-24 21:32:59.020 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:32:59.022 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:32:59.023 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:32:59.108 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 87.1875ms
+2022-08-24 21:33:01.116 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228
+2022-08-24 21:33:01.118 +08:00 [INF] CORS policy execution failed.
+2022-08-24 21:33:01.118 +08:00 [INF] Request origin http://localhost:44315 does not have permission to access the resource.
+2022-08-24 21:33:01.135 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/hangfire/stats application/x-www-form-urlencoded;+charset=UTF-8 228 - 200 - application/json 18.2539ms
+2022-08-24 21:33:42.674 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/api/app/account/login application/json 37
+2022-08-24 21:33:42.679 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:33:42.681 +08:00 [INF] Executing endpoint 'Lion.AbpPro.BasicManagement.Systems.AccountController.LoginAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:33:42.690 +08:00 [INF] Route matched with {action = "Login", controller = "Account", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Lion.AbpPro.BasicManagement.Users.Dtos.LoginOutput] LoginAsync(Lion.AbpPro.BasicManagement.Users.Dtos.LoginInput) on controller Lion.AbpPro.BasicManagement.Systems.AccountController (Lion.AbpPro.BasicManagement.HttpApi).
+2022-08-24 21:33:42.735 +08:00 [INF] Executing action method Lion.AbpPro.BasicManagement.Systems.AccountController.LoginAsync (Lion.AbpPro.BasicManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:33:42.807 +08:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2022-08-24 21:33:42.839 +08:00 [INF] Executed action method Lion.AbpPro.BasicManagement.Systems.AccountController.LoginAsync (Lion.AbpPro.BasicManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 101.8403ms.
+2022-08-24 21:33:42.848 +08:00 [INF] Executing ObjectResult, writing value of type 'Lion.AbpPro.BasicManagement.Users.Dtos.LoginOutput'.
+2022-08-24 21:33:42.857 +08:00 [INF] Executed action Lion.AbpPro.BasicManagement.Systems.AccountController.LoginAsync (Lion.AbpPro.BasicManagement.HttpApi) in 164.302ms
+2022-08-24 21:33:42.858 +08:00 [INF] Executed endpoint 'Lion.AbpPro.BasicManagement.Systems.AccountController.LoginAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:33:42.899 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/api/app/account/login application/json 37 - 200 - application/json;+charset=utf-8 225.1098ms
+2022-08-24 21:33:42.932 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/api/abp/application-configuration - 0
+2022-08-24 21:33:42.934 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:33:42.936 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2022-08-24 21:33:42.940 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2022-08-24 21:33:42.959 +08:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2022-08-24 21:33:42.964 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2022-08-24 21:33:42.968 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2022-08-24 21:33:43.633 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2022-08-24 21:33:43.635 +08:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 674.0026ms.
+2022-08-24 21:33:43.642 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2022-08-24 21:33:43.662 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 720.5726ms
+2022-08-24 21:33:43.663 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2022-08-24 21:33:43.669 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:44315/api/abp/application-configuration - 0 - 200 - application/json;+charset=utf-8 736.9437ms
+2022-08-24 21:33:48.663 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:44315/signalr/notification?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNeUNvbXBhbnlOYW1lLk15UHJvamVjdE5hbWUiLCJpc3MiOiJNeUNvbXBhbnlOYW1lLk15UHJvamVjdE5hbWUiLCJuYW1laWQiOiIzYTA1ZTIzNy05OGE3LWZjYjUtMGM5ZC0xZDVlZDcxMDMyMzAiLCJnaXZlbl9uYW1lIjoiYWRtaW4iLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGFicC5pbyIsInRlbmFudGlkIjoiIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNjYxMzQ4MDIyLCJleHAiOjE2NjE0NTYwMjIsImlhdCI6MTY2MTM0ODAyMn0.DGchELySwlXGR2ojrKrzDtfBEeGZ1toDe9hsSSqbHjU - -
+2022-08-24 21:33:48.669 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:33:48.690 +08:00 [INF] Executing endpoint 'SignalR/Notification'
+2022-08-24 21:34:02.082 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/OrganizationUnits/tree - 0
+2022-08-24 21:34:02.084 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:34:02.087 +08:00 [INF] Executing endpoint 'Lion.AbpPro.BasicManagement.Systems.OrganizationUnitController.GetTreeAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:02.089 +08:00 [INF] Route matched with {action = "GetTree", controller = "OrganizationUnit", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.List`1[Lion.AbpPro.BasicManagement.OrganizationUnits.Dto.TreeOutput]] GetTreeAsync() on controller Lion.AbpPro.BasicManagement.Systems.OrganizationUnitController (Lion.AbpPro.BasicManagement.HttpApi).
+2022-08-24 21:34:02.152 +08:00 [INF] Executing action method Lion.AbpPro.BasicManagement.Systems.OrganizationUnitController.GetTreeAsync (Lion.AbpPro.BasicManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:34:02.420 +08:00 [INF] Executed action method Lion.AbpPro.BasicManagement.Systems.OrganizationUnitController.GetTreeAsync (Lion.AbpPro.BasicManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 266.45ms.
+2022-08-24 21:34:02.422 +08:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[Lion.AbpPro.BasicManagement.OrganizationUnits.Dto.TreeOutput, Lion.AbpPro.BasicManagement.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-08-24 21:34:02.424 +08:00 [INF] Executed action Lion.AbpPro.BasicManagement.Systems.OrganizationUnitController.GetTreeAsync (Lion.AbpPro.BasicManagement.HttpApi) in 332.2218ms
+2022-08-24 21:34:02.424 +08:00 [INF] Executed endpoint 'Lion.AbpPro.BasicManagement.Systems.OrganizationUnitController.GetTreeAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:02.471 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/OrganizationUnits/tree - 0 - 200 - application/json;+charset=utf-8 389.3059ms
+2022-08-24 21:34:07.561 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/Users/page application/json 29
+2022-08-24 21:34:07.563 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:34:07.565 +08:00 [INF] Executing endpoint 'Lion.AbpPro.BasicManagement.Systems.UserController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:07.567 +08:00 [INF] Route matched with {action = "List", controller = "User", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.Application.Dtos.PagedResultDto`1[Volo.Abp.Identity.IdentityUserDto]] ListAsync(Lion.AbpPro.BasicManagement.Users.Dtos.PagingUserListInput) on controller Lion.AbpPro.BasicManagement.Systems.UserController (Lion.AbpPro.BasicManagement.HttpApi).
+2022-08-24 21:34:07.664 +08:00 [INF] Executing action method Lion.AbpPro.BasicManagement.Systems.UserController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:34:07.743 +08:00 [INF] Executed action method Lion.AbpPro.BasicManagement.Systems.UserController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 77.691ms.
+2022-08-24 21:34:07.745 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Application.Dtos.PagedResultDto`1[[Volo.Abp.Identity.IdentityUserDto, Volo.Abp.Identity.Application.Contracts, Version=5.3.2.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-08-24 21:34:07.757 +08:00 [INF] Executed action Lion.AbpPro.BasicManagement.Systems.UserController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi) in 187.9074ms
+2022-08-24 21:34:07.758 +08:00 [INF] Executed endpoint 'Lion.AbpPro.BasicManagement.Systems.UserController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:07.790 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/Users/page application/json 29 - 200 - application/json;+charset=utf-8 228.8982ms
+2022-08-24 21:34:09.552 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/Roles/page application/json 29
+2022-08-24 21:34:09.553 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:34:09.555 +08:00 [INF] Executing endpoint 'Lion.AbpPro.BasicManagement.Systems.RoleController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:09.557 +08:00 [INF] Route matched with {action = "List", controller = "Role", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.Application.Dtos.PagedResultDto`1[Volo.Abp.Identity.IdentityRoleDto]] ListAsync(Lion.AbpPro.BasicManagement.Roles.Dtos.PagingRoleListInput) on controller Lion.AbpPro.BasicManagement.Systems.RoleController (Lion.AbpPro.BasicManagement.HttpApi).
+2022-08-24 21:34:09.616 +08:00 [INF] Executing action method Lion.AbpPro.BasicManagement.Systems.RoleController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:34:09.663 +08:00 [INF] Executed action method Lion.AbpPro.BasicManagement.Systems.RoleController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 45.3022ms.
+2022-08-24 21:34:09.665 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Application.Dtos.PagedResultDto`1[[Volo.Abp.Identity.IdentityRoleDto, Volo.Abp.Identity.Application.Contracts, Version=5.3.2.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-08-24 21:34:09.667 +08:00 [INF] Executed action Lion.AbpPro.BasicManagement.Systems.RoleController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi) in 107.989ms
+2022-08-24 21:34:09.668 +08:00 [INF] Executed endpoint 'Lion.AbpPro.BasicManagement.Systems.RoleController.ListAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:09.704 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/Roles/page application/json 29 - 200 - application/json;+charset=utf-8 152.1646ms
+2022-08-24 21:34:10.831 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/Settings/all - 0
+2022-08-24 21:34:10.833 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:34:10.834 +08:00 [INF] Executing endpoint 'Lion.AbpPro.BasicManagement.Systems.SettingController.GetAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:10.837 +08:00 [INF] Route matched with {action = "Get", controller = "Setting", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.List`1[Lion.AbpPro.BasicManagement.Settings.Dtos.SettingOutput]] GetAsync() on controller Lion.AbpPro.BasicManagement.Systems.SettingController (Lion.AbpPro.BasicManagement.HttpApi).
+2022-08-24 21:34:10.855 +08:00 [INF] Executing action method Lion.AbpPro.BasicManagement.Systems.SettingController.GetAsync (Lion.AbpPro.BasicManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:34:10.929 +08:00 [INF] Executed action method Lion.AbpPro.BasicManagement.Systems.SettingController.GetAsync (Lion.AbpPro.BasicManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 72.5449ms.
+2022-08-24 21:34:10.930 +08:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[Lion.AbpPro.BasicManagement.Settings.Dtos.SettingOutput, Lion.AbpPro.BasicManagement.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-08-24 21:34:10.933 +08:00 [INF] Executed action Lion.AbpPro.BasicManagement.Systems.SettingController.GetAsync (Lion.AbpPro.BasicManagement.HttpApi) in 94.8343ms
+2022-08-24 21:34:10.934 +08:00 [INF] Executed endpoint 'Lion.AbpPro.BasicManagement.Systems.SettingController.GetAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:10.967 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/Settings/all - 0 - 200 - application/json;+charset=utf-8 135.9478ms
+2022-08-24 21:34:12.074 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/AuditLogs/page application/json 29
+2022-08-24 21:34:12.076 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:34:12.078 +08:00 [INF] Executing endpoint 'Lion.AbpPro.BasicManagement.Systems.AuditLogController.GetListAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:12.080 +08:00 [INF] Route matched with {action = "GetList", controller = "AuditLog", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.Application.Dtos.PagedResultDto`1[Lion.AbpPro.BasicManagement.AuditLogs.GetAuditLogPageListOutput]] GetListAsync(Lion.AbpPro.BasicManagement.AuditLogs.PagingAuditLogListInput) on controller Lion.AbpPro.BasicManagement.Systems.AuditLogController (Lion.AbpPro.BasicManagement.HttpApi).
+2022-08-24 21:34:12.102 +08:00 [INF] Executing action method Lion.AbpPro.BasicManagement.Systems.AuditLogController.GetListAsync (Lion.AbpPro.BasicManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:34:12.169 +08:00 [INF] Executed action method Lion.AbpPro.BasicManagement.Systems.AuditLogController.GetListAsync (Lion.AbpPro.BasicManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 65.5473ms.
+2022-08-24 21:34:12.171 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Application.Dtos.PagedResultDto`1[[Lion.AbpPro.BasicManagement.AuditLogs.GetAuditLogPageListOutput, Lion.AbpPro.BasicManagement.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-08-24 21:34:12.176 +08:00 [INF] Executed action Lion.AbpPro.BasicManagement.Systems.AuditLogController.GetListAsync (Lion.AbpPro.BasicManagement.HttpApi) in 95.5327ms
+2022-08-24 21:34:12.177 +08:00 [INF] Executed endpoint 'Lion.AbpPro.BasicManagement.Systems.AuditLogController.GetListAsync (Lion.AbpPro.BasicManagement.HttpApi)'
+2022-08-24 21:34:12.181 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/AuditLogs/page application/json 29 - 200 - application/json;+charset=utf-8 106.2561ms
+2022-08-24 21:34:13.368 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:44315/DataDictionary/page application/json 2
+2022-08-24 21:34:13.370 +08:00 [INF] CORS policy execution successful.
+2022-08-24 21:34:13.372 +08:00 [INF] Executing endpoint 'Lion.AbpPro.DataDictionaryManagement.DataDictionaries.DataDictionaryController.GetPagingListAsync (Lion.AbpPro.DataDictionaryManagement.HttpApi)'
+2022-08-24 21:34:13.374 +08:00 [INF] Route matched with {action = "GetPagingList", controller = "DataDictionary", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.Application.Dtos.PagedResultDto`1[Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Dtos.PagingDataDictionaryOutput]] GetPagingListAsync(Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Dtos.PagingDataDictionaryInput) on controller Lion.AbpPro.DataDictionaryManagement.DataDictionaries.DataDictionaryController (Lion.AbpPro.DataDictionaryManagement.HttpApi).
+2022-08-24 21:34:13.593 +08:00 [INF] Executing action method Lion.AbpPro.DataDictionaryManagement.DataDictionaries.DataDictionaryController.GetPagingListAsync (Lion.AbpPro.DataDictionaryManagement.HttpApi) - Validation state: "Valid"
+2022-08-24 21:34:13.680 +08:00 [INF] Executed action method Lion.AbpPro.DataDictionaryManagement.DataDictionaries.DataDictionaryController.GetPagingListAsync (Lion.AbpPro.DataDictionaryManagement.HttpApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 85.7999ms.
+2022-08-24 21:34:13.687 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Application.Dtos.PagedResultDto`1[[Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Dtos.PagingDataDictionaryOutput, Lion.AbpPro.DataDictionaryManagement.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-08-24 21:34:13.690 +08:00 [INF] Executed action Lion.AbpPro.DataDictionaryManagement.DataDictionaries.DataDictionaryController.GetPagingListAsync (Lion.AbpPro.DataDictionaryManagement.HttpApi) in 314.0786ms
+2022-08-24 21:34:13.691 +08:00 [INF] Executed endpoint 'Lion.AbpPro.DataDictionaryManagement.DataDictionaries.DataDictionaryController.GetPagingListAsync (Lion.AbpPro.DataDictionaryManagement.HttpApi)'
+2022-08-24 21:34:13.722 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/DataDictionary/page application/json 2 - 200 - application/json;+charset=utf-8 354.1750ms

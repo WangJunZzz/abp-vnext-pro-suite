@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\..\common.props" />
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Lion.AbpSuite</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\Lion.AbpSuite.FreeSqlReppsitory\Lion.AbpSuite.FreeSqlReppsitory.csproj" />
+	  <ProjectReference Include="..\Lion.AbpSuite.TestBase\Lion.AbpSuite.TestBase.csproj" />
+	</ItemGroup>
+
+</Project>
