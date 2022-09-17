@@ -18,7 +18,14 @@ public class EfCoreTemplateRepository :
             .FirstOrDefaultAsync(t => t.Name == name);
     }
 
-    public async Task<List<Template>> GetListAsync(string filter = null,int maxResultCount = 10,int skipCount = 0,bool includeDetails = true)
+    public async Task<Template> FindByNameExcludeIdAsync(string name, Guid id, bool includeDetail = true)
+    {
+        return await (await GetDbSetAsync())
+            .IncludeDetails(includeDetail)
+            .FirstOrDefaultAsync(t => t.Name == name && t.Id != id);
+    }
+
+    public async Task<List<Template>> GetListAsync(string filter = null, int maxResultCount = 10, int skipCount = 0, bool includeDetails = true)
     {
         return await (await GetDbSetAsync())
             .IncludeDetails(includeDetails)

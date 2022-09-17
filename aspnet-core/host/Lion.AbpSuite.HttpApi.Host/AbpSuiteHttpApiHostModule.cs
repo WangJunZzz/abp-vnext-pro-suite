@@ -24,7 +24,7 @@ namespace Lion.AbpSuite
             ApplicationInitializationContext context)
         {
             // 应用程序初始化的时候注册hangfire
-            context.CreateRecurringJob();
+            // context.CreateRecurringJob();
             base.OnPostApplicationInitialization(context);
         }
 

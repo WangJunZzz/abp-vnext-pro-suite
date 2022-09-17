@@ -20,6 +20,12 @@ public class TemplateManager : AbpSuiteDomainService
         return await _templateRepository.GetCountAsync(filter);
     }
 
+    /// <summary>
+    /// 创建模板组
+    /// </summary>
+    /// <param name="name">模板组名称</param>
+    /// <param name="remark">备注</param>
+    /// <exception cref="UserFriendlyException"></exception>
     public async Task CreateAsync(string name, string remark)
     {
         var entity = await _templateRepository.FindByNameAsync(name, false);
@@ -32,6 +38,9 @@ public class TemplateManager : AbpSuiteDomainService
         await _templateRepository.InsertAsync(entity);
     }
 
+    /// <summary>
+    /// 更新模板组
+    /// </summary>
     public async Task UpdateAsync(Guid id, string name, string remark)
     {
         var entity = await _templateRepository.FindAsync(id, false);
@@ -39,11 +48,19 @@ public class TemplateManager : AbpSuiteDomainService
         {
             throw new UserFriendlyException("模板组不存在");
         }
+        var template = await _templateRepository.FindByNameExcludeIdAsync(name, id, false);
+        if (template != null)
+        {
+            throw new UserFriendlyException("模板组名称已存在");
+        }
 
         entity.Update(name, remark);
         await _templateRepository.UpdateAsync(entity);
     }
 
+    /// <summary>
+    /// 删除模板组
+    /// </summary>
     public async Task DeleteAsync(Guid id)
     {
         var entity = await _templateRepository.FindAsync(id);

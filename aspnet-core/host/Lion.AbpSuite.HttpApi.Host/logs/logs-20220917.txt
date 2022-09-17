@@ -493,3 +493,5 @@
 2022-09-17 11:48:37.172 +08:00 [INF] Executed action Lion.AbpSuite.Controllers.TemplateController.PageAsync (Lion.AbpSuite.HttpApi) in 205.1345ms
 2022-09-17 11:48:37.174 +08:00 [INF] Executed endpoint 'Lion.AbpSuite.Controllers.TemplateController.PageAsync (Lion.AbpSuite.HttpApi)'
 2022-09-17 11:48:37.235 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:44315/Templates/Page application/json 3 - 200 - application/json;+charset=utf-8 284.8914ms
+2022-09-17 13:20:01.983 +08:00 [INF] Execution Worker recovered from the Faulted state after 00:00:14.8032120 and is in the Running state now
+2022-09-17 13:21:02.075 +08:00 [INF] Execution Worker recovered from the Faulted state after 00:01:14.8974921 and is in the Running state now
