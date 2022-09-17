@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+
 namespace Lion.AbpSuite.EntityFrameworkCore
 {
     public static class AbpSuiteDbContextModelCreatingExtensions
@@ -6,14 +9,19 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         {
             Check.NotNull(builder, nameof(builder));
 
-            /* Configure your own tables/entities inside here */
-
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(AbpSuiteConsts.DbTablePrefix + "YourEntities", AbpSuiteConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+            builder.Entity<Template>(b =>
+            {
+                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(Template));
+                b.Property(e => e.Name).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
+                b.Property(e => e.Remark).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength512);
+                b.ConfigureByConvention();
+            });
+            builder.Entity<TemplateDetail>(b =>
+            {
+                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(TemplateDetail));
+                b.Property(e => e.Name).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
+                b.ConfigureByConvention();
+            });
         }
     }
 }

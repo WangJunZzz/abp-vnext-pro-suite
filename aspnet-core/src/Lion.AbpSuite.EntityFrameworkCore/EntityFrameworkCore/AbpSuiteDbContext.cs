@@ -38,6 +38,8 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<DataDictionary> DataDictionary { get; set; }
+        
+        public DbSet<Template> Templates { get; set; }
         public AbpSuiteDbContext(DbContextOptions<AbpSuiteDbContext> options)
             : base(options)
         {
@@ -64,6 +66,6 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             builder.ConfigureDataDictionaryManagement();
         }
 
-      
+
     }
 }

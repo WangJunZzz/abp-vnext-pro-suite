@@ -7,14 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lion.AbpSuite.Domain.Shared\Lion.AbpSuite.Domain.Shared.csproj"/>
+        <ProjectReference Include="..\Lion.AbpSuite.Domain.Shared\Lion.AbpSuite.Domain.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
 
-        <PackageReference Include="Lion.AbpPro.BasicManagement.Application.Contracts"/>
-        <PackageReference Include="Lion.AbpPro.NotificationManagement.Application.Contracts"/>
-        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application.Contracts"/>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Application.Contracts" />
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Application.Contracts" />
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application.Contracts" />
     </ItemGroup>
 
 
