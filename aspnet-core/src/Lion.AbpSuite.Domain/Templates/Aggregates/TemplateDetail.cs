@@ -1,17 +1,24 @@
-﻿using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
-
-namespace Lion.AbpSuite.Templates.Aggregates
+﻿namespace Lion.AbpSuite.Templates.Aggregates
 {
     /// <summary>
     /// 模板明细 
     /// </summary>
-    public class TemplateDetail : AuditedEntity<Guid>
+    public class TemplateDetail : FullAuditedEntity<Guid>
     {
         /// <summary>
         /// 模板id
         /// </summary>
         public Guid TemplateId { get; private set; }
+
+        /// <summary>
+        ///  模板类型
+        /// </summary>
+        public TemplateType TemplateType { get;  private set; }
+        
+        /// <summary>
+        /// 模板控制类型
+        /// </summary>
+        public ControlType ControlType { get; private set; }
 
         /// <summary>
         /// 父级id
@@ -21,8 +28,12 @@ namespace Lion.AbpSuite.Templates.Aggregates
         /// <summary>
         /// 模板名称
         /// </summary>
-
         public string Name { get; private set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string Description { get; private set; }
 
         /// <summary>
         /// 模板内容
@@ -37,14 +48,21 @@ namespace Lion.AbpSuite.Templates.Aggregates
         public TemplateDetail(
             Guid id,
             Guid templateId,
+            TemplateType templateType,
+            ControlType  controlType,
             string name,
+            string description,
             string content,
             Guid? parentId = null
         ) : base(id)
         {
+            SetContent(controlType);
             TemplateId = templateId;
+            TemplateType = templateType;
             ParentId = parentId;
+            ControlType = controlType;
             SetName(name);
+            SetDescription(description);
             SetContent(content);
         }
 
@@ -54,21 +72,42 @@ namespace Lion.AbpSuite.Templates.Aggregates
             Guard.NotNullOrWhiteSpace(name, nameof(name), AbpSuiteDomainSharedConsts.MaxLength128);
             Name = name;
         }
-
-        private void SetContent(string cotent)
+        private void SetDescription(string description)
         {
-            Content = cotent;
+            Guard.NotNullOrWhiteSpace(description, nameof(description), AbpSuiteDomainSharedConsts.MaxLength128);
+            Description = description;
         }
-
-        public void Update(string name, string content)
+        private void SetContent(string content)
+        {
+            Content = content.IsNullOrWhiteSpace()?string.Empty:content;
+        }
+        
+        private void SetContent(ControlType controlType)
+        {
+            if (TemplateType == TemplateType.Folder)
+            {
+                ControlType = ControlType.Default;
+            }
+            else
+            {
+                ControlType = controlType;
+            }
+        }
+        public void Update(string content)
+        {
+            SetContent(content);
+        }
+        public void Update(string name, string description,string content)
         {
             SetName(name);
             SetContent(content);
+            SetDescription(description);
         }
         
-        public void Update()
+        public void Update(string name, string description)
         {
-            
+            SetName(name);
+            SetDescription(description);
         }
     }
 }

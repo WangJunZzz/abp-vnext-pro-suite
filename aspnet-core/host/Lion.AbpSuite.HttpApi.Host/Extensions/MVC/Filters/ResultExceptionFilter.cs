@@ -1,4 +1,5 @@
 using Lion.AbpPro.Extension.Customs.Dtos;
+using Lion.AbpSuite.Localization;
 
 namespace Lion.AbpSuite.Extensions.MVC.Filters
 {

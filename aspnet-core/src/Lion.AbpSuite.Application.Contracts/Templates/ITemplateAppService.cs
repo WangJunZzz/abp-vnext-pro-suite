@@ -6,7 +6,22 @@ public interface ITemplateAppService : IApplicationService
 
     Task CreateAsync(CreateTemplateInput input);
 
-    Task UpdateAsync(UpdateTemplteInput input);
+    Task UpdateAsync(UpdateTemplateInput input);
 
     Task DeleteAsync(DeleteTemplateInput input);
+
+    Task CreateDetailAsync(CreateTemplateDetailInput input);
+    
+    Task UpdateDetailAsync(UpdateTemplateDetailInput input);
+
+    Task UpdateDetailAsync(UpdateTemplateDetailContentInput input);
+    Task DeleteDetailAsync(DeleteTemplateDetailInput input);
+
+    Task<List<GetTemplateTreeOutput>> TemplateTreeAsync(GetTemplteTreeInput input);
+
+    /// <summary>
+    /// 获取所有模板
+    /// </summary>
+    /// <returns></returns>
+    Task<List<TemplateDto>> ListAsync();
 }

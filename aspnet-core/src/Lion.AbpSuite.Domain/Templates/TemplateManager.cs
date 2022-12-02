@@ -25,7 +25,6 @@ public class TemplateManager : AbpSuiteDomainService
     /// </summary>
     /// <param name="name">模板组名称</param>
     /// <param name="remark">备注</param>
-    /// <exception cref="UserFriendlyException"></exception>
     public async Task CreateAsync(string name, string remark)
     {
         var entity = await _templateRepository.FindByNameAsync(name, false);
@@ -48,6 +47,7 @@ public class TemplateManager : AbpSuiteDomainService
         {
             throw new UserFriendlyException("模板组不存在");
         }
+
         var template = await _templateRepository.FindByNameExcludeIdAsync(name, id, false);
         if (template != null)
         {
@@ -72,39 +72,117 @@ public class TemplateManager : AbpSuiteDomainService
         await _templateRepository.DeleteAsync(entity);
     }
 
-    public async Task CreateDetailAsync(Guid id, string name, string content, Guid? parentId)
+    public async Task CreateDetailAsync(Guid templateId, TemplateType templateType, ControlType controlType, string name, string description, string content, Guid? parentId)
     {
-        var entity = await _templateRepository.FindAsync(id);
+        var entity = await _templateRepository.FindAsync(templateId);
         if (entity == null)
         {
             throw new UserFriendlyException("模板组不存在");
         }
 
-        entity.AddDetail(id, name, content, parentId);
+        entity.AddTemplateDetail(GuidGenerator.Create(), templateType, controlType,name, description, content, parentId);
+        await _templateRepository.UpdateAsync(entity);
+    }
+    
+    // public async Task CreateDetailAsync(Guid templateId, TemplateType templateType, ControlType controlType, string name, string description, Guid? parentId)
+    // {
+    //     var entity = await _templateRepository.FindAsync(templateId);
+    //     if (entity == null)
+    //     {
+    //         throw new UserFriendlyException("模板组不存在");
+    //     }
+    //
+    //     entity.AddTemplateDetail(GuidGenerator.Create(), templateType, name, description, parentId);
+    //     await _templateRepository.UpdateAsync(entity);
+    // }
+    public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string name, string description, string content)
+    {
+        var entity = await _templateRepository.FindAsync(templateId);
+        if (entity == null)
+        {
+            throw new UserFriendlyException("模板组不存在");
+        }
+
+        entity.UpdateDetail(detailId, name, description, content);
+        await _templateRepository.UpdateAsync(entity);
+    }
+    
+    public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string content)
+    {
+        var entity = await _templateRepository.FindAsync(templateId);
+        if (entity == null)
+        {
+            throw new UserFriendlyException("模板组不存在");
+        }
+
+        entity.UpdateDetailContent(detailId, content);
+        await _templateRepository.UpdateAsync(entity);
+    }
+    public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string name, string description)
+    {
+        var entity = await _templateRepository.FindAsync(templateId);
+        if (entity == null)
+        {
+            throw new UserFriendlyException("模板组不存在");
+        }
+
+        entity.UpdateDetail(detailId, name, description);
+        await _templateRepository.UpdateAsync(entity);
+    }
+    public async Task DeleteDetailAsync(Guid templateId, Guid templateDetailId)
+    {
+        var entity = await _templateRepository.FindAsync(templateId);
+        if (entity == null)
+        {
+            throw new UserFriendlyException("模板组不存在");
+        }
+
+        foreach (var templateDetail in entity.TemplateDetails.Where(e=>e.ParentId==templateDetailId))
+        {
+            templateDetail.IsDeleted = true;
+        }
+        entity.DeleteDetail(templateDetailId);
         await _templateRepository.UpdateAsync(entity);
     }
 
-    public async Task UpdateDetailAsync(Guid id, Guid detailId, string name, string content)
+    public async Task<TemplateDto> GetAsync(Guid templateId)
     {
-        var entity = await _templateRepository.FindAsync(id);
+        var entity = await _templateRepository.FindAsync(templateId);
         if (entity == null)
         {
             throw new UserFriendlyException("模板组不存在");
         }
 
-        entity.UpdateDetail(detailId, name, content);
-        await _templateRepository.UpdateAsync(entity);
+        return ObjectMapper.Map<Template, TemplateDto>(entity);
+    }
+    
+    public async Task<List<TemplateTreeDto>> TemplateTreeAsync(Guid id)
+    {
+        var template = await GetAsync(id);
+        if (template.TemplateDetails.Count == 0) return new List<TemplateTreeDto>();
+        return RecursionTemplate(template.TemplateDetails, null);
     }
 
-    public async Task DeleteDetailAsync(Guid id, Guid detailId)
+    private List<TemplateTreeDto> RecursionTemplate(List<TemplateDetailDto> template, Guid? parentId)
     {
-        var entity = await _templateRepository.FindAsync(id);
-        if (entity == null)
+        var tree = new List<TemplateTreeDto>();
+        var list = template.Where(e => e.ParentId == parentId);
+        foreach (var detail in list)
         {
-            throw new UserFriendlyException("模板组不存在");
+            var child = new TemplateTreeDto()
+            {
+                Key = detail.Id,
+                Name = detail.Name,
+                Title = detail.Description,
+                Description = detail.Description,
+                Content = detail.Content,
+                TemplateType = detail.TemplateType,
+                Icon = detail.TemplateType == TemplateType.Folder ? "ant-design:folder-open-outlined" : "ant-design:file-outlined"
+            };
+            child.Children.AddRange(RecursionTemplate(template, detail.Id));
+            tree.Add(child);
         }
 
-        entity.DeleteDetail(detailId);
-        await _templateRepository.DeleteAsync(entity);
+        return tree;
     }
 }

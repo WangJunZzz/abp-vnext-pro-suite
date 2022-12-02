@@ -6,6 +6,9 @@ namespace Lion.AbpSuite.Templates
     /// </summary>
     public  class TemplateDto : AggregateDtoBase<Guid>
     {
+        public Guid? TenantId { get;  set; }
+        
+        
         /// <summary>
         /// 名称
         /// </summary>

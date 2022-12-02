@@ -7,6 +7,8 @@ global using System.Linq;
 global using System.Text;
 global using System.Threading.Tasks;
 global using Lion.AbpSuite.Data;
+global using Lion.AbpSuite.DataTypes;
+global using Lion.AbpSuite.DataTypes.Aggregates;
 global using Lion.AbpSuite.Templates;
 global using Lion.AbpSuite.Templates.Aggregates;
 global using Lion.AbpSuite.Users;

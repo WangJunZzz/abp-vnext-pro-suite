@@ -1,6 +1,7 @@
 // Global using directives
 
 global using System;
+global using System.ComponentModel.DataAnnotations;
 global using System.Threading.Tasks;
 global using Lion.AbpPro.Extension.Customs.Dtos;
 global using Lion.AbpSuite.Templates.Dto;

@@ -19,6 +19,7 @@
         <PackageReference Include="Lion.AbpPro.BasicManagement.Domain.Shared" />
         <PackageReference Include="Lion.AbpPro.NotificationManagement.Domain.Shared" />
         <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain.Shared" />
+        <PackageReference Include="Humanizer.Core.zh-Hans" Version="2.10.1" />
     </ItemGroup>
 
 </Project>

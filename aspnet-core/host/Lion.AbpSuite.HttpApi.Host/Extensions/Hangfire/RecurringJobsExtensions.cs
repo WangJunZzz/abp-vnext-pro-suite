@@ -1,6 +1,6 @@
 using Lion.AbpSuite.Jobs;
 
-namespace Lion.AbpSuite.Extensions
+namespace Lion.AbpSuite.Extensions.Hangfire
 {
     public static class RecurringJobsExtensions
     {

@@ -53,7 +53,7 @@
 
         private void SetRemark(string remark)
         {
-            Guard.NotNullOrWhiteSpace(remark, nameof(remark), AbpSuiteDomainSharedConsts.MaxLength512);
+            Guard.Length(remark, nameof(remark), AbpSuiteDomainSharedConsts.MaxLength512);
             Remark = remark;
         }
 
@@ -63,17 +63,30 @@
             SetRemark(remark);
         }
 
-        public void AddDetail(Guid id, string name, string content, Guid? parentId)
+        /// <summary>
+        /// 新增模板明细
+        /// </summary>
+        public void AddTemplateDetail(Guid id, TemplateType templateType, ControlType controlType, string name, string description, string content, Guid? parentId)
         {
             if (TemplateDetails.Any(e => e.Name == name))
             {
                 throw new UserFriendlyException("模板已存在");
             }
 
-            TemplateDetails.Add(new TemplateDetail(id, Id, name, content, parentId));
+            TemplateDetails.Add(new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId));
         }
 
-        public void UpdateDetail(Guid id, string name, string content)
+        // public void AddTemplateDetail(Guid id, TemplateType templateType,  string name, string description, Guid? parentId)
+        // {
+        //     if (TemplateDetails.Any(e => e.Name == name))
+        //     {
+        //         throw new UserFriendlyException("模板已存在");
+        //     }
+        //
+        //     TemplateDetails.Add(new TemplateDetail(id, Id, templateType, ControlType.Default, name, description, null, parentId));
+        // }
+
+        public void UpdateDetailContent(Guid id, string content)
         {
             var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
             if (detail == null)
@@ -81,7 +94,29 @@
                 throw new UserFriendlyException("模板不存在");
             }
 
-            detail.Update(name, content);
+            detail.Update(content);
+        }
+
+        public void UpdateDetail(Guid id, string name, string description, string content)
+        {
+            var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
+            if (detail == null)
+            {
+                throw new UserFriendlyException("模板不存在");
+            }
+
+            detail.Update(name, description, content);
+        }
+
+        public void UpdateDetail(Guid id, string name, string description)
+        {
+            var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
+            if (detail == null)
+            {
+                throw new UserFriendlyException("模板不存在");
+            }
+
+            detail.Update(name, description);
         }
 
         public void DeleteDetail(Guid id)

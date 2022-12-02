@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Builder;
+namespace Lion.AbpSuite.Extensions.Middlewares;
 
 public static class AbpSuiteApplicationBuilderExtensionsExtensions
 {

@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "http://localhost:44315/swagger/AbpSuite/swagger.json",
+      "url": "http://localhost:44311/swagger/AbpSuite/swagger.json",
       "output": null,
       "newLineBehavior": "Auto"
     }

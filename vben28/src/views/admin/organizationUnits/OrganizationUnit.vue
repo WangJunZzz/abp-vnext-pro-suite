@@ -1,7 +1,7 @@
 <template>
   <div>
     <PageWrapper dense contentFullHeight contentClass="flex">
-      <div class="bg-white m-4  mr-0 overflow-hidden">
+      <div class="bg-white m-4  mr-0 w-1/4 overflow-hidden">
         <BasicTree
           toolbar
           search

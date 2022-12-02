@@ -1,4 +1,5 @@
 using Lion.AbpPro.DataDictionaryManagement;
+using Lion.AbpSuite.Localization;
 
 namespace Lion.AbpSuite
 {

@@ -1,0 +1,1 @@
+https://liquid.bootcss.com/filters/capitalize/

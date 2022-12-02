@@ -6,6 +6,7 @@
         <RootNamespace>Lion.AbpSuite</RootNamespace>
         <PreserveCompilationReferences>true</PreserveCompilationReferences>
         <UserSecretsId>Lion.AbpSuite-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
+        <NoWarn>NU1504</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

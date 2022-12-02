@@ -8,8 +8,7 @@ namespace Lion.AbpSuite
         typeof(BasicManagementApplicationModule),
         typeof(NotificationManagementApplicationModule),
         typeof(DataDictionaryManagementApplicationModule),
-        typeof(AbpSuiteFreeSqlModule),
-        typeof(AbpBackgroundJobsHangfireModule)
+        typeof(AbpSuiteFreeSqlModule)
         )]
     public class AbpSuiteApplicationModule : AbpModule
     {

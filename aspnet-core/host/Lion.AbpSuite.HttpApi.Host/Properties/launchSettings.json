@@ -3,7 +3,7 @@
     "Lion.AbpSuite.HttpApi.Host": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:44315",
+      "applicationUrl": "http://localhost:44311",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

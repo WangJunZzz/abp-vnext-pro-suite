@@ -89,5 +89,7 @@
         <PackageReference Update="Microsoft.IdentityModel.Tokens" Version="6.10.0"/>
         <PackageReference Update="System.IdentityModel.Tokens.Jwt" Version="6.10.0"/>
         <PackageReference Update="IdentityModel" Version="5.1.0"/>
+
+        <PackageReference Update="DotLiquid" Version="2.2.656" />
     </ItemGroup>
 </Project>

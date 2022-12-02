@@ -41,4 +41,9 @@ public class EfCoreTemplateRepository :
             .WhereIf(!filter.IsNullOrWhiteSpace(), e => (e.Name.Contains(filter)))
             .CountAsync();
     }
+    
+    public override async Task<IQueryable<Template>> WithDetailsAsync()
+    {
+        return (await GetQueryableAsync()).IncludeDetails();
+    }
 }
