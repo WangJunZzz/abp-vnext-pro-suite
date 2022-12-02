@@ -59,12 +59,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
-  import {
-    tableColumns,
-    searchFormSchema,
-    getTableListAsync,
-    deleteProjectAsync,
-  } from '/@/views/projects/Project1';
+  import { tableColumns, searchFormSchema, getTableListAsync, deleteProjectAsync } from './Project';
   import { useModal } from '/@/components/Modal';
   import CreateProject from './CreateProject.vue';
   import UpdateProject from './UpdateProject.vue';

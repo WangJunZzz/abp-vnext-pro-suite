@@ -13,7 +13,7 @@ const projects: AppRouteModule = {
     {
       path: 'page',
       name: 'Page',
-      component: () => import('/@/views/projects/Project1.vue'),
+      component: () => import('/@/views/projects/Project.vue'),
       meta: {
         title: '项目',
         icon: 'ant-design:file-sync-outlined',
