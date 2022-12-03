@@ -5,7 +5,7 @@ const template: AppRouteModule = {
   name: 'Templates',
   component: LAYOUT,
   meta: {
-    orderNo: 40,
+    orderNo: 50,
     icon: 'ant-design:file-twotone',
     title: '模板管理',
   },
@@ -16,7 +16,7 @@ const template: AppRouteModule = {
       component: () => import('/@/views/templates/Template.vue'),
       meta: {
         title: '模板组',
-        icon: 'ant-design:file-sync-outlined',
+        icon: 'ant-design:file-markdown-outlined',
       },
     },
     {

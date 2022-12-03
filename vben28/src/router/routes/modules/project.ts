@@ -6,7 +6,7 @@ const projects: AppRouteModule = {
   component: LAYOUT,
   meta: {
     orderNo: 40,
-    icon: 'ant-design:file-twotone',
+    icon: 'ant-design:gold-twotone',
     title: '项目管理',
   },
   children: [
@@ -16,7 +16,7 @@ const projects: AppRouteModule = {
       component: () => import('/@/views/projects/Project.vue'),
       meta: {
         title: '项目',
-        icon: 'ant-design:file-sync-outlined',
+        icon: 'ant-design:pic-center-outlined',
       },
     },
     {

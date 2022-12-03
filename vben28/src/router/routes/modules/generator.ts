@@ -5,8 +5,8 @@ const generators: AppRouteModule = {
   name: 'Generators',
   component: LAYOUT,
   meta: {
-    orderNo: 40,
-    icon: 'ant-design:file-twotone',
+    orderNo: 60,
+    icon: 'ant-design:send-outlined',
     title: '代码管理',
   },
   children: [
