@@ -87,7 +87,7 @@
       const modeValue = ref('application/json');
       const route = useRoute();
       onMounted(async () => {
-        if (route.query?.id) {
+        if (route.params?.templateId) {
           await loadTree();
         } else {
           close();
@@ -95,11 +95,11 @@
       });
       const { createConfirm } = useMessage();
       async function loadTree() {
-        treeData.value = await getTemplateTreeAsync({ templateId: route.query?.id });
+        treeData.value = await getTemplateTreeAsync({ templateId: route.params?.templateId });
       }
       function openCreateTemplateDetailModal() {
         openTemplateDetailModal(true, {
-          templateId: route.query?.id,
+          templateId: route.params?.templateId,
         });
       }
 
@@ -118,7 +118,7 @@
                 });
               } else {
                 openTemplateDetailModal(true, {
-                  templateId: route.query?.id,
+                  templateId: route.params?.templateId,
                   parentId: node.key,
                   templateType: 10,
                 });

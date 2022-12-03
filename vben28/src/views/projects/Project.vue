@@ -10,19 +10,15 @@
           新增项目
         </a-button>
       </template>
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.key === 'name'">
-          <router-link
-            :to="{ name: 'EntityModel', query: { id: record.id } }"
-            style="color: dodgerblue"
-          >
-            {{ record.name }}
-          </router-link>
-        </template>
-      </template>
+
       <template #action="{ record }">
         <TableAction
           :actions="[
+            {
+              icon: 'ant-design:eye-outlined',
+              tooltip: '查看模型',
+              onClick: handleLook.bind(null, record),
+            },
             {
               icon: 'clarity:note-edit-line',
               tooltip: '编辑项目',
@@ -61,6 +57,7 @@
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
   import { tableColumns, searchFormSchema, getTableListAsync, deleteProjectAsync } from './Project';
   import { useModal } from '/@/components/Modal';
+  import { useRouter } from 'vue-router';
   import CreateProject from './CreateProject.vue';
   import UpdateProject from './UpdateProject.vue';
   export default defineComponent({
@@ -72,6 +69,7 @@
       UpdateProject,
     },
     setup() {
+      const router = useRouter();
       // table配置
       const [registerTable, { reload }] = useTable({
         columns: tableColumns,
@@ -102,7 +100,9 @@
           record: record,
         });
       }
-
+      function handleLook(record: Recordable) {
+        router.push({ name: 'EntityModel', params: { projectId: record.id } });
+      }
       async function handleDelete(record: Recordable) {
         await deleteProjectAsync({ id: record.id });
         await reload();
@@ -114,6 +114,7 @@
         registerCreateProjectModal,
         openCreateProjectModal,
         handleEdit,
+        handleLook,
         handleDelete,
         registerUpdateProjectModal,
       };

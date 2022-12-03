@@ -372,7 +372,7 @@
       const route = useRoute();
 
       onMounted(async () => {
-        if (route.query?.id) {
+        if (route.params?.projectId) {
           await loadTree();
         } else {
           close();
@@ -380,7 +380,7 @@
       });
 
       async function loadTree() {
-        treeData.value = await getTreeAsync({ projectId: route.query?.id });
+        treeData.value = await getTreeAsync({ projectId: route.params?.projectId });
       }
 
       // 树结构点击菜单
@@ -434,7 +434,7 @@
       const [registerCreateAggregateModal, { openModal: openCreateAggregateModal }] = useModal();
       function openCreateAggregate() {
         openCreateAggregateModal(true, {
-          projectId: route.query?.id,
+          projectId: route.params?.projectId,
         });
       }
       const [registerCreateEnumTypeModal, { openModal: openCreateEnumTypeModal }] = useModal();
@@ -442,7 +442,7 @@
         if (entityModelId) {
           openCreateEnumTypeModal(true, {
             entityModelId: entityModelId,
-            projectId: route.query?.id,
+            projectId: route.params?.projectId,
           });
         } else {
           createConfirm({
@@ -483,7 +483,7 @@
       function openCreateEntityModelProperty() {
         if (entityModelId) {
           openCreateEntityModelPropertyModal(true, {
-            projectId: route.query?.id,
+            projectId: route.params?.projectId,
             entityModelId: entityModelId,
           });
         } else {

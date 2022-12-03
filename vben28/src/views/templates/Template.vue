@@ -10,7 +10,7 @@
           新增模板组
         </a-button>
       </template>
-      <template #bodyCell="{ column, record }">
+      <!-- <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'name'">
           <router-link
             :to="{ name: 'TemplateDetail', query: { id: record.id } }"
@@ -19,10 +19,15 @@
             {{ record.name }}
           </router-link>
         </template>
-      </template>
+      </template> -->
       <template #action="{ record }">
         <TableAction
           :actions="[
+            {
+              icon: 'ant-design:eye-outlined',
+              tooltip: '查看模板明细',
+              onClick: handleLook.bind(null, record),
+            },
             {
               icon: 'clarity:note-edit-line',
               tooltip: '编辑模板组',
@@ -59,6 +64,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
+  import { useRouter } from 'vue-router';
   import {
     tableColumns,
     searchFormSchema,
@@ -77,6 +83,7 @@
       UpdateTemplate,
     },
     setup() {
+      const router = useRouter();
       // table配置
       const [registerTable, { reload }] = useTable({
         columns: tableColumns,
@@ -116,7 +123,9 @@
         await deleteTemplateAsync({ id: record.id });
         await reload();
       }
-
+      function handleLook(record: Recordable) {
+        router.push({ name: 'TemplateDetail', params: { templateId: record.id } });
+      }
       return {
         registerTable,
         reload,
@@ -124,6 +133,7 @@
         openCreateTemplateModal,
         handleEdit,
         handleDelete,
+        handleLook,
         registerUpdateTemplateModal,
         //registerTemplateDrawer,
         //handleEditDetail,
