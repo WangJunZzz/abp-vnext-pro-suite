@@ -80,4 +80,17 @@ public class TemplateController : AbpSuiteController, ITemplateAppService
     {
         return _templateAppService.ListAsync();
     }
+
+    [HttpPost("ControlType")]
+    [SwaggerOperation(summary: "获取模板策略", Tags = new[] { "Templates" })]
+    public List<KeyValuePair<string, int>> GetControlTypeAsync()
+    {
+        return _templateAppService.GetControlTypeAsync();
+    }
+    [HttpPost("TemplateType")]
+    [SwaggerOperation(summary: "获取模板类型", Tags = new[] { "Templates" })]
+    public List<KeyValuePair<string, int>> GetTemplateTypeAsync()
+    {
+        return _templateAppService.GetTemplateTypeAsync();
+    }
 }

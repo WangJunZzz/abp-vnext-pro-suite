@@ -13,12 +13,12 @@
         /// <summary>
         ///  模板类型
         /// </summary>
-        public TemplateType TemplateType { get;  private set; }
-        
+        public TemplateType TemplateType { get; private set; }
+
         /// <summary>
         /// 模板控制类型
         /// </summary>
-        public ControlType ControlType { get; private set; }
+        public ControlType? ControlType { get; private set; }
 
         /// <summary>
         /// 父级id
@@ -49,18 +49,18 @@
             Guid id,
             Guid templateId,
             TemplateType templateType,
-            ControlType  controlType,
+            ControlType? controlType,
             string name,
             string description,
             string content,
             Guid? parentId = null
         ) : base(id)
         {
-            SetContent(controlType);
+           
+            SetControlType(controlType);
             TemplateId = templateId;
             TemplateType = templateType;
             ParentId = parentId;
-            ControlType = controlType;
             SetName(name);
             SetDescription(description);
             SetContent(content);
@@ -72,38 +72,42 @@
             Guard.NotNullOrWhiteSpace(name, nameof(name), AbpSuiteDomainSharedConsts.MaxLength128);
             Name = name;
         }
+
         private void SetDescription(string description)
         {
             Guard.NotNullOrWhiteSpace(description, nameof(description), AbpSuiteDomainSharedConsts.MaxLength128);
             Description = description;
         }
+
         private void SetContent(string content)
         {
-            Content = content.IsNullOrWhiteSpace()?string.Empty:content;
+            Content = content.IsNullOrWhiteSpace() ? string.Empty : content;
         }
-        
-        private void SetContent(ControlType controlType)
+
+        private void SetControlType(ControlType? controlType)
         {
             if (TemplateType == TemplateType.Folder)
             {
-                ControlType = ControlType.Default;
+                ControlType =null;
             }
             else
             {
                 ControlType = controlType;
             }
         }
+
         public void Update(string content)
         {
             SetContent(content);
         }
-        public void Update(string name, string description,string content)
+
+        public void Update(string name, string description, string content)
         {
             SetName(name);
             SetContent(content);
             SetDescription(description);
         }
-        
+
         public void Update(string name, string description)
         {
             SetName(name);

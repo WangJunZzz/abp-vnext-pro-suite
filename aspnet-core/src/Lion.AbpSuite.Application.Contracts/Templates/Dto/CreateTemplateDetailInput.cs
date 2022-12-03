@@ -11,7 +11,7 @@ public class CreateTemplateDetailInput
     
     public TemplateType TemplateType { get; set; }
     
-    public ControlType ControlType { get; set; }
+    public ControlType? ControlType { get; set; }
     
     /// <summary>
     /// 模板类型

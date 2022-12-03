@@ -76,49 +76,48 @@ export const createTemplateDetailSchema: FormSchema[] = [
   },
   {
     field: 'templateType',
-    component: 'Select',
+    component: 'ApiSelect',
     label: '类型',
-    required: true,
     colProps: {
       span: 16,
     },
-    componentProps: {
-      options: [
-        {
-          label: '文件夹',
-          value: '10',
-          key: '10',
+    ifShow: true,
+    componentProps: ({ formModel, formActionType }) => {
+      return {
+        showSearch: false,
+        api: getTemplateTypeAsync,
+        getPopupContainer: () => document.body,
+        labelField: 'key',
+        valueField: 'value',
+        immediate: true,
+        onChange(e, option) {
+          if (e == 20) {
+            formActionType.updateSchema([{ field: 'controlType', ifShow: true }]);
+          } else {
+            formActionType.updateSchema([{ field: 'controlType', ifShow: false }]);
+          }
         },
-        {
-          label: '文件',
-          value: '20',
-          key: '20',
-        },
-      ],
+      };
     },
   },
+
   {
     field: 'controlType',
-    component: 'Select',
-    label: '应用类型',
-    required: true,
-    ifShow: false,
+    component: 'ApiSelect',
+    label: '模板策略',
     colProps: {
       span: 16,
     },
-    componentProps: {
-      options: [
-        {
-          label: '聚合根',
-          value: '10',
-          key: '10',
-        },
-        {
-          label: '实体',
-          value: '20',
-          key: '20',
-        },
-      ],
+    ifShow: false,
+    componentProps: ({ formModel, formActionType }) => {
+      return {
+        showSearch: false,
+        api: getControlTypeAsync,
+        getPopupContainer: () => document.body,
+        labelField: 'key',
+        valueField: 'value',
+        immediate: true,
+      };
     },
   },
   {
@@ -258,4 +257,12 @@ export async function saveTemplateDetailAsync(templateId, templateDetailId, cont
   request.content = content;
   await templatesServiceProxy.updateDetailContent(request);
   message.success('更新模板成功');
+}
+export async function getControlTypeAsync() {
+  const templatesServiceProxy = new TemplatesServiceProxy();
+  return templatesServiceProxy.controlType();
+}
+export async function getTemplateTypeAsync() {
+  const templatesServiceProxy = new TemplatesServiceProxy();
+  return templatesServiceProxy.templateType();
 }

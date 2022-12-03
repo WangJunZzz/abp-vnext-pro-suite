@@ -46,13 +46,9 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
 
     public Task CreateDetailAsync(CreateTemplateDetailInput input)
     {
-        if (input.TemplateType == TemplateType.Folder)
-        {
-            input.ControlType = ControlType.Default;
-        }
         return _templateManager.CreateDetailAsync(input.TemplateId, input.TemplateType, input.ControlType, input.Name, input.Description, input.Content, input.ParentId);
     }
-    
+
 
     public Task UpdateDetailAsync(UpdateTemplateDetailInput input)
     {
@@ -72,6 +68,16 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
     public Task DeleteDetailAsync(DeleteTemplateDetailInput input)
     {
         return _templateManager.DeleteDetailAsync(input.TemplateId, input.TemplateDetailId);
+    }
+
+    public List<KeyValuePair<string, int>> GetControlTypeAsync()
+    {
+        return EnumExtensions.GetEntityStringIntKeyValueList<ControlType>();
+    }
+
+    public List<KeyValuePair<string, int>> GetTemplateTypeAsync()
+    {
+        return EnumExtensions.GetEntityStringIntKeyValueList<TemplateType>();
     }
 
     // TODO 移除待

@@ -24,4 +24,7 @@ public interface ITemplateAppService : IApplicationService
     /// </summary>
     /// <returns></returns>
     Task<List<TemplateDto>> ListAsync();
+
+    List<KeyValuePair<string, int>> GetControlTypeAsync();
+    List<KeyValuePair<string, int>> GetTemplateTypeAsync();
 }

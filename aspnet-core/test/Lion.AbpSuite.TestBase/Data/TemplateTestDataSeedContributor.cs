@@ -21,7 +21,7 @@ public class TemplateTestDataSeedContributor : IDataSeedContributor, ITransientD
         if (template == null)
         {
             template = new Template(AbpSuiteTestConst.TemplateId, "System", "系统管理模板");
-            template.AddTemplateDetail(AbpSuiteTestConst.TemplateDetailOwnId, TemplateType.Folder, ControlType.Default, "Domain", "领域层", null, null);
+            template.AddTemplateDetail(AbpSuiteTestConst.TemplateDetailOwnId, TemplateType.Folder, null, "Domain", "领域层", null, null);
             var path = "/Lion.AbpSuite/Data/Templates/Standard/Domain/Aggregate.txt";
             var content = await _fileLoader.LoadAsync(path);
             template.AddTemplateDetail(AbpSuiteTestConst.TemplateDetailTwoId, TemplateType.File, ControlType.Aggregate, "Entity.txt", "实体模板", content,

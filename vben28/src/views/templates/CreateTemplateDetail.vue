@@ -37,7 +37,6 @@
       });
 
       const [registerModal, { changeOkLoading, closeModal }] = useModalInner((data) => {
-        console.log(data);
         resetSchema(createTemplateDetailSchema);
         setFieldsValue({
           templateId: data.templateId,

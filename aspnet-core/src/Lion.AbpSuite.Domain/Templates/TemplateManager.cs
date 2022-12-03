@@ -72,7 +72,7 @@ public class TemplateManager : AbpSuiteDomainService
         await _templateRepository.DeleteAsync(entity);
     }
 
-    public async Task CreateDetailAsync(Guid templateId, TemplateType templateType, ControlType controlType, string name, string description, string content, Guid? parentId)
+    public async Task CreateDetailAsync(Guid templateId, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
     {
         var entity = await _templateRepository.FindAsync(templateId);
         if (entity == null)

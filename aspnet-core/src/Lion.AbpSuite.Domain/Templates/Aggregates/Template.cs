@@ -66,7 +66,7 @@
         /// <summary>
         /// 新增模板明细
         /// </summary>
-        public void AddTemplateDetail(Guid id, TemplateType templateType, ControlType controlType, string name, string description, string content, Guid? parentId)
+        public void AddTemplateDetail(Guid id, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
         {
             if (TemplateDetails.Any(e => e.Name == name))
             {
