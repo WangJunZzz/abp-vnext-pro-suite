@@ -223,7 +223,7 @@ public class EntityModelAppService : AbpSuiteAppService, IEntityModelAppService
             var child = new GetEntityModelTreeOutput()
             {
                 Key = detail.Id,
-                Title = detail.Description,
+                Title = detail.Code,
                 Description = detail.Description,
                 Code = detail.Code,
                 ParentId = detail.ParentId,

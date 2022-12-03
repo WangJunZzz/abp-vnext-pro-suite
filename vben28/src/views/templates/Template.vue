@@ -124,7 +124,7 @@
         await reload();
       }
       function handleLook(record: Recordable) {
-        router.push({ name: 'TemplateDetail', params: { templateId: record.id } });
+        router.push({ name: 'TemplateDetail', query: { templateId: record.id } });
       }
       return {
         registerTable,

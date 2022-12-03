@@ -21,6 +21,12 @@
               新增聚合根
             </a-button>
           </template>
+          <template #title="{ title, description }">
+            <a-tooltip placement="right">
+              <template #title>{{ description }}</template>
+              {{ title }}
+            </a-tooltip>
+          </template>
         </BasicTree>
       </div>
       <div class="bg-white m-4 p-4 mr-0 w-3/4 xl:w-4/5">
@@ -232,7 +238,7 @@
   import UpdateEnumTypeProperty from './UpdateEnumTypeProperty.vue';
   import { useModal } from '/@/components/Modal';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { Tabs } from 'ant-design-vue';
+  import { Tabs, Tooltip } from 'ant-design-vue';
   import {
     PageEntityModelInput,
     PageEnumTypeInput,
@@ -251,6 +257,7 @@
       UpdateEntityModel,
       Tabs,
       TabPane: Tabs.TabPane,
+      Tooltip,
       CreateEntityModelProperty,
       UpdateEntityModelProperty,
       CreateEnumType,
@@ -372,7 +379,7 @@
       const route = useRoute();
 
       onActivated(async () => {
-        if (route.params?.projectId) {
+        if (route.query?.projectId) {
           await loadTree();
         } else {
           close();
@@ -380,7 +387,7 @@
       });
 
       async function loadTree() {
-        treeData.value = await getTreeAsync({ projectId: route.params?.projectId });
+        treeData.value = await getTreeAsync({ projectId: route.query?.projectId });
       }
 
       // 树结构点击菜单
@@ -434,7 +441,7 @@
       const [registerCreateAggregateModal, { openModal: openCreateAggregateModal }] = useModal();
       function openCreateAggregate() {
         openCreateAggregateModal(true, {
-          projectId: route.params?.projectId,
+          projectId: route.query?.projectId,
         });
       }
       const [registerCreateEnumTypeModal, { openModal: openCreateEnumTypeModal }] = useModal();
@@ -442,7 +449,7 @@
         if (entityModelId) {
           openCreateEnumTypeModal(true, {
             entityModelId: entityModelId,
-            projectId: route.params?.projectId,
+            projectId: route.query?.projectId,
           });
         } else {
           createConfirm({
@@ -483,7 +490,7 @@
       function openCreateEntityModelProperty() {
         if (entityModelId) {
           openCreateEntityModelPropertyModal(true, {
-            projectId: route.params?.projectId,
+            projectId: route.query?.projectId,
             entityModelId: entityModelId,
           });
         } else {

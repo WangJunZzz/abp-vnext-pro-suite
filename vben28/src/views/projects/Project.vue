@@ -101,7 +101,7 @@
         });
       }
       function handleLook(record: Recordable) {
-        router.push({ name: 'EntityModel', params: { projectId: record.id } });
+        router.push({ name: 'EntityModel', query: { projectId: record.id } });
       }
       async function handleDelete(record: Recordable) {
         await deleteProjectAsync({ id: record.id });
