@@ -1,5 +1,6 @@
 ﻿
 using Lion.AbpSuite.Files;
+using Lion.AbpSuite.Generators;
 using Lion.AbpSuite.Templates;
 
 namespace Lion.AbpSuite.FileLoader;

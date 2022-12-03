@@ -75,17 +75,7 @@
 
             TemplateDetails.Add(new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId));
         }
-
-        // public void AddTemplateDetail(Guid id, TemplateType templateType,  string name, string description, Guid? parentId)
-        // {
-        //     if (TemplateDetails.Any(e => e.Name == name))
-        //     {
-        //         throw new UserFriendlyException("模板已存在");
-        //     }
-        //
-        //     TemplateDetails.Add(new TemplateDetail(id, Id, templateType, ControlType.Default, name, description, null, parentId));
-        // }
-
+        
         public void UpdateDetailContent(Guid id, string content)
         {
             var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);

@@ -1,11 +1,8 @@
-﻿
-
-using Scriban;
+﻿using Scriban;
 using Scriban.Runtime;
-using Scriban;
 using Template = Scriban.Template;
 
-namespace Lion.AbpSuite.Templates;
+namespace Lion.AbpSuite.Generators;
 
 public class GeneratorManager : AbpSuiteDomainService
 {

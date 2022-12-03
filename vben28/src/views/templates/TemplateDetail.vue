@@ -49,7 +49,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, onMounted } from 'vue';
+  import { defineComponent, ref, onActivated } from 'vue';
   import { useRoute } from 'vue-router';
   import { PageWrapper } from '/@/components/Page';
   import { GetTemplateTreeOutput } from '/@/services/ServiceProxies';
@@ -86,7 +86,7 @@
         useModal();
       const modeValue = ref('application/json');
       const route = useRoute();
-      onMounted(async () => {
+      onActivated(async () => {
         if (route.params?.templateId) {
           await loadTree();
         } else {

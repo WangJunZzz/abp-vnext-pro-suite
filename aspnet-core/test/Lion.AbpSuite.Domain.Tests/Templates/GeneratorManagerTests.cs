@@ -1,4 +1,6 @@
-﻿namespace Lion.AbpSuite.Templates;
+﻿using Lion.AbpSuite.Generators;
+
+namespace Lion.AbpSuite.Templates;
 
 public sealed class GeneratorManagerTests:AbpSuiteDomainTestBase
 {

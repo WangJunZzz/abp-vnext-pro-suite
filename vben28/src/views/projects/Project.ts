@@ -97,7 +97,6 @@ export const editFormSchema: FormSchema[] = [
     field: 'owner',
     label: '拥有者',
     component: 'Input',
-    required: true,
   },
   {
     field: 'remark',

@@ -201,7 +201,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, onMounted } from 'vue';
+  import { defineComponent, ref, onActivated } from 'vue';
   import { PageWrapper } from '/@/components/Page';
   import { useRoute } from 'vue-router';
   import {
@@ -371,7 +371,7 @@
       const treeData = ref<GetEntityModelTreeOutput[]>([]);
       const route = useRoute();
 
-      onMounted(async () => {
+      onActivated(async () => {
         if (route.params?.projectId) {
           await loadTree();
         } else {
