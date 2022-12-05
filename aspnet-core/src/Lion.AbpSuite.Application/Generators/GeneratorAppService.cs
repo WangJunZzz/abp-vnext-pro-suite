@@ -55,7 +55,7 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         {
             if (detail.TemplateType == TemplateType.Folder)
             {
-                detail.Name = await _generatorManager.RenderAsync(detail.Name, new { projectName = context.Projects.Name, entityName = context.Projects.Name });
+                detail.Name = await _generatorManager.RenderAsync(detail.Name, new { projectName = context.Projects.Name });
 
                 var child = new TemplateTreeDto()
                 {
@@ -72,31 +72,89 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             }
             else
             {
-                var aggregates = context.EntityModels.Where(e => e.IsRoot);
-                foreach (var aggregate in aggregates)
-                {
-                    var itemContext = new GeneratorTemplateContext()
-                    {
-                        Project = context.Projects,
-                        EntityModel = aggregate
-                    };
-
-                    var childContent = new TemplateTreeDto()
-                    {
-                        Key = detail.Id,
-                        Name = detail.Name,
-                        Title = detail.Description,
-                        Description = detail.Description,
-                        Content = await _generatorManager.RenderAsync(detail.Content, new { context = itemContext }),
-                        TemplateType = detail.TemplateType,
-                        Icon = "ant-design:file-outlined"
-                    };
-
-                    tree.Add(childContent);
-                }
+                tree.AddRange(await RenderAggregateAsync(context, detail));
             }
         }
 
         return tree;
+    }
+
+    /// <summary>
+    /// 聚合根模板生成
+    /// </summary>
+    /// <param name="context">实体上下文信息</param>
+    /// <param name="template">模板</param>
+    private async Task<List<TemplateTreeDto>> RenderAggregateAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template)
+    {
+        var result = new List<TemplateTreeDto>();
+        var aggregates = context.EntityModels.Where(e => e.IsRoot);
+        foreach (var aggregate in aggregates)
+        {
+            if (template.ControlType == ControlType.Aggregate)
+            {
+                var itemContext = new GeneratorTemplateContext()
+                {
+                    Project = context.Projects,
+                    EntityModel = aggregate
+                };
+                template.Name = await _generatorManager.RenderAsync(template.Name, new { projectName = context.Projects.Name,aggregateCode= itemContext.EntityModel.Code });
+                template.Name = template.Name.Replace("txt", "cs");
+                var childContent = new TemplateTreeDto()
+                {
+                    Key = template.Id,
+                    Name = template.Name,
+                    Title = template.Description,
+                    Description = template.Description,
+                    Content = await _generatorManager.RenderAsync(template.Content, new { context = itemContext }),
+                    TemplateType = template.TemplateType,
+                    Icon = "ant-design:file-outlined"
+                };
+                result.Add(childContent);
+            }
+            else
+            {
+                result.AddRange(await RenderEntityAsync(aggregate.Id, context, template, aggregate.EntityModels));
+            }
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// 实体模板生成
+    /// </summary>
+    /// <param name="aggregateId"></param>
+    /// <param name="context">实体上下文信息</param>
+    /// <param name="template">模板</param>
+    /// <param name="entityModelContexts">当前实体</param>
+    private async Task<List<TemplateTreeDto>> RenderEntityAsync(Guid aggregateId, GeneratorProjectTemplateContext context, TemplateDetailDto template, List<GeneratorEntityModelContext> entityModelContexts)
+    {
+        var result = new List<TemplateTreeDto>();
+        if (template.ControlType != ControlType.Entity) return result;
+        var entities = context.ProjectEntities.Where(e => e.AggregateId == aggregateId);
+        foreach (var entity in entities)
+        {
+            var itemContext = new GeneratorTemplateContext()
+            {
+                Project = context.Projects,
+                EntityModel = entityModelContexts.First()
+            };
+            template.Name = await _generatorManager.RenderAsync(template.Name, new { projectName = context.Projects.Name,aggregateCode= itemContext.EntityModel.Code });
+            template.Name = template.Name.Replace("txt", "cs");
+            var childContent = new TemplateTreeDto()
+            {
+                Key = template.Id,
+                Name = template.Name,
+                Title = template.Description,
+                Description = template.Description,
+                Content = await _generatorManager.RenderAsync(template.Content, new { context = itemContext }),
+                TemplateType = template.TemplateType,
+                Icon = "ant-design:file-outlined"
+            };
+            result.Add(childContent);
+            var entityContext = context.EntityModels.Where(e => e.Id == aggregateId).ToList();
+            result.AddRange(await RenderEntityAsync(entity.Id, context, template, entityContext));
+        }
+
+        return result;
     }
 }

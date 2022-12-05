@@ -80,7 +80,7 @@ public class EntityModelTestDataSeedContributor : IDataSeedContributor, ITransie
                 "Token",
                 "Token",
                 true,
-                enumTypeId: DataTypeDataSeedConst.DataTypeStringId);
+                dataTypeId: DataTypeDataSeedConst.DataTypeStringId);
 
             await _entityModelRepository.InsertAsync(entity);
         }

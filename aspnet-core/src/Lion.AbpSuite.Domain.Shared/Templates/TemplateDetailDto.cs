@@ -14,6 +14,11 @@
         ///  模板类型
         /// </summary>
         public TemplateType TemplateType { get; set; }
+        
+        /// <summary>
+        /// 模板策略
+        /// </summary>
+        public ControlType ControlType { get; set; }
 
         /// <summary>
         /// 父级id

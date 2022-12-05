@@ -2,9 +2,8 @@
 
 namespace Lion.AbpSuite;
 
-public class AbpSuiteAutoMapperProfile:Profile
+public class AbpSuiteAutoMapperProfile : Profile
 {
-
     public AbpSuiteAutoMapperProfile()
     {
         CreateMap<Template, TemplateDto>();
@@ -16,5 +15,9 @@ public class AbpSuiteAutoMapperProfile:Profile
         CreateMap<EntityModelProperty, EntityModelPropertyDto>();
         CreateMap<EnumType, EnumTypeDto>();
         CreateMap<EnumTypeProperty, EnumTypePropertyDto>();
+
+        CreateMap<EntityModelDto, GeneratorProjectEntityContext>()
+            .ForMember(dest => dest.AggregateId, 
+            opt => opt.MapFrom(e => e.ParentId));
     }
 }

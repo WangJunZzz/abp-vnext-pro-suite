@@ -1,0 +1,11 @@
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.Code }};
+
+public class {{ context.EntityModel.Code }}Manager : DomainService
+{
+      private readonly I{{ context.EntityModel.Code }}Repository _{{ context.EntityModel.Code }}Repository;
+    
+      public ProjectManager(I{{ context.EntityModel.Code }}Repository {{ context.EntityModel.Code }}Repository)
+      {
+          _{{ context.EntityModel.Code }}Repository = {{ context.EntityModel.Code }}Repository;
+      }
+}

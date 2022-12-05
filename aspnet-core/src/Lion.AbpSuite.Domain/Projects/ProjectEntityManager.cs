@@ -24,6 +24,8 @@ public class ProjectEntityManager : AbpSuiteDomainService
     {
         var result = new GeneratorProjectTemplateContext();
         var entities = await _entityModelManager.FindByProjectIdAsync(projectId);
+        // 获取所有实体
+        result.ProjectEntities = ObjectMapper.Map<List<EntityModelDto>, List<GeneratorProjectEntityContext>>(entities);
         // 获取实体模型数据类型
         var dataTypes = await _dataTypeManager.ListAsync();
         // 获取实体枚举
@@ -33,7 +35,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
         result.Projects = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
         return result;
     }
-    
+
     /// <summary>
     /// 获取聚合根上下文信息
     /// 包括项目
@@ -45,7 +47,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
         var entity = await _entityModelManager.FindAggregateAsync(aggregateId);
 
         if (entity == null) throw new UserFriendlyException("聚合根不存在");
-        
+
         // 获取实体模型数据类型
         var dataTypes = await _dataTypeManager.ListAsync();
         // 获取实体枚举
@@ -56,7 +58,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
         result.Project = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
         return result;
     }
-    
+
     /// <summary>
     /// 获取实体上下文信息
     /// 包括项目，聚合根
@@ -72,7 +74,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
         var dataTypes = await _dataTypeManager.ListAsync();
         // 获取实体枚举
         var enumTypes = await _enumTypeManager.ListAsync(entityId);
-        var list = RecursionEntity(new List<EntityModelDto>(){entity}, entity.ParentId, dataTypes, enumTypes);
+        var list = RecursionEntity(new List<EntityModelDto>() { entity }, entity.ParentId, dataTypes, enumTypes);
         result.EntityModel = list.FirstOrDefault();
         var project = await _projectManager.GetAsync(entity.ProjectId);
         result.Project = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
