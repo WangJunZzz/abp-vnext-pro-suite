@@ -29,7 +29,7 @@
     setup(_, { emit }) {
       const [
         registerUserForm,
-        { getFieldsValue, setFieldsValue, validate, resetFields },
+        { getFieldsValue, setFieldsValue, validate, resetFields, updateSchema, resetSchema },
       ] = useForm({
         labelWidth: 120,
         schemas: updateTemplateDetailSchema,
@@ -37,12 +37,21 @@
       });
 
       const [registerModal, { changeOkLoading, closeModal }] = useModalInner((data) => {
-        console.log(data)
+        console.log(data);
+        if (data.templateType == 20) {
+          setFieldsValue({
+            controlType: data.controlType,
+          });
+          updateSchema({
+            field: 'controlType',
+            ifShow: true,
+          });
+        }
         setFieldsValue({
           templateId: data.templateId,
           templateDetailId: data.templateDetailId,
           name: data.name,
-          description: data.description
+          description: data.description,
         });
       });
 
@@ -57,6 +66,7 @@
           emit('reload');
         } finally {
           changeOkLoading(false);
+          resetSchema(updateTemplateDetailSchema);
         }
       };
 

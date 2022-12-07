@@ -6003,6 +6003,109 @@ export class ProjectsServiceProxy extends ServiceProxyBase {
     }
 
     /**
+     * 获取所有项目
+     * @return Success
+     */
+    all(  cancelToken?: CancelToken | undefined): Promise<ProjectDto[]> {
+        let url_ = this.baseUrl + "/Projects/All";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processAll(_response));
+        });
+    }
+
+    protected processAll(response: AxiosResponse): Promise<ProjectDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(ProjectDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<ProjectDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403  = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401  = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400  = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404  = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501  = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<ProjectDto[]>(null as any);
+    }
+
+    /**
      * 分页获取项目
      * @param body (optional) 
      * @return Success
@@ -7124,6 +7227,109 @@ export class TemplatesServiceProxy extends ServiceProxyBase {
         super();
         this.instance = instance ? instance : axios.create();
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 获取所有模板组
+     * @return Success
+     */
+    all(  cancelToken?: CancelToken | undefined): Promise<TemplateDto[]> {
+        let url_ = this.baseUrl + "/Templates/All";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processAll(_response));
+        });
+    }
+
+    protected processAll(response: AxiosResponse): Promise<TemplateDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(TemplateDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<TemplateDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403  = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401  = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400  = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404  = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501  = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<TemplateDto[]>(null as any);
     }
 
     /**
@@ -14720,6 +14926,7 @@ export interface IGetPermissionInput {
 export class GetTemplateTreeOutput implements IGetTemplateTreeOutput {
     key!: string;
     templateType!: TemplateType;
+    controlType!: ControlType;
     icon!: string | undefined;
     name!: string | undefined;
     description!: string | undefined;
@@ -14740,6 +14947,7 @@ export class GetTemplateTreeOutput implements IGetTemplateTreeOutput {
         if (_data) {
             this.key = _data["key"];
             this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
             this.icon = _data["icon"];
             this.name = _data["name"];
             this.description = _data["description"];
@@ -14764,6 +14972,7 @@ export class GetTemplateTreeOutput implements IGetTemplateTreeOutput {
         data = typeof data === 'object' ? data : {};
         data["key"] = this.key;
         data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
         data["icon"] = this.icon;
         data["name"] = this.name;
         data["description"] = this.description;
@@ -14781,6 +14990,7 @@ export class GetTemplateTreeOutput implements IGetTemplateTreeOutput {
 export interface IGetTemplateTreeOutput {
     key: string;
     templateType: TemplateType;
+    controlType: ControlType;
     icon: string | undefined;
     name: string | undefined;
     description: string | undefined;
@@ -18805,6 +19015,7 @@ export class TemplateDetailDto implements ITemplateDetailDto {
     id!: string;
     templateId!: string;
     templateType!: TemplateType;
+    controlType!: ControlType;
     parentId!: string | undefined;
     name!: string | undefined;
     description!: string | undefined;
@@ -18824,6 +19035,7 @@ export class TemplateDetailDto implements ITemplateDetailDto {
             this.id = _data["id"];
             this.templateId = _data["templateId"];
             this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
             this.parentId = _data["parentId"];
             this.name = _data["name"];
             this.description = _data["description"];
@@ -18843,6 +19055,7 @@ export class TemplateDetailDto implements ITemplateDetailDto {
         data["id"] = this.id;
         data["templateId"] = this.templateId;
         data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
         data["parentId"] = this.parentId;
         data["name"] = this.name;
         data["description"] = this.description;
@@ -18855,6 +19068,7 @@ export interface ITemplateDetailDto {
     id: string;
     templateId: string;
     templateType: TemplateType;
+    controlType: ControlType;
     parentId: string | undefined;
     name: string | undefined;
     description: string | undefined;
@@ -20209,6 +20423,7 @@ export interface IUpdateTemplateDetailContentInput {
 export class UpdateTemplateDetailInput implements IUpdateTemplateDetailInput {
     templateId!: string;
     templateDetailId!: string;
+    controlType!: ControlType;
     name!: string | undefined;
     description!: string | undefined;
     content!: string | undefined;
@@ -20226,6 +20441,7 @@ export class UpdateTemplateDetailInput implements IUpdateTemplateDetailInput {
         if (_data) {
             this.templateId = _data["templateId"];
             this.templateDetailId = _data["templateDetailId"];
+            this.controlType = _data["controlType"];
             this.name = _data["name"];
             this.description = _data["description"];
             this.content = _data["content"];
@@ -20243,6 +20459,7 @@ export class UpdateTemplateDetailInput implements IUpdateTemplateDetailInput {
         data = typeof data === 'object' ? data : {};
         data["templateId"] = this.templateId;
         data["templateDetailId"] = this.templateDetailId;
+        data["controlType"] = this.controlType;
         data["name"] = this.name;
         data["description"] = this.description;
         data["content"] = this.content;
@@ -20253,6 +20470,7 @@ export class UpdateTemplateDetailInput implements IUpdateTemplateDetailInput {
 export interface IUpdateTemplateDetailInput {
     templateId: string;
     templateDetailId: string;
+    controlType: ControlType;
     name: string | undefined;
     description: string | undefined;
     content: string | undefined;

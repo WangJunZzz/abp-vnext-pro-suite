@@ -13,10 +13,20 @@ const generators: AppRouteModule = {
     {
       path: 'code',
       name: 'Code',
-      component: () => import('/@/views/generators/Generator.vue'),
+      component: () => import('/@/views/generators/CodeSetting.vue'),
       meta: {
         title: '自动生成',
         icon: 'ant-design:file-sync-outlined',
+      },
+    },
+    {
+      path: 'preViewCode',
+      name: 'PreViewCode',
+      component: () => import('/@/views/generators/PreViewCode.vue'),
+      meta: {
+        title: '预览',
+        icon: 'ant-design:file-sync-outlined',
+        hideMenu: true,
       },
     },
   ],

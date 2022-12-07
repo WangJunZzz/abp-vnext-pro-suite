@@ -75,7 +75,7 @@
 
             TemplateDetails.Add(new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId));
         }
-        
+
         public void UpdateDetailContent(Guid id, string content)
         {
             var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
@@ -98,7 +98,7 @@
             detail.Update(name, description, content);
         }
 
-        public void UpdateDetail(Guid id, string name, string description)
+        public void UpdateDetail(Guid id, string name, string description, ControlType controlType)
         {
             var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
             if (detail == null)
@@ -106,7 +106,7 @@
                 throw new UserFriendlyException("模板不存在");
             }
 
-            detail.Update(name, description);
+            detail.Update(name, description, controlType);
         }
 
         public void DeleteDetail(Guid id)

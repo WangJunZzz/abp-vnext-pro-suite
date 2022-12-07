@@ -156,6 +156,26 @@ export const updateTemplateDetailSchema: FormSchema[] = [
     required: true,
     ifShow: false,
   },
+
+  {
+    field: 'controlType',
+    component: 'ApiSelect',
+    label: '模板策略',
+    colProps: {
+      span: 16,
+    },
+    ifShow: false,
+    componentProps: ({ formModel, formActionType }) => {
+      return {
+        showSearch: false,
+        api: getControlTypeAsync,
+        getPopupContainer: () => document.body,
+        labelField: 'key',
+        valueField: 'value',
+        immediate: true,
+      };
+    },
+  },
   {
     field: 'name',
     label: '名称',
@@ -219,7 +239,7 @@ export async function createTemplateDetailNoContentAsync({ params }) {
 }
 export async function updateTemplateDetailNoContentAsync({ params }) {
   const templatesServiceProxy = new TemplatesServiceProxy();
-  await templatesServiceProxy.updateDetailContent(params);
+  await templatesServiceProxy.updateDetail(params);
 }
 export async function createTemplateDetailAsync({ params }) {
   const templatesServiceProxy = new TemplatesServiceProxy();

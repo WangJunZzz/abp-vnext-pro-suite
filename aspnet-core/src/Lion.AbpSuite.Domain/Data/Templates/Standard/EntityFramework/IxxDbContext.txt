@@ -1,0 +1,6 @@
+namespace {{ context.Project.NameSpace }};
+
+public interface IxxDbContext : IEfCoreDbContext
+{
+     DbSet<Warehouse> Warehouses { get; set; }
+}

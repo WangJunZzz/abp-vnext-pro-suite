@@ -1,113 +1,62 @@
-import { FormSchema } from '/@/components/Table';
-
-export const step1Schemas: FormSchema[] = [
+import {
+  ProjectsServiceProxy,
+  TemplatesServiceProxy,
+  GeneratorServiceProxy,
+  PreViewCodeInput,
+} from '/@/services/ServiceProxies';
+import { FormSchema } from '/@/components/Form';
+export const createFormSchema: FormSchema[] = [
   {
-    field: 'account',
-    component: 'Select',
-    label: '付款账户',
-    required: true,
-    defaultValue: '1',
-    componentProps: {
-      options: [
-        {
-          label: 'anncwb@126.com',
-          value: '1',
-        },
-      ],
-    },
-    colProps: {
-      span: 24,
-    },
-  },
-  {
-    field: 'fac',
-    component: 'InputGroup',
-    label: '收款账户',
-    required: true,
-    defaultValue: 'test@example.com',
-    slot: 'fac',
-    colProps: {
-      span: 24,
-    },
-  },
-  {
-    field: 'pay',
-    component: 'Input',
-    label: '',
-    defaultValue: 'zfb',
-    show: false,
-  },
-  {
-    field: 'payeeName',
-    component: 'Input',
-    label: '收款人姓名',
-    defaultValue: 'Vben',
+    field: 'projectId',
+    label: '项目',
+    labelWidth: 100,
+    component: 'ApiSelect',
     required: true,
     colProps: {
       span: 24,
     },
-  },
-  {
-    field: 'money',
-    component: 'Input',
-    label: '转账金额',
-    defaultValue: '500',
-    required: true,
-    renderComponentContent: () => {
+    componentProps: () => {
       return {
-        prefix: () => '￥',
+        showSearch: false,
+        api: getProjectListAsync,
+        getPopupContainer: () => document.body,
+        labelField: 'name',
+        valueField: 'id',
       };
     },
-    colProps: {
-      span: 24,
-    },
   },
-];
-
-export const step2Schemas: FormSchema[] = [
   {
-    field: 'pwd',
-    component: 'InputPassword',
-    label: '支付密码',
+    field: 'templateId',
+    label: '模板组',
+    labelWidth: 100,
     required: true,
-    defaultValue: '123456',
+    component: 'ApiSelect',
     colProps: {
       span: 24,
     },
+    componentProps: () => {
+      return {
+        showSearch: false,
+        api: getTemplateListAsync,
+        getPopupContainer: () => document.body,
+        labelField: 'name',
+        valueField: 'id',
+      };
+    },
   },
 ];
-
-export const growCardList: GrowCardItem[] = [
-  {
-    title: '访问数',
-    icon: 'visit-count|svg',
-    value: 2000,
-    total: 120000,
-    color: 'green',
-    action: '月',
-  },
-  {
-    title: '成交额',
-    icon: 'total-sales|svg',
-    value: 20000,
-    total: 500000,
-    color: 'blue',
-    action: '月',
-  },
-  {
-    title: '下载数',
-    icon: 'download-count|svg',
-    value: 8000,
-    total: 120000,
-    color: 'orange',
-    action: '周',
-  },
-  {
-    title: '成交数',
-    icon: 'transaction|svg',
-    value: 5000,
-    total: 50000,
-    color: 'purple',
-    action: '年',
-  },
-];
+export async function getProjectListAsync() {
+  const projectsServiceProxy = new ProjectsServiceProxy();
+  return projectsServiceProxy.all();
+}
+export async function getTemplateListAsync() {
+  const templatesServiceProxy = new TemplatesServiceProxy();
+  return templatesServiceProxy.all();
+}
+export async function preViewCodeAsync({ templateId, projectId }) {
+  const generatorServiceProxy = new GeneratorServiceProxy();
+  const request = new PreViewCodeInput();
+  request.templateId = templateId;
+  request.projectId = projectId;
+  return generatorServiceProxy.preViewCode(request);
+}

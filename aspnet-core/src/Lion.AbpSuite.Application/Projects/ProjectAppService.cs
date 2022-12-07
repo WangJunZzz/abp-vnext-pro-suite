@@ -11,6 +11,11 @@ public class ProjectAppService : AbpSuiteAppService, IProjectAppService
         _projectManager = projectManager;
     }
 
+    public async Task<List<ProjectDto>> AllAsync()
+    {
+        return await _projectManager.GetListAsync(maxResultCount:int.MaxValue);
+    }
+
     public async Task<PagedResultDto<ProjectDto>> PageAsync(PageProjectInput input)
     {
         var result = new PagedResultDto<ProjectDto>();

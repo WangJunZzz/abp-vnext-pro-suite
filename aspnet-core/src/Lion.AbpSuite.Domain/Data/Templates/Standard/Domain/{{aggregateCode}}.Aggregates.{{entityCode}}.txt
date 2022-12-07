@@ -58,7 +58,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// <summary>
         /// {{ prop.Description }} 一对一
         /// </summary>
-        public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; } {% else %}
+        public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; }
           {{~ else ~}}
         /// <summary>
         /// {{ prop.Description }}  一对多

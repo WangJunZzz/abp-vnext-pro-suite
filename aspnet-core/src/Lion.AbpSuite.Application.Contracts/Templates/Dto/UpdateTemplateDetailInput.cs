@@ -9,6 +9,8 @@ public class UpdateTemplateDetailInput
 
     public Guid TemplateDetailId { get; set; }
     
+    public ControlType ControlType { get; set; }
+    
     /// <summary>
     /// 模板类型
     /// </summary>

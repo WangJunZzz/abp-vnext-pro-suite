@@ -2,6 +2,7 @@
 
 public interface ITemplateAppService : IApplicationService
 {
+    Task<List<TemplateDto>> AllAsync();
     Task<PagedResultDto<TemplateDto>> PageAsync(PageTemplateInput input);
 
     Task CreateAsync(CreateTemplateInput input);

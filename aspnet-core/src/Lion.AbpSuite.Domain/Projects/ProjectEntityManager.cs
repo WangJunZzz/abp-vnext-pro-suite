@@ -24,8 +24,6 @@ public class ProjectEntityManager : AbpSuiteDomainService
     {
         var result = new GeneratorProjectTemplateContext();
         var entities = await _entityModelManager.FindByProjectIdAsync(projectId);
-        // 获取所有实体
-        result.ProjectEntities = ObjectMapper.Map<List<EntityModelDto>, List<GeneratorProjectEntityContext>>(entities);
         // 获取实体模型数据类型
         var dataTypes = await _dataTypeManager.ListAsync();
         // 获取实体枚举

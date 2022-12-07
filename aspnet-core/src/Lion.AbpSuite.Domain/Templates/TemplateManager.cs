@@ -80,10 +80,10 @@ public class TemplateManager : AbpSuiteDomainService
             throw new UserFriendlyException("模板组不存在");
         }
 
-        entity.AddTemplateDetail(GuidGenerator.Create(), templateType, controlType,name, description, content, parentId);
+        entity.AddTemplateDetail(GuidGenerator.Create(), templateType, controlType, name, description, content, parentId);
         await _templateRepository.UpdateAsync(entity);
     }
-    
+
     // public async Task CreateDetailAsync(Guid templateId, TemplateType templateType, ControlType controlType, string name, string description, Guid? parentId)
     // {
     //     var entity = await _templateRepository.FindAsync(templateId);
@@ -95,18 +95,18 @@ public class TemplateManager : AbpSuiteDomainService
     //     entity.AddTemplateDetail(GuidGenerator.Create(), templateType, name, description, parentId);
     //     await _templateRepository.UpdateAsync(entity);
     // }
-    public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string name, string description, string content)
-    {
-        var entity = await _templateRepository.FindAsync(templateId);
-        if (entity == null)
-        {
-            throw new UserFriendlyException("模板组不存在");
-        }
+    // public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string name, string description, string content)
+    // {
+    //     var entity = await _templateRepository.FindAsync(templateId);
+    //     if (entity == null)
+    //     {
+    //         throw new UserFriendlyException("模板组不存在");
+    //     }
+    //
+    //     entity.UpdateDetail(detailId, name, description, content);
+    //     await _templateRepository.UpdateAsync(entity);
+    // }
 
-        entity.UpdateDetail(detailId, name, description, content);
-        await _templateRepository.UpdateAsync(entity);
-    }
-    
     public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string content)
     {
         var entity = await _templateRepository.FindAsync(templateId);
@@ -118,7 +118,8 @@ public class TemplateManager : AbpSuiteDomainService
         entity.UpdateDetailContent(detailId, content);
         await _templateRepository.UpdateAsync(entity);
     }
-    public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string name, string description)
+
+    public async Task UpdateDetailAsync(Guid templateId, Guid detailId, string name, string description, ControlType controlType)
     {
         var entity = await _templateRepository.FindAsync(templateId);
         if (entity == null)
@@ -126,9 +127,10 @@ public class TemplateManager : AbpSuiteDomainService
             throw new UserFriendlyException("模板组不存在");
         }
 
-        entity.UpdateDetail(detailId, name, description);
+        entity.UpdateDetail(detailId, name, description, controlType);
         await _templateRepository.UpdateAsync(entity);
     }
+
     public async Task DeleteDetailAsync(Guid templateId, Guid templateDetailId)
     {
         var entity = await _templateRepository.FindAsync(templateId);
@@ -137,10 +139,11 @@ public class TemplateManager : AbpSuiteDomainService
             throw new UserFriendlyException("模板组不存在");
         }
 
-        foreach (var templateDetail in entity.TemplateDetails.Where(e=>e.ParentId==templateDetailId))
+        foreach (var templateDetail in entity.TemplateDetails.Where(e => e.ParentId == templateDetailId))
         {
             templateDetail.IsDeleted = true;
         }
+
         entity.DeleteDetail(templateDetailId);
         await _templateRepository.UpdateAsync(entity);
     }
@@ -155,7 +158,7 @@ public class TemplateManager : AbpSuiteDomainService
 
         return ObjectMapper.Map<Template, TemplateDto>(entity);
     }
-    
+
     public async Task<List<TemplateTreeDto>> TemplateTreeAsync(Guid id)
     {
         var template = await GetAsync(id);

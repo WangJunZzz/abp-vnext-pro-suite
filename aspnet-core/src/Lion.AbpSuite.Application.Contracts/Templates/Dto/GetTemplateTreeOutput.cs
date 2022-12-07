@@ -11,6 +11,8 @@ public class GetTemplateTreeOutput
     ///  模板类型
     /// </summary>
     public TemplateType TemplateType { get; set; }
+    
+    public ControlType ControlType { get; set; }
 
     /// <summary>
     /// 图标

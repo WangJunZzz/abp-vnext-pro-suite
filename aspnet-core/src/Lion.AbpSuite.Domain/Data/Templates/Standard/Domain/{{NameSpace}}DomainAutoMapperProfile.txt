@@ -1,0 +1,9 @@
+﻿namespace Lion.AbpSuite.Data.Standard.Domain;
+
+public class {{NameSpace}}DomainAutoMapperProfile :Profile 
+{
+    public {{NameSpace}}DomainAutoMapperProfile()
+    {
+    
+    }
+}

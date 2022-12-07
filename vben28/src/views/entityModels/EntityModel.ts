@@ -1,4 +1,5 @@
-import { FormSchema } from '/@/components/Table';
+//import { FormSchema } from '/@/components/Table';
+import { FormSchema } from '/@/components/Form';
 import {
   EntityModelsServiceProxy,
   GetEntityModelTreeInput,
@@ -420,6 +421,7 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
           entityModelId: formModel.id,
         },
         onChange(e, option) {
+          debugger;
           console.log(option);
           if (option.isEnum) {
             formActionType.updateSchema([

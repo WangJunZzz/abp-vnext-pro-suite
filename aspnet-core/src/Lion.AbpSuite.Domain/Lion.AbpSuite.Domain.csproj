@@ -18,9 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Data\Templates\Standard\**\*.liquid" />
     <EmbeddedResource Include="Data\Templates\Standard\**\*.txt" />
   </ItemGroup>
 
-
+  
 </Project>

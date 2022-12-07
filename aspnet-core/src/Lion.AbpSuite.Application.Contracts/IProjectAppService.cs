@@ -5,6 +5,8 @@ namespace Lion.AbpSuite;
 
 public interface IProjectAppService : IApplicationService
 {
+    Task<List<ProjectDto>> AllAsync();
+    
     Task<PagedResultDto<ProjectDto>> PageAsync(PageProjectInput input);
 
     Task CreateAsync(CreateProjectInput input);

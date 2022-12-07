@@ -51,6 +51,13 @@
             ifShow: false,
           });
         }
+
+        if (data.templateType == 20) {
+          updateSchema({
+            field: 'controlType',
+            ifShow: true,
+          });
+        }
       });
 
       const submit = async () => {

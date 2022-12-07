@@ -15,9 +15,5 @@ public class AbpSuiteAutoMapperProfile : Profile
         CreateMap<EntityModelProperty, EntityModelPropertyDto>();
         CreateMap<EnumType, EnumTypeDto>();
         CreateMap<EnumTypeProperty, EnumTypePropertyDto>();
-
-        CreateMap<EntityModelDto, GeneratorProjectEntityContext>()
-            .ForMember(dest => dest.AggregateId, 
-            opt => opt.MapFrom(e => e.ParentId));
     }
 }

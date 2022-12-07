@@ -65,6 +65,7 @@
   import UpdateTemplateDetail from './UpdateTemplateDetail.vue';
   import { useModal } from '/@/components/Modal';
   import { useMessage } from '/@/hooks/web/useMessage';
+
   export default defineComponent({
     name: 'TemplateDetail',
     components: {
@@ -130,7 +131,7 @@
             icon: 'ant-design:file-twotone',
             handler: () => {
               openTemplateDetailModal(true, {
-                templateId: route.query?.id,
+                templateId: route.query?.templateId,
                 parentId: node.key,
                 templateType: 20,
               });
@@ -141,10 +142,12 @@
             icon: 'clarity:note-edit-line',
             handler: () => {
               openUpdateTemplateDetailModal(true, {
-                templateId: route.query?.id,
+                templateId: route.query?.templateId,
                 templateDetailId: node.key,
                 name: node.name,
                 description: node.description,
+                controlType: node.controlType,
+                templateType: node.templateType,
               });
             },
           },
@@ -159,7 +162,7 @@
                 onCancel: () => {},
                 onOk: async () => {
                   await deleteTemplateDetailAsync({
-                    templateId: route.query?.id,
+                    templateId: route.query?.templateId,
                     templateDetailId: node.key,
                   });
                   await loadTree();
@@ -183,7 +186,7 @@
       }
 
       async function saveTemplateContent() {
-        let templateId = route.query?.id;
+        let templateId = route.query?.templateId;
         await saveTemplateDetailAsync(templateId, currentTemplateDetailId, content.value);
         await loadTree();
       }

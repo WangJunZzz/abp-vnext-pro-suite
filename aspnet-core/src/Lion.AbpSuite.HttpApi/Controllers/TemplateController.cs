@@ -9,6 +9,12 @@ public class TemplateController : AbpSuiteController, ITemplateAppService
     {
         _templateAppService = templateAppService;
     }
+    [HttpPost("All")]
+    [SwaggerOperation(summary: "获取所有模板组", Tags = new[] { "Templates" })]
+    public Task<List<TemplateDto>> AllAsync()
+    {
+        return _templateAppService.AllAsync();
+    }
 
     [HttpPost("Page")]
     [SwaggerOperation(summary: "分页获取模板组", Tags = new[] { "Templates" })]

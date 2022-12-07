@@ -108,10 +108,11 @@
             SetDescription(description);
         }
 
-        public void Update(string name, string description)
+        public void Update(string name, string description,ControlType controlType)
         {
             SetName(name);
             SetDescription(description);
+            SetControlType(controlType);
         }
     }
 }

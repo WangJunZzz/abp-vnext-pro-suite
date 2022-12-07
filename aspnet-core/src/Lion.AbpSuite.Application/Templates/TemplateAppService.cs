@@ -9,6 +9,11 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
         _templateManager = templateManager;
     }
 
+    public async Task<List<TemplateDto>> AllAsync()
+    {
+        return await _templateManager.GetListAsync(maxResultCount: int.MaxValue);
+    }
+    
     public async Task<PagedResultDto<TemplateDto>> PageAsync(PageTemplateInput input)
     {
         var result = new PagedResultDto<TemplateDto>();
@@ -52,18 +57,14 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
 
     public Task UpdateDetailAsync(UpdateTemplateDetailInput input)
     {
-        return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Name, input.Description, input.Content);
+        return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Name, input.Description,input.ControlType);
     }
 
     public Task UpdateDetailAsync(UpdateTemplateDetailContentInput input)
     {
         return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Content);
     }
-
-    public Task UpdateDetailAsync(UpdateTemplateDetailNoContentInput input)
-    {
-        return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Name, input.Description);
-    }
+    
 
     public Task DeleteDetailAsync(DeleteTemplateDetailInput input)
     {
@@ -79,6 +80,7 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
     {
         return EnumExtensions.GetEntityStringIntKeyValueList<TemplateType>();
     }
+
 
     // TODO 移除待
     public async Task<List<GetTemplateTreeOutput>> TemplateTreeAsync(GetTemplteTreeInput input)
@@ -98,10 +100,11 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
             {
                 Key = detail.Id,
                 Name = detail.Name,
-                Title = detail.Description,
+                Title = detail.Name,
                 Description = detail.Description,
                 Content = detail.Content,
                 TemplateType = detail.TemplateType,
+                ControlType = detail.ControlType,
                 Icon = detail.TemplateType == TemplateType.Folder ? "ant-design:folder-open-outlined" : "ant-design:file-outlined"
             };
             child.Children.AddRange(RecursionTemplate(template, detail.Id));

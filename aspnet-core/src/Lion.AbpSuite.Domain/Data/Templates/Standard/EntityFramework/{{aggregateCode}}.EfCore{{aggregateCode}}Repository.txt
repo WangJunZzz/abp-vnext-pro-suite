@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Volo.Abp.Domain.Entities.Auditing;
+
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.Code }}.Aggregate;
+
+/// <summary>
+/// {{ context.EntityModel.Description }}
+/// </summary>
+public class {{ context.EntityModel.Code }} : CacheBase
+{
+        private {{ context.EntityModel.Code }}()
+        {
+        {{~ for prop in context.EntityModel.EntityModels ~}}
+            {{~ if  prop.RelationalType == 20 ~}}
+            {{ prop.CodePluralized }} = new List<{{ prop.Code }}>();
+            {{~ end ~}}
+        {{~ end ~}}
+        }
+ 
+               
+        public {{ context.EntityModel.Code }}(
+            Guid id
+            {{-  for prop in context.EntityModel.Properties -}}
+             {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
+             {{- if prop.IsEnum ~}}
+            {{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}
+             {{- else ~}}
+            {{ prop.DataType.Code }} {{ prop.CodeCamelCase }}
+             {{- end ~}}
+           {{- if for.last; "\r\n"; else; ; end ~}}
+            {{-  end ~}}
+        ) : base(id)
+        {
+             {{~  for prop in context.EntityModel.Properties ~}}
+             Set{{ prop.Code }}({{prop.CodeCamelCase}})
+             {{~  end ~}}
+        }
+        
+        {{~ for prop in context.EntityModel.Properties ~}}
+            {{~ if prop.IsEnum ~}}
+        /// <summary>
+        /// {{ prop.Description }}
+        /// </summary>
+        public {{ prop.EnumType.Code }} {{ prop.Code }} { get; private set; }
+            {{~ else ~}}
+        /// <summary>
+        /// {{ prop.Description }}
+        /// </summary>
+        public {{ prop.DataType.Code }} {{ prop.Code }} { get; private set; }
+            {{~ end ~}}
+       {{~ end ~}}
+    
+      {{~ for prop in context.EntityModel.EntityModels ~}}
+        {{~ if  prop.RelationalType == 10 ~}}
+        /// <summary>
+        /// {{ prop.Description }} 一对一
+        /// </summary>
+        public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; } {% else %}
+          {{~ else ~}}
+        /// <summary>
+        /// {{ prop.Description }}  一对多
+        /// </summary>
+        public List<{{ prop.Code }}> {{ prop.CodePluralized }}  { get; private set; }
+          {{~ end ~}}
+      {{~ end ~}}
+                    
+      {{~ for prop in context.EntityModel.Properties ~}}
+        {{~ if prop.IsEnum ~}}
+        
+        /// <summary>
+        /// 设置{{ prop.Description }}
+        /// </summary>
+        private void Set{{ prop.Code }}({{ prop.EnumType.Code }} {{prop.CodeCamelCase}})
+        {
+             {{ prop.Code }} = {{ prop.Code }};
+        }
+        {{~ else ~}}
+        
+        /// <summary>
+        /// 设置{{ prop.Description }}
+        /// </summary>        
+        private void Set{{ prop.Code }}({{ prop.DataType.Code }} {{prop.CodeCamelCase}})
+        {
+             {{ prop.Code }} = {{ prop.CodeCamelCase }};
+        }     
+        {{~ end ~}}
+      {{~ end ~}}
+      
+       private const string CacheKeyFormat = "i:{0}";
+      
+       public static string CalculateCacheKey(Guid id)
+       {
+           return string.Format(CacheKeyFormat, id);
+       }
+}

@@ -27,7 +27,6 @@
         /// </summary>
         public string Remark { get; private set; }
 
-
         private Project()
         {
         }
@@ -62,6 +61,7 @@
                 Owner = string.Empty;
                 return;
             }
+
             Owner = owner;
         }
 
