@@ -11474,7 +11474,8 @@ export interface ICreateOrganizationUnitInput {
 export class CreateProjectInput implements ICreateProjectInput {
     name!: string | undefined;
     owner!: string | undefined;
-    nameSpace!: string | undefined;
+    companyName!: string | undefined;
+    projectName!: string | undefined;
     remark!: string | undefined;
 
     constructor(data?: ICreateProjectInput) {
@@ -11490,7 +11491,8 @@ export class CreateProjectInput implements ICreateProjectInput {
         if (_data) {
             this.name = _data["name"];
             this.owner = _data["owner"];
-            this.nameSpace = _data["nameSpace"];
+            this.companyName = _data["companyName"];
+            this.projectName = _data["projectName"];
             this.remark = _data["remark"];
         }
     }
@@ -11506,7 +11508,8 @@ export class CreateProjectInput implements ICreateProjectInput {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["owner"] = this.owner;
-        data["nameSpace"] = this.nameSpace;
+        data["companyName"] = this.companyName;
+        data["projectName"] = this.projectName;
         data["remark"] = this.remark;
         return data;
     }
@@ -11515,7 +11518,8 @@ export class CreateProjectInput implements ICreateProjectInput {
 export interface ICreateProjectInput {
     name: string | undefined;
     owner: string | undefined;
-    nameSpace: string | undefined;
+    companyName: string | undefined;
+    projectName: string | undefined;
     remark: string | undefined;
 }
 
@@ -18252,6 +18256,8 @@ export class ProjectDto implements IProjectDto {
     name!: string | undefined;
     owner!: string | undefined;
     nameSpace!: string | undefined;
+    companyName!: string | undefined;
+    projectName!: string | undefined;
     remark!: string | undefined;
 
     constructor(data?: IProjectDto) {
@@ -18274,6 +18280,8 @@ export class ProjectDto implements IProjectDto {
             this.name = _data["name"];
             this.owner = _data["owner"];
             this.nameSpace = _data["nameSpace"];
+            this.companyName = _data["companyName"];
+            this.projectName = _data["projectName"];
             this.remark = _data["remark"];
         }
     }
@@ -18296,6 +18304,8 @@ export class ProjectDto implements IProjectDto {
         data["name"] = this.name;
         data["owner"] = this.owner;
         data["nameSpace"] = this.nameSpace;
+        data["companyName"] = this.companyName;
+        data["projectName"] = this.projectName;
         data["remark"] = this.remark;
         return data;
     }
@@ -18311,6 +18321,8 @@ export interface IProjectDto {
     name: string | undefined;
     owner: string | undefined;
     nameSpace: string | undefined;
+    companyName: string | undefined;
+    projectName: string | undefined;
     remark: string | undefined;
 }
 
@@ -19203,6 +19215,7 @@ export class TemplateTreeDto implements ITemplateTreeDto {
     key!: string;
     templateType!: TemplateType;
     icon!: string | undefined;
+    isFolder!: boolean;
     name!: string | undefined;
     description!: string | undefined;
     title!: string | undefined;
@@ -19223,6 +19236,7 @@ export class TemplateTreeDto implements ITemplateTreeDto {
             this.key = _data["key"];
             this.templateType = _data["templateType"];
             this.icon = _data["icon"];
+            this.isFolder = _data["isFolder"];
             this.name = _data["name"];
             this.description = _data["description"];
             this.title = _data["title"];
@@ -19247,6 +19261,7 @@ export class TemplateTreeDto implements ITemplateTreeDto {
         data["key"] = this.key;
         data["templateType"] = this.templateType;
         data["icon"] = this.icon;
+        data["isFolder"] = this.isFolder;
         data["name"] = this.name;
         data["description"] = this.description;
         data["title"] = this.title;
@@ -19264,6 +19279,7 @@ export interface ITemplateTreeDto {
     key: string;
     templateType: TemplateType;
     icon: string | undefined;
+    isFolder: boolean;
     name: string | undefined;
     description: string | undefined;
     title: string | undefined;
@@ -20196,7 +20212,8 @@ export class UpdateProjectInput implements IUpdateProjectInput {
     id!: string;
     name!: string | undefined;
     owner!: string | undefined;
-    nameSpace!: string | undefined;
+    companyName!: string | undefined;
+    projectName!: string | undefined;
     remark!: string | undefined;
 
     constructor(data?: IUpdateProjectInput) {
@@ -20213,7 +20230,8 @@ export class UpdateProjectInput implements IUpdateProjectInput {
             this.id = _data["id"];
             this.name = _data["name"];
             this.owner = _data["owner"];
-            this.nameSpace = _data["nameSpace"];
+            this.companyName = _data["companyName"];
+            this.projectName = _data["projectName"];
             this.remark = _data["remark"];
         }
     }
@@ -20230,7 +20248,8 @@ export class UpdateProjectInput implements IUpdateProjectInput {
         data["id"] = this.id;
         data["name"] = this.name;
         data["owner"] = this.owner;
-        data["nameSpace"] = this.nameSpace;
+        data["companyName"] = this.companyName;
+        data["projectName"] = this.projectName;
         data["remark"] = this.remark;
         return data;
     }
@@ -20240,7 +20259,8 @@ export interface IUpdateProjectInput {
     id: string;
     name: string | undefined;
     owner: string | undefined;
-    nameSpace: string | undefined;
+    companyName: string | undefined;
+    projectName: string | undefined;
     remark: string | undefined;
 }
 

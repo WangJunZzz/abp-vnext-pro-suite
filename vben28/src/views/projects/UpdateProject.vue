@@ -27,7 +27,8 @@
         setFieldsValue({
           id: data.record.id,
           name: data.record.name,
-          nameSpace: data.record.nameSpace,
+          companyName: data.record.companyName,
+          projectName: data.record.projectName,
           owner: data.record.owner,
           remark: data.record.remark,
         });

@@ -19,6 +19,10 @@ public class ProjectDto : AggregateDtoBase<Guid>
     /// </summary>
     public string NameSpace { get;  set; }
 
+    public string CompanyName { get;  set; }
+
+    public string ProjectName { get;   set; }
+    
     /// <summary>
     /// 备注
     /// </summary>

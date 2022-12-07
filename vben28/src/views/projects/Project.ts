@@ -18,8 +18,16 @@ export const searchFormSchema: FormSchema[] = [
 
 export const tableColumns: BasicColumn[] = [
   {
-    title: '名称',
+    title: '公司名称',
+    dataIndex: 'companyName',
+  },
+  {
+    title: '项目中文名',
     dataIndex: 'name',
+  },
+  {
+    title: '项目英文名',
+    dataIndex: 'projectName',
   },
   {
     title: '名称空间',
@@ -44,14 +52,20 @@ export const tableColumns: BasicColumn[] = [
 
 export const createFormSchema: FormSchema[] = [
   {
-    field: 'name',
-    label: '名称',
+    field: 'companyName',
+    label: '公司名称',
     component: 'Input',
     required: true,
   },
   {
-    field: 'nameSpace',
-    label: '名称空间',
+    field: 'name',
+    label: '项目中文名',
+    component: 'Input',
+    required: true,
+  },
+  {
+    field: 'projectName',
+    label: '项目英文名',
     component: 'Input',
     required: true,
   },
@@ -82,14 +96,20 @@ export const editFormSchema: FormSchema[] = [
     ifShow: false,
   },
   {
-    field: 'name',
-    label: '名称',
+    field: 'companyName',
+    label: '公司名称',
     component: 'Input',
     required: true,
   },
   {
-    field: 'nameSpace',
-    label: '名称空间',
+    field: 'name',
+    label: '项目中文名',
+    component: 'Input',
+    required: true,
+  },
+  {
+    field: 'projectName',
+    label: '项目英文名',
     component: 'Input',
     required: true,
   },

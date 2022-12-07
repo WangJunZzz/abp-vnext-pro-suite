@@ -13,10 +13,9 @@ public class CreateProjectInput
     /// </summary>
     public string Owner { get;  set; }
 
-    /// <summary>
-    /// 名称空间
-    /// </summary>
-    public string NameSpace { get;  set; }
+    public string CompanyName { get;  set; }
+
+    public string ProjectName { get;   set; }
 
     /// <summary>
     /// 备注

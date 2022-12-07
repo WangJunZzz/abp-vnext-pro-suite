@@ -28,7 +28,7 @@ public sealed class ProjectManagerTests : AbpSuiteDomainTestBase
         result.Remark.ShouldBe("remark");
 
         var name = "单元测试种子项目";
-        var throwResult = await Should.ThrowAsync<UserFriendlyException>(async () => { await _projectManager.CreateAsync(name, "data"); });
+        var throwResult = await Should.ThrowAsync<UserFriendlyException>(async () => { await _projectManager.CreateAsync(name, "data","xx"); });
         throwResult.Message.ShouldBe($"{name}项目已存在");
     }
 

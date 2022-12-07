@@ -20,31 +20,34 @@ public class ProjectManager : AbpSuiteDomainService
         return await _projectRepository.GetCountAsync(filter);
     }
 
-    public async Task<ProjectDto> CreateAsync(string name, string nameSpace, string owner = null, string remark = null)
+    public async Task<ProjectDto> CreateAsync(string name, string companyName,
+        string projectName, string owner = null, string remark = null)
     {
         if (name.IsNullOrWhiteSpace()) throw new UserFriendlyException("项目名称不能为空");
-        if (nameSpace.IsNullOrWhiteSpace()) throw new UserFriendlyException("项目名称空间不能为空");
+        if (companyName.IsNullOrWhiteSpace()) throw new UserFriendlyException("公司名称不能为空");
+        if (projectName.IsNullOrWhiteSpace()) throw new UserFriendlyException("项目名称不能为空");
 
         var entity = await _projectRepository.FindAsync(name);
         if (entity != null) throw new UserFriendlyException($"{name}项目已存在");
-        entity = new Project(GuidGenerator.Create(), name, owner, nameSpace, remark, CurrentTenant.Id);
+        entity = new Project(GuidGenerator.Create(), name, owner, companyName, projectName, remark, CurrentTenant.Id);
 
         await _projectRepository.InsertAsync(entity);
-        return ObjectMapper.Map<Project,ProjectDto>(entity);
+        return ObjectMapper.Map<Project, ProjectDto>(entity);
     }
 
-    public async Task<ProjectDto> UpdateAsync(Guid id, string name, string nameSpace, string owner = null, string remark = null)
+    public async Task<ProjectDto> UpdateAsync(Guid id, string name, string companyName,
+        string projectName, string owner = null, string remark = null)
     {
         if (name.IsNullOrWhiteSpace()) throw new UserFriendlyException("项目名称不能为空");
-        if (nameSpace.IsNullOrWhiteSpace()) throw new UserFriendlyException("项目名称空间不能为空");
-
+        if (companyName.IsNullOrWhiteSpace()) throw new UserFriendlyException("公司名称不能为空");
+        if (projectName.IsNullOrWhiteSpace()) throw new UserFriendlyException("项目名称不能为空");
         var entity = await _projectRepository.FindAsync(id);
         if (entity == null) throw new UserFriendlyException($"项目不存在");
         var exist = await _projectRepository.FindByNameExcludeIdAsync(name, id);
         if (exist != null) throw new UserFriendlyException($"{name}项目已存在");
-        entity.Update(name, nameSpace, owner, remark);
+        entity.Update(name, companyName, projectName, owner, remark);
         await _projectRepository.UpdateAsync(entity);
-        return ObjectMapper.Map<Project,ProjectDto>(entity);
+        return ObjectMapper.Map<Project, ProjectDto>(entity);
     }
 
     public async Task DeleteAsync(Guid id)

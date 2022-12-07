@@ -13,7 +13,7 @@ public class ProjectAppService : AbpSuiteAppService, IProjectAppService
 
     public async Task<List<ProjectDto>> AllAsync()
     {
-        return await _projectManager.GetListAsync(maxResultCount:int.MaxValue);
+        return await _projectManager.GetListAsync(maxResultCount: int.MaxValue);
     }
 
     public async Task<PagedResultDto<ProjectDto>> PageAsync(PageProjectInput input)
@@ -32,12 +32,12 @@ public class ProjectAppService : AbpSuiteAppService, IProjectAppService
 
     public Task CreateAsync(CreateProjectInput input)
     {
-        return _projectManager.CreateAsync(input.Name, input.NameSpace, input.Owner, input.Remark);
+        return _projectManager.CreateAsync(input.Name, input.CompanyName, input.ProjectName, input.Owner, input.Remark);
     }
 
     public Task UpdateAsync(UpdateProjectInput input)
     {
-        return _projectManager.UpdateAsync(input.Id, input.Name, input.NameSpace, input.Owner, input.Remark);
+        return _projectManager.UpdateAsync(input.Id, input.Name, input.CompanyName,input.ProjectName, input.Owner, input.Remark);
     }
 
     public Task DeleteAsync(DeleteProjectInput input)

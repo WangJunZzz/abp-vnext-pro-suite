@@ -32,6 +32,8 @@ namespace Lion.AbpSuite.EntityFrameworkCore
                 b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(Project).Pluralize());
                 b.Property(e => e.Name).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Owner).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
+                b.Property(e => e.CompanyName).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
+                b.Property(e => e.ProjectName).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.NameSpace).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Remark).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength512);
                 b.ConfigureByConvention();

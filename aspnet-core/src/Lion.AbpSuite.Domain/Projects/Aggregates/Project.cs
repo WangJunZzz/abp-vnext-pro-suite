@@ -27,6 +27,10 @@
         /// </summary>
         public string Remark { get; private set; }
 
+        public string CompanyName { get; private set; }
+
+        public string ProjectName { get;  private set; }
+
         private Project()
         {
         }
@@ -35,7 +39,8 @@
             Guid id,
             string name,
             string owner,
-            string nameSpace,
+            string companyName,
+            string projectName,
             string remark = null,
             Guid? tenantId = null
         ) : base(id)
@@ -43,7 +48,7 @@
             TenantId = tenantId;
             SetName(name);
             SetOwner(owner);
-            SetNameSpace(nameSpace);
+            SetNameSpace(companyName,projectName);
             SetRemark(remark);
         }
 
@@ -65,11 +70,16 @@
             Owner = owner;
         }
 
-        private void SetNameSpace(string nameSpace)
+
+        public void SetNameSpace(string companyName, string projectName)
         {
-            Guard.Length(nameSpace, nameof(nameSpace), AbpSuiteDomainSharedConsts.MaxLength512);
-            NameSpace = nameSpace;
+            Guard.NotNullOrWhiteSpace(companyName, nameof(companyName), AbpSuiteDomainSharedConsts.MaxLength128);
+            Guard.NotNullOrWhiteSpace(projectName, nameof(projectName), AbpSuiteDomainSharedConsts.MaxLength128);
+            NameSpace = string.Concat(companyName, ".", projectName);
+            CompanyName = companyName;
+            ProjectName = projectName;
         }
+
 
         private void SetRemark(string remark)
         {
@@ -82,11 +92,11 @@
             Remark = remark;
         }
 
-        public void Update(string name, string nameSpace, string owner, string remark)
+        public void Update(string name, string companyName, string projectName, string owner, string remark)
         {
             SetName(name);
             SetOwner(owner);
-            SetNameSpace(nameSpace);
+            SetNameSpace(companyName, projectName);
             SetRemark(remark);
         }
     }
