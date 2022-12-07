@@ -16,6 +16,11 @@ public class TemplateTreeDto
     /// 图标
     /// </summary>
     public string Icon { get; set; }
+    
+    /// <summary>
+    /// 是否是文件夹
+    /// </summary>
+    public bool IsFolder { get; set; }
 
     /// <summary>
     /// 模板名称

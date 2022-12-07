@@ -59,7 +59,8 @@ public class EntityModelManager : AbpSuiteDomainService
             throw new UserFriendlyException("聚合根已经存在");
         }
 
-        entity = new EntityModel(GuidGenerator.Create(), projectId, code, description, tenantId: CurrentTenant.Id);
+        var id = GuidGenerator.Create();
+        entity = new EntityModel(id, projectId, code, description, id, tenantId: CurrentTenant.Id);
 
         await _entityModelRepository.InsertAsync(entity);
         return ObjectMapper.Map<EntityModel, EntityModelDto>(entity);
@@ -69,7 +70,7 @@ public class EntityModelManager : AbpSuiteDomainService
     /// 创建聚合根下实体
     /// </summary>
     public async Task<EntityModelDto> CreateEntityAsync(
-        Guid aggregateId,
+        Guid parentId,
         string code,
         string description,
         RelationalType relationalType)
@@ -84,19 +85,19 @@ public class EntityModelManager : AbpSuiteDomainService
             throw new UserFriendlyException("描述不能为空");
         }
 
-        var entity = await _entityModelRepository.FindAsync(aggregateId);
+        var entity = await _entityModelRepository.FindAsync(parentId);
         if (entity == null)
         {
             throw new UserFriendlyException("聚合根不存在");
         }
 
-        var detail = await _entityModelRepository.FindAsync(aggregateId, entity.ProjectId, code);
+        var detail = await _entityModelRepository.FindAsync(parentId, entity.ProjectId, code);
         if (detail != null)
         {
             throw new UserFriendlyException("实体已存在");
         }
 
-        detail = new EntityModel(GuidGenerator.Create(), entity.ProjectId, code, description, relationalType, entity.Id, entity.TenantId);
+        detail = new EntityModel(GuidGenerator.Create(), entity.ProjectId, code, description, entity.AggregateId, relationalType, entity.Id, entity.TenantId);
 
         await _entityModelRepository.InsertAsync(detail);
         return ObjectMapper.Map<EntityModel, EntityModelDto>(detail);

@@ -44,13 +44,29 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         }
 
         var context = await _projectEntityManager.GetProjectContextAsync(input.ProjectId);
-        return await RecursionTemplate(template, template.TemplateDetails, context);
+        var result = await RecursionTemplate(template.TemplateDetails, context);
+        return result;
     }
+
+    // public List<TemplateTreeDto> FormatResult(List<TemplateTreeDto> list)
+    // {
+    //     var tree = new List<TemplateTreeDto>();
+    //     foreach (var item in list)
+    //     {
+    //         if (item.IsFolder)
+    //         {
+    //             tree.AddRange(FormatResult(item.Children));
+    //         }
+    //         else
+    //         {
+    //         }
+    //     }
+    // }
 
     /// <summary>
     /// 遍历模板
     /// </summary>
-    private async Task<List<TemplateTreeDto>> RecursionTemplate(TemplateDto templateDto, List<TemplateDetailDto> templateDetails, GeneratorProjectTemplateContext context,
+    private async Task<List<TemplateTreeDto>> RecursionTemplate(List<TemplateDetailDto> templateDetails, GeneratorProjectTemplateContext context,
         Guid? parentId = null)
     {
         var tree = new List<TemplateTreeDto>();
@@ -61,11 +77,11 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             {
                 var code = await GeneratorFolderAsync(template.Name);
                 tree.Add(code);
-                code.Children.AddRange(await RecursionTemplate(templateDto, templateDetails, context, template.Id));
+                code.Children.AddRange(await RecursionTemplate(templateDetails, context, template.Id));
             }
             else
             {
-                tree.AddRange(await RenderAggregateAsync(templateDto, context, template));
+                tree.AddRange(await RenderAggregateAsync(context, template));
             }
         }
 
@@ -77,29 +93,35 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     /// </summary>
     /// <param name="context">实体上下文信息</param>
     /// <param name="template">模板</param>
-    private async Task<List<TemplateTreeDto>> RenderAggregateAsync(TemplateDto templateDto, GeneratorProjectTemplateContext context, TemplateDetailDto template)
+    private async Task<List<TemplateTreeDto>> RenderAggregateAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template)
     {
         var result = new List<TemplateTreeDto>();
         var aggregates = context.EntityModels.Where(e => e.IsRoot);
         foreach (var aggregate in aggregates)
         {
+            var folder = result.FirstOrDefault(e => e.Name == aggregate.CodePluralized);
+            if (folder == null)
+            {
+                folder = await GeneratorFolderAsync(aggregate.CodePluralized);
+            }
+
+
+            result.Add(folder);
             if (template.ControlType == ControlType.Aggregate)
             {
-                var folder = await GeneratorFolderAsync(aggregate.CodePluralized);
-                result.Add(folder);
                 var code = await GeneratorCodeAsync(template, context.Projects, aggregate);
                 folder.Children.Add(code);
                 // 找到模板的子项
-                var ss = templateDto.TemplateDetails.Where(e => e.ParentId == template.ParentId).Where(e => e.Id != template.Id).ToList();
-
-                foreach (var templateDetailDto in ss)
-                {
-                    folder.Children.AddRange(await RenderEntityAsync(context, templateDetailDto, aggregate.EntityModels));
-                }
+                // var ss = templateDto.TemplateDetails.Where(e => e.ParentId == template.ParentId).Where(e => e.Id != template.Id).ToList();
+                //
+                // foreach (var templateDetailDto in ss)
+                // {
+                //     folder.Children.AddRange(await RenderEntityAsync(context, templateDetailDto, aggregate.EntityModels));
+                // }
             }
             else
             {
-                result.AddRange(await RenderEntityAsync(context, template, aggregate.EntityModels));
+                folder.Children.AddRange(await RenderEntityAsync(context, template, aggregate.EntityModels));
             }
         }
 
@@ -137,14 +159,15 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             Name = folderName,
             Title = folderName,
             TemplateType = TemplateType.Folder,
-            Icon = "ant-design:folder-open-outlined"
+            Icon = "ant-design:folder-open-outlined",
+            IsFolder = true
         };
         return result;
     }
 
     private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorEntityModelContext entityModel)
     {
-        var fileName = await RenderFileNameAsync(template.Name, project.Name, entityModel.Code, entityModel.Code);
+        var fileName = await RenderFileNameAsync(template.Name, project.Name, entityModel.AggregateCode, entityModel.Code);
         var generatorContext = new GeneratorTemplateContext()
         {
             Project = project,
@@ -159,7 +182,8 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             Description = template.Description,
             Content = await _generatorManager.RenderAsync(template.Content, new { context = generatorContext }),
             TemplateType = template.TemplateType,
-            Icon = "ant-design:file-outlined"
+            Icon = "ant-design:file-outlined",
+            IsFolder = false
         };
 
         return result;

@@ -26,7 +26,10 @@ public class EntityModelDto : AggregateDtoBase<Guid>
     /// </summary>
     public Guid? ParentId { get; set; }
 
-
+    /// <summary>
+    /// 聚合根Id
+    /// </summary>
+    public Guid AggregateId { get;  set; }
     /// <summary>
     /// 实体模型属性集合
     /// </summary>

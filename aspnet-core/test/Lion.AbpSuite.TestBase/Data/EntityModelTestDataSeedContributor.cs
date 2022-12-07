@@ -23,7 +23,7 @@ public class EntityModelTestDataSeedContributor : IDataSeedContributor, ITransie
         var aggregate = await _entityModelRepository.FindAsync(AbpSuiteTestConst.AggregateId);
         if (aggregate == null)
         {
-            aggregate = new EntityModel(AbpSuiteTestConst.AggregateId, AbpSuiteTestConst.ProjectId, "Users", "用户");
+            aggregate = new EntityModel(AbpSuiteTestConst.AggregateId, AbpSuiteTestConst.ProjectId, "Users", "用户",AbpSuiteTestConst.AggregateId);
             aggregate.AddProperty(
                 Guid.NewGuid(),
                 "Name",
@@ -61,7 +61,7 @@ public class EntityModelTestDataSeedContributor : IDataSeedContributor, ITransie
         var entity = await _entityModelRepository.FindAsync(AbpSuiteTestConst.EntityId);
         if (entity == null)
         {
-            entity = new EntityModel(AbpSuiteTestConst.EntityId, AbpSuiteTestConst.ProjectId, "UserTokens", "用户Token", RelationalType.OneToMany,
+            entity = new EntityModel(AbpSuiteTestConst.EntityId, AbpSuiteTestConst.ProjectId, "UserTokens", "用户Token",AbpSuiteTestConst.AggregateId, RelationalType.OneToMany,
                 AbpSuiteTestConst.AggregateId);
             entity.AddProperty(
                 Guid.NewGuid(),

@@ -85,14 +85,18 @@ public class ProjectEntityManager : AbpSuiteDomainService
         var list = entities.Where(e => e.ParentId == parentId);
         foreach (var detail in list)
         {
+            // 找到实体聚合根信息
+            var aggregate = entities.First(e => e.Id == detail.AggregateId);
             var child = new GeneratorEntityModelContext()
             {
                 Id = detail.Id,
                 Code = detail.Code,
                 Description = detail.Description,
                 RelationalType = detail.RelationalType,
-                IsRoot = !detail.ParentId.HasValue
+                IsRoot = !detail.ParentId.HasValue,
+                AggregateCode = aggregate.Code
             };
+
             foreach (var detailEntityModelProperty in detail.EntityModelProperties)
             {
                 var property = new GeneratorEntityModelPropertyContext()

@@ -29,6 +29,10 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
     /// </summary>
     public Guid? ParentId { get; private set; }
 
+    /// <summary>
+    /// 聚合根Id
+    /// </summary>
+    public Guid AggregateId { get; private set; }
 
     /// <summary>
     /// 实体模型属性集合
@@ -45,6 +49,7 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
         Guid projectId,
         string code,
         string description,
+        Guid aggregateId,
         RelationalType? relationalType = null,
         Guid? parentId = null,
         Guid? tenantId = null
@@ -53,6 +58,7 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
         EntityModelProperties = new List<EntityModelProperty>();
         TenantId = tenantId;
         ProjectId = projectId;
+        AggregateId = aggregateId;
         SetCode(code);
         SetDescription(description);
         SetRelationalType(relationalType);
