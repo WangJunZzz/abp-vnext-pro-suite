@@ -5,7 +5,6 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Threading.Tasks;
 global using Lion.AbpPro.BasicManagement;
-global using Lion.AbpPro.Extension.System;
 global using Lion.AbpPro.NotificationManagement;
 global using Lion.AbpSuite.EntityModels;
 global using Lion.AbpSuite.EntityModels.Dto;

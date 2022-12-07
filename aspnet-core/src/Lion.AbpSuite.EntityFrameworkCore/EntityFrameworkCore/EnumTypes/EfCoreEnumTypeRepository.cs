@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Lion.AbpPro.Extension.System;
 using Volo.Abp.Domain.Repositories;
 using Lion.AbpSuite.EnumTypes;
 using Lion.AbpSuite.EnumTypes.Aggregates;

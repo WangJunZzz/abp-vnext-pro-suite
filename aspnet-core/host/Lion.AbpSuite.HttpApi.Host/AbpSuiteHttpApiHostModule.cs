@@ -1,7 +1,7 @@
+using Lion.AbpPro;
 using Lion.AbpPro.DataDictionaryManagement;
 using Lion.AbpPro.NotificationManagement;
-using Lion.AbpPro.Shared.Hosting.Microservices;
-using Lion.AbpPro.Shared.Hosting.Microservices.Microsoft.AspNetCore.Builder;
+using Swagger;
 
 namespace Lion.AbpSuite
 {
@@ -42,7 +42,6 @@ namespace Lion.AbpSuite
             ConfigureJwtAuthentication(context, configuration);
             ConfigureHangfireMysql(context);
             ConfigureMiniProfiler(context);
-            ConfigureAbpExceptions(context);
             ConfigureIdentity(context);
             ConfigureAuditLog(context);
         }
@@ -91,15 +90,7 @@ namespace Lion.AbpSuite
             }
         }
 
-        /// <summary>
-        /// 异常处理
-        /// </summary>
-        /// <param name="context"></param>
-        private void ConfigureAbpExceptions(ServiceConfigurationContext context)
-        {
-            context.Services.AddMvc(options => { options.Filters.Add(typeof(ResultExceptionFilter)); });
-        }
-
+ 
    
 
         private void ConfigureHangfireMysql(ServiceConfigurationContext context)

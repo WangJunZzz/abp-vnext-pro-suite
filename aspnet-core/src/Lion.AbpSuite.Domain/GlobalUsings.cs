@@ -8,7 +8,7 @@ global using System.Linq;
 global using System.Runtime.InteropServices;
 global using System.Threading.Tasks;
 global using AutoMapper;
-global using Lion.AbpPro.Extension.Customs;
+global using Lion.AbpPro.Core;
 global using Lion.AbpSuite.DataTypes.Aggregates;
 global using Lion.AbpSuite.DataTypes.Dto;
 global using Lion.AbpSuite.EntityModels.Aggregates;

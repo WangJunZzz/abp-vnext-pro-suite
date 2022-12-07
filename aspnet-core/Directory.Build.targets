@@ -91,5 +91,6 @@
         <PackageReference Update="IdentityModel" Version="5.1.0"/>
 
         <PackageReference Update="DotLiquid" Version="2.2.656" />
+        <PackageReference Update="Humanizer.Core.zh-Hans" Version="2.14.1" />
     </ItemGroup>
 </Project>

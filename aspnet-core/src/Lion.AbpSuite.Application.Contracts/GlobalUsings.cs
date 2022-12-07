@@ -3,7 +3,7 @@
 global using System;
 global using System.ComponentModel.DataAnnotations;
 global using System.Threading.Tasks;
-global using Lion.AbpPro.Extension.Customs.Dtos;
+global using Lion.AbpPro.Core;
 global using Lion.AbpSuite.Templates.Dto;
 global using Volo.Abp.Application.Dtos;
 global using Volo.Abp.Application.Services;
