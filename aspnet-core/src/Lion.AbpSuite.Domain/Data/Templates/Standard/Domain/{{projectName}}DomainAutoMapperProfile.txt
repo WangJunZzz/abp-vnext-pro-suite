@@ -1,4 +1,4 @@
-﻿namespace Lion.AbpSuite.Data.Standard.Domain;
+﻿namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
 
 public class {{NameSpace}}DomainAutoMapperProfile :Profile 
 {

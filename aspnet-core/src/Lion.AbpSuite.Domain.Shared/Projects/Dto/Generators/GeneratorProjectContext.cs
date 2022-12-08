@@ -24,7 +24,16 @@ public class GeneratorProjectContext
     /// 名称空间
     /// </summary>
     public string NameSpace { get; set; }
+    
+    /// <summary>
+    /// 公司名称
+    /// </summary>
+    public string CompanyName { get;  set; }
 
+    /// <summary>
+    /// 项目英文名称
+    /// </summary>
+    public string ProjectName { get;   set; }
     /// <summary>
     /// 备注
     /// </summary>

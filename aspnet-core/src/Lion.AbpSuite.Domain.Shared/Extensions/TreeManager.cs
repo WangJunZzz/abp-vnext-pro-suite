@@ -149,7 +149,7 @@ public class TreeManager : ISingletonDependency
     }
 
     //是否已添加合并数据，添加过的不再添加进去
-    public bool HasAddMegre(TreeNode? addNode, List<TreeNode> listMegre)
+    public bool HasAddMegre(TreeNode addNode, List<TreeNode> listMegre)
     {
         bool result = false;
         foreach (var item in listMegre)
@@ -172,14 +172,14 @@ public class TreeManager : ISingletonDependency
     }
 
     //寻找父级，如果找到父级，追加到父级的children中
-    public TreeNode? FindParentMegreNode(TreeNode? currentNode, List<TreeNode> listMegre)
+    public TreeNode FindParentMegreNode(TreeNode currentNode, List<TreeNode> listMegre)
     {
         if (currentNode == null || string.IsNullOrEmpty(currentNode?.ParentFullTitle))
         {
             return null;
         }
 
-        TreeNode? parent = null;
+        TreeNode parent = null;
         foreach (var item in listMegre)
         {
             if (item.FullTitle == currentNode?.ParentFullTitle && item.Level + 1 == currentNode?.Level)

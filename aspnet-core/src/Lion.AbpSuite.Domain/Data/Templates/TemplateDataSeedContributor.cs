@@ -1,6 +1,7 @@
 ﻿using Lion.AbpSuite.Files;
 using Lion.AbpSuite.Templates;
 using Lion.AbpSuite.Templates.Aggregates;
+using Volo.Abp.Timing;
 
 namespace Lion.AbpSuite.Data;
 
@@ -8,11 +9,12 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
 {
     private readonly ITemplateRepository _templateRepository;
     private readonly IFileLoader _fileLoader;
-
-    public TemplateDataSeedContributor(ITemplateRepository templateRepository, IFileLoader fileLoader)
+    private readonly IClock _clock;
+    public TemplateDataSeedContributor(ITemplateRepository templateRepository, IFileLoader fileLoader, IClock clock)
     {
         _templateRepository = templateRepository;
         _fileLoader = fileLoader;
+        _clock = clock;
     }
 
     public async Task SeedAsync(DataSeedContext context)
@@ -29,7 +31,6 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
             var controllerContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Controller.ControllerTemplatePath);
             template.AddTemplateDetail(TemplateDataSeedConst.Controller.ControllerTemplateId, TemplateType.File, ControlType.Aggregate,
                 TemplateDataSeedConst.Controller.ControllerTemplateName, "控制器", controllerContent, TemplateDataSeedConst.Controller.ControllerTemplateFolderId);
-
 
             // 应用层
             template.AddTemplateDetail(TemplateDataSeedConst.Application.ApplicationTemplateFolderId, TemplateType.Folder, null, "Application", "应用层", null,
@@ -55,7 +56,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
                 TemplateDataSeedConst.Domain.DomainTemplateFolderId,
                 TemplateType.Folder,
                 null,
-                "DomainService",
+                "Domain",
                 "领域层",
                 null,
                 TemplateDataSeedConst.SrcId);
@@ -116,7 +117,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
                 TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId);
             
             // ef 层
-            template.AddTemplateDetail(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateFolderId, TemplateType.Folder, null, "EntityFramework", "EF层",
+            template.AddTemplateDetail(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateFolderId, TemplateType.Folder, null, "EntityFrameworkCore", "EF层",
                 null, TemplateDataSeedConst.SrcId);
             var efAggregateContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplatePath);
             template.AddTemplateDetail(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateId,

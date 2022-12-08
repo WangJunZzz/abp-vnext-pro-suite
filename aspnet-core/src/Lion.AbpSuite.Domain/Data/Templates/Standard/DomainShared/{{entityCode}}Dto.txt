@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Volo.Abp.Domain.Entities.Auditing;
+
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+
+/// <summary>
+/// {{ context.EntityModel.Description }}
+/// </summary>
+public class {{ context.EntityModel.Code }}Dto : CacheBase
+{
+        
+        {{~ for prop in context.EntityModel.Properties ~}}
+            {{~ if prop.IsEnum ~}}
+        /// <summary>
+        /// {{ prop.Description }}
+        /// </summary>
+        public {{ prop.EnumType.Code }} {{ prop.Code }} { get;  set; }
+            {{~ else ~}}
+        /// <summary>
+        /// {{ prop.Description }}
+        /// </summary>
+        public {{ prop.DataType.Code }} {{ prop.Code }} { get;  set; }
+            {{~ end ~}}
+       {{~ end ~}}
+    
+      {{~ for prop in context.EntityModel.EntityModels ~}}
+        {{~ if  prop.RelationalType == 10 ~}}
+        /// <summary>
+        /// {{ prop.Description }} 一对一
+        /// </summary>
+        public {{ prop.Code }}Dto {{ prop.CodePluralized }}  { get;  set; } 
+          {{~ else ~}}
+        /// <summary>
+        /// {{ prop.Description }}  一对多
+        /// </summary>
+        public List<{{ prop.Code }}Dto> {{ prop.CodePluralized }}  { get;  set; }
+          {{~ end ~}}
+      {{~ end ~}}
+                    
+       private const string CacheKeyFormat = "i:{0}";
+      
+       public static string CalculateCacheKey(Guid id)
+       {
+           return string.Format(CacheKeyFormat, id);
+       }
+}

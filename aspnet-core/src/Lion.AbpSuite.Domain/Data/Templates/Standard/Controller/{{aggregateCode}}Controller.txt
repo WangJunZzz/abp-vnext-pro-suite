@@ -1,0 +1,7 @@
+namespace YH.ModelDesign.Controllers;
+
+[Route("{{ context.EntityModel.AggregateCodePluralized }}")]
+public class {{ context.EntityModel.AggregateCode }}Controller : AbpController, I{{ context.EntityModel.AggregateCode }}AppService
+{
+
+}

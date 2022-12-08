@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.Code }}.Aggregate;
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
 
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot;  " FullAuditedAggregateRoot<Guid>"; else; " FullAuditedEntity<Guid>"; end }}
+public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot;  " FullAuditedEntity<Guid>"; else; " FullAuditedEntity<Guid>"; end }}
 {
         private {{ context.EntityModel.Code }}()
         {
@@ -58,7 +58,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// <summary>
         /// {{ prop.Description }} 一对一
         /// </summary>
-        public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; } {% else %}
+        public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; }
           {{~ else ~}}
         /// <summary>
         /// {{ prop.Description }}  一对多
@@ -84,8 +84,15 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// </summary>        
         private void Set{{ prop.Code }}({{ prop.DataType.Code }} {{prop.CodeCamelCase}})
         {
-             {{ prop.Code }} = {{ prop.CodeCamelCase }};
-        }     
+            {{~ if prop.DataType.Code=="string" ~}}
+                {{~ if prop.IsRequired ~}}
+              Guard.NotNullOrWhiteSpace({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}), ,{{prop.MaxLength}}, {{prop.MinLength}});
+                {{~ else ~}}
+              Guard.Length({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}),{{prop.MaxLength}},{{prop.MinLength}})
+                {{~ end ~}}
+            {{~ end ~}}
+            {{ prop.Code }} = {{ prop.CodeCamelCase }};
+        }  
         {{~ end ~}}
       {{~ end ~}}
 }

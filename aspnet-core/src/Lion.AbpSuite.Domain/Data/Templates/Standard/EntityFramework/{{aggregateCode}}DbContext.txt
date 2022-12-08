@@ -1,0 +1,6 @@
+namespace {{ context.Project.NameSpace }};
+
+public interface {{aggregateCode}} :  I{{aggregateCode}}DbContext
+{
+     
+}

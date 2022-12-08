@@ -105,7 +105,7 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
                 Content = detail.Content,
                 TemplateType = detail.TemplateType,
                 ControlType = detail.ControlType,
-                Icon = detail.TemplateType == TemplateType.Folder ? "ant-design:folder-open-outlined" : "ant-design:file-outlined"
+                Icon = detail.TemplateType == TemplateType.Folder ? AbpSuiteConsts.AntIconFolder: AbpSuiteConsts.AntIconFile
             };
             child.Children.AddRange(RecursionTemplate(template, detail.Id));
             tree.Add(child);

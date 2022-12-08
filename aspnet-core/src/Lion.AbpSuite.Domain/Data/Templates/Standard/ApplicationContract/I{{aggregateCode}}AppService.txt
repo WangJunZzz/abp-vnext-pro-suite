@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.Code }};
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
 
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ context.EntityModel.Code }}AppService
+public class I{{ context.EntityModel.Code }}AppService : IApplicationService
 {
 }

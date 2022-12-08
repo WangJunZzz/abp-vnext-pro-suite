@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Volo.Abp.Domain.Entities.Auditing;
+
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+
+/// <summary>
+/// {{ context.EntityModel.Description }} 仓储Ef core 实现
+/// </summary>
+public class EfCore{{ context.EntityModel.Code }}Repository :
+    EfCoreRepository<I{{ context.Project.ProjectName }}DbContext, {{ context.EntityModel.Code }}, Guid>,
+    I{{ context.EntityModel.Code }}Repository
+{
+      public EfCore{{ context.EntityModel.Code }}Repository(IDbContextProvider<I{{ context.Project.ProjectName }}DbContext> dbContextProvider) : base(dbContextProvider)
+      {
+      }
+
+        public async Task<List<{{ context.EntityModel.Code }}>> GetListAsync(int maxResultCount = 10, int skipCount = 0)
+        {
+            return await (await GetDbSetAsync())
+                .OrderByDescending(e => e.CreationTime)
+                .PageBy(skipCount, maxResultCount)
+                .ToListAsync();
+        }
+
+        public async Task<long> GetCountAsync(string filter = null)
+        {
+            return await (await GetDbSetAsync()).CountAsync();
+        }
+}    

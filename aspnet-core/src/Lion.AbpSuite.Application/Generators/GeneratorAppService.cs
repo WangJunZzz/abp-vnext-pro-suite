@@ -97,25 +97,13 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         var aggregates = context.EntityModels.Where(e => e.IsRoot);
         foreach (var aggregate in aggregates)
         {
-            var folder = result.FirstOrDefault(e => e.Name == aggregate.CodePluralized);
-            if (folder == null)
-            {
-                folder = await GeneratorFolderAsync(aggregate.CodePluralized);
-            }
-
+            var folder = await GeneratorFolderAsync(aggregate.CodePluralized);
 
             result.Add(folder);
             if (template.ControlType == ControlType.Aggregate)
             {
                 var code = await GeneratorCodeAsync(template, context.Projects, aggregate);
                 folder.Children.Add(code);
-                // 找到模板的子项
-                // var ss = templateDto.TemplateDetails.Where(e => e.ParentId == template.ParentId).Where(e => e.Id != template.Id).ToList();
-                //
-                // foreach (var templateDetailDto in ss)
-                // {
-                //     folder.Children.AddRange(await RenderEntityAsync(context, templateDetailDto, aggregate.EntityModels));
-                // }
             }
             else
             {
@@ -157,10 +145,10 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             Name = folderName,
             Title = folderName,
             TemplateType = TemplateType.Folder,
-            Icon = "ant-design:folder-open-outlined",
+            Icon = AbpSuiteConsts.AntIconFolder,
             IsFolder = true
         };
-        return result;
+        return await Task.FromResult(result);
     }
 
     private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorEntityModelContext entityModel)
@@ -180,7 +168,7 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             Description = template.Description,
             Content = await _generatorManager.RenderAsync(template.Content, new { context = generatorContext }),
             TemplateType = template.TemplateType,
-            Icon = "ant-design:file-outlined",
+            Icon = AbpSuiteConsts.AntIconFile,
             IsFolder = false
         };
 

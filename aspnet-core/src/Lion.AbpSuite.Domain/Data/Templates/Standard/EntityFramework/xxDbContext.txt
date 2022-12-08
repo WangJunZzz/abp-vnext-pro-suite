@@ -1,6 +1,0 @@
-namespace {{ context.Project.NameSpace }};
-
-public interface IxxDbContext : IxxDbContext
-{
-      public DbSet<IdentityUser> Users { get; set; }
-}

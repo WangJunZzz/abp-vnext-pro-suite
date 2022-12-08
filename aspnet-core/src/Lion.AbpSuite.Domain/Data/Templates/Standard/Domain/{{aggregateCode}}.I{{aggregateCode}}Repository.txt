@@ -1,6 +1,0 @@
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.Code }};
-
-public interface I{{ context.EntityModel.Code }}Repository : IBasicRepository<{{ context.EntityModel.Code }}, Guid>
-{
-
-}

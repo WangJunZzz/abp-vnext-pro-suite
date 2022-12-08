@@ -1,0 +1,8 @@
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+
+public interface I{{ context.EntityModel.Code }}Repository : IBasicRepository<{{ context.EntityModel.Code }}, Guid>
+{
+    Task<List<{{ context.EntityModel.Code }}>> GetListAsync(int maxResultCount = 10, int skipCount = 0);
+
+    Task<long> GetCountAsync();
+}

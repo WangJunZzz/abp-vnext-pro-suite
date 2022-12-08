@@ -156,7 +156,8 @@ public class TemplateManager : AbpSuiteDomainService
             throw new UserFriendlyException("模板组不存在");
         }
 
-        return ObjectMapper.Map<Template, TemplateDto>(entity);
+        var result = ObjectMapper.Map<Template, TemplateDto>(entity);
+        return result;
     }
 
     public async Task<List<TemplateTreeDto>> TemplateTreeAsync(Guid id)
@@ -180,7 +181,7 @@ public class TemplateManager : AbpSuiteDomainService
                 Description = detail.Description,
                 Content = detail.Content,
                 TemplateType = detail.TemplateType,
-                Icon = detail.TemplateType == TemplateType.Folder ? "ant-design:folder-open-outlined" : "ant-design:file-outlined"
+                Icon = detail.TemplateType == TemplateType.Folder ? AbpSuiteConsts.AntIconFolder : AbpSuiteConsts.AntIconFile
             };
             child.Children.AddRange(RecursionTemplate(template, detail.Id));
             tree.Add(child);
