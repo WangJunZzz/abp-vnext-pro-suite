@@ -177,7 +177,7 @@ public class TemplateManager : AbpSuiteDomainService
             {
                 Key = detail.Id,
                 Name = detail.Name,
-                Title = detail.Description,
+                Title = detail.Name,
                 Description = detail.Description,
                 Content = detail.Content,
                 TemplateType = detail.TemplateType,

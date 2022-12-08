@@ -98,12 +98,15 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         foreach (var aggregate in aggregates)
         {
             var folder = await GeneratorFolderAsync(aggregate.CodePluralized);
-
             result.Add(folder);
             if (template.ControlType == ControlType.Aggregate)
             {
                 var code = await GeneratorCodeAsync(template, context.Projects, aggregate);
                 folder.Children.Add(code);
+            }
+            else if (template.ControlType == ControlType.Enum)
+            {
+                folder.Children.AddRange(await RenderEnumAsync(context, template, aggregate));
             }
             else
             {
@@ -135,6 +138,25 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         return result;
     }
 
+    /// <summary>
+    /// 枚举模板生成
+    /// </summary>
+    /// <param name="context">实体上下文信息</param>
+    /// <param name="template">模板</param>
+    /// <param name="entityModelContexts">当前实体</param>
+    private async Task<List<TemplateTreeDto>> RenderEnumAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template, GeneratorEntityModelContext entityModelContexts)
+    {
+        var result = new List<TemplateTreeDto>();
+        if (template.ControlType != ControlType.Enum) return result;
+        foreach (var entity in entityModelContexts.EnumTypes)
+        {
+            var code = await GeneratorCodeAsync(template, context.Projects, entityModelContexts, entity);
+            result.Add(code);
+        }
+
+        return result;
+    }
+
     private async Task<TemplateTreeDto> GeneratorFolderAsync(string name)
     {
         var folderName = name; //await RenderFolderNameAsync(name, entityModel?.CodePluralized, entityModel?.CodePluralized);
@@ -152,13 +174,14 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         return await Task.FromResult(result);
     }
 
-    private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorEntityModelContext entityModel)
+    private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorEntityModelContext entityModel, GeneratorEnumTypeContext enumType = null)
     {
-        var fileName = await RenderFileNameAsync(template.Name, project.Name, entityModel.AggregateCode, entityModel.Code);
+        var fileName = await RenderFileNameAsync(template.Name, project.Name, entityModel.AggregateCode, entityModel.Code, enumType?.Code);
         var generatorContext = new GeneratorTemplateContext()
         {
             Project = project,
-            EntityModel = entityModel
+            EntityModel = entityModel,
+            EnumType = enumType
         };
         var result = new TemplateTreeDto()
         {
@@ -176,9 +199,9 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         return result;
     }
 
-    private async Task<string> RenderFileNameAsync(string name, string projectName, string aggregateCode, string entityCode)
+    private async Task<string> RenderFileNameAsync(string name, string projectName, string aggregateCode, string entityCode, string enumCode)
     {
-        var fileName = await _generatorManager.RenderAsync(name, new { projectName, aggregateCode, entityCode });
+        var fileName = await _generatorManager.RenderAsync(name, new { projectName, aggregateCode, entityCode, enumCode });
         fileName = fileName.Replace("txt", "cs");
         return fileName;
     }

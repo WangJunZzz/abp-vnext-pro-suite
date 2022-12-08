@@ -8,6 +8,7 @@ public class GeneratorEntityModelContext
     {
         Properties = new List<GeneratorEntityModelPropertyContext>();
         EntityModels = new List<GeneratorEntityModelContext>();
+        EnumTypes = new List<GeneratorEnumTypeContext>();
     }
 
     public Guid Id { get; set; }
@@ -35,7 +36,7 @@ public class GeneratorEntityModelContext
     /// <summary>
     /// 首字母小写
     /// </summary>
-    public string AggregateCodeCamelCase  => AggregateCode.Camelize();
+    public string AggregateCodeCamelCase => AggregateCode.Camelize();
 
     /// <summary>
     /// 复数形式
@@ -63,6 +64,11 @@ public class GeneratorEntityModelContext
     /// 实体模型属性集合
     /// </summary>
     public List<GeneratorEntityModelPropertyContext> Properties { get; set; }
+
+    /// <summary>
+    /// 实体拥有枚举集合
+    /// </summary>
+    public List<GeneratorEnumTypeContext> EnumTypes { get; set; }
 
     public List<GeneratorEntityModelContext> EntityModels { get; set; }
 }

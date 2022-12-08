@@ -90,6 +90,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
                 TemplateDataSeedConst.Domain.RepositoryTemplateName,
                 "聚合根仓储接口", repositoryServiceContent,
                 TemplateDataSeedConst.Domain.DomainTemplateFolderId);
+            
             // var domainAutoMapperContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Domain.AutoMapperTemplatePath);
             // template.AddTemplateDetail(TemplateDataSeedConst.Domain.RepositoryTemplateId,
             //     TemplateType.File,
@@ -116,6 +117,13 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
                 "实体Dto", domainSharedEntityContent,
                 TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId);
             
+            var enumSharedEntityContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.DomainShared.EnumTemplatePath);
+            template.AddTemplateDetail(TemplateDataSeedConst.DomainShared.EnumTemplateId,
+                TemplateType.File,
+                ControlType.Enum,
+                TemplateDataSeedConst.DomainShared.EnumTemplateName,
+                "枚举", enumSharedEntityContent,
+                TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId);
             // ef 层
             template.AddTemplateDetail(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateFolderId, TemplateType.Folder, null, "EntityFrameworkCore", "EF层",
                 null, TemplateDataSeedConst.SrcId);

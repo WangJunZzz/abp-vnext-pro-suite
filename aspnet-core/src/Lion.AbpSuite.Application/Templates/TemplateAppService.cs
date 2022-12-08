@@ -81,36 +81,10 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
         return EnumExtensions.GetEntityStringIntKeyValueList<TemplateType>();
     }
 
-
-    // TODO 移除待
     public async Task<List<GetTemplateTreeOutput>> TemplateTreeAsync(GetTemplteTreeInput input)
     {
-        var template = await _templateManager.GetAsync(input.TemplateId);
-        if (template.TemplateDetails.Count == 0) return new List<GetTemplateTreeOutput>();
-        return RecursionTemplate(template.TemplateDetails, null);
+        var result = await _templateManager.TemplateTreeAsync(input.TemplateId);
+        return ObjectMapper.Map<List<TemplateTreeDto>, List<GetTemplateTreeOutput>>(result);
     }
 
-    private List<GetTemplateTreeOutput> RecursionTemplate(List<TemplateDetailDto> template, Guid? parentId)
-    {
-        var tree = new List<GetTemplateTreeOutput>();
-        var list = template.Where(e => e.ParentId == parentId);
-        foreach (var detail in list)
-        {
-            var child = new GetTemplateTreeOutput()
-            {
-                Key = detail.Id,
-                Name = detail.Name,
-                Title = detail.Name,
-                Description = detail.Description,
-                Content = detail.Content,
-                TemplateType = detail.TemplateType,
-                ControlType = detail.ControlType,
-                Icon = detail.TemplateType == TemplateType.Folder ? AbpSuiteConsts.AntIconFolder: AbpSuiteConsts.AntIconFile
-            };
-            child.Children.AddRange(RecursionTemplate(template, detail.Id));
-            tree.Add(child);
-        }
-
-        return tree;
-    }
 }

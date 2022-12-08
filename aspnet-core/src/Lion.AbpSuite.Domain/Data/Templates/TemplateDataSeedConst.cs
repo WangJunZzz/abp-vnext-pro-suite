@@ -46,6 +46,10 @@ public class TemplateDataSeedConst
         public static Guid EntityTemplateId = Guid.Parse("36bf1a46-bc97-f466-b67e-3a07cf441c72");
         public static readonly string EntityTemplatePath = "/Lion.AbpSuite/Data/Templates/Standard/DomainShared/{{entityCode}}Dto.txt";
         public static readonly string EntityTemplateName = "{{entityCode}}Dto.txt";
+        
+        public static Guid EnumTemplateId = Guid.Parse("36bf1a46-bc97-f466-b67e-3a07cf141c72");
+        public static readonly string EnumTemplatePath = "/Lion.AbpSuite/Data/Templates/Standard/DomainShared/{{enumCode}}.txt";
+        public static readonly string EnumTemplateName = "{{enumCode}}.txt";
     }
     
     /// <summary>

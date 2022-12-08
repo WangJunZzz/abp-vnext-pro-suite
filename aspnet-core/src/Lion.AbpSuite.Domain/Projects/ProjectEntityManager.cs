@@ -117,14 +117,28 @@ public class ProjectEntityManager : AbpSuiteDomainService
                 if (property.IsEnum)
                 {
                     var currentEnum = enumTypes.FirstOrDefault(e => property.EnumTypeId != null && e.Id == property.EnumTypeId.Value);
+                  
                     if (currentEnum != null)
                     {
-                        property.EnumType = new GeneratorEnumTypeContext()
+                        var enumType= new GeneratorEnumTypeContext()
                         {
                             Id = currentEnum.Id,
                             Code = currentEnum.Code,
                             Description = currentEnum.Description
                         };
+                        foreach (var currentEnumEnumTypeProperty in currentEnum.EnumTypeProperties)
+                        {
+                            enumType.Properties.Add(new GeneratorEnumTypePropertyContext()
+                            {
+                                Id = currentEnumEnumTypeProperty.Id,
+                                Code = currentEnumEnumTypeProperty.Code,
+                                Description = currentEnumEnumTypeProperty.Description,
+                                Value = currentEnumEnumTypeProperty.Value
+                            });
+                        }
+
+                        property.EnumType = enumType;
+                        child.EnumTypes.Add(enumType);
                     }
                 }
                 else

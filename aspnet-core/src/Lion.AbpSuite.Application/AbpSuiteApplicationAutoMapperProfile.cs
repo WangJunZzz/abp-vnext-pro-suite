@@ -10,6 +10,7 @@ namespace Lion.AbpSuite
             CreateMap<EnumTypeDto, DataTypeDto>();
             CreateMap<EnumTypeDto, PageEnumTypeOutput>();
             CreateMap<EnumTypePropertyDto, PageEnumTypePropertyOutput>();
+            CreateMap<TemplateTreeDto, GetTemplateTreeOutput>();
         }
     }
 }
