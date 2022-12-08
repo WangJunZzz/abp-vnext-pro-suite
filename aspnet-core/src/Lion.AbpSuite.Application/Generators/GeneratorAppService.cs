@@ -146,7 +146,8 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             Title = folderName,
             TemplateType = TemplateType.Folder,
             Icon = AbpSuiteConsts.AntIconFolder,
-            IsFolder = true
+            IsFolder = true,
+            Content = string.Empty
         };
         return await Task.FromResult(result);
     }

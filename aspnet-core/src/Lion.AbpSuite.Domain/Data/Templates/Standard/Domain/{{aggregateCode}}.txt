@@ -86,13 +86,23 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         {
             {{~ if prop.DataType.Code=="string" ~}}
                 {{~ if prop.IsRequired ~}}
-              Guard.NotNullOrWhiteSpace({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}), ,{{prop.MaxLength}}, {{prop.MinLength}});
+            Guard.NotNullOrWhiteSpace({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}), ,{{prop.MaxLength}}, {{prop.MinLength}});
                 {{~ else ~}}
-              Guard.Length({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}),{{prop.MaxLength}},{{prop.MinLength}})
+            Guard.Length({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}),{{prop.MaxLength}},{{prop.MinLength}})
                 {{~ end ~}}
             {{~ end ~}}
             {{ prop.Code }} = {{ prop.CodeCamelCase }};
         }     
         {{~ end ~}}
       {{~ end ~}}
+      
+        /// <summary>
+        /// 更新{{ context.EntityModel.Description }}
+        /// </summary> 
+        public void Update({{-  for prop in context.EntityModel.Properties -}} {{- if prop.IsEnum ~}}{{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}{{- else ~}}{{ prop.DataType.Code }} {{ prop.CodeCamelCase }}{{- end ~}}{{- if for.last; ""; else; ; end ~}}{{-  end ~}})
+        {
+           {{~ for prop in context.EntityModel.Properties ~}}
+             Set{{ prop.Code }}({{prop.CodeCamelCase}})
+           {{~ end ~}}
+        }
 }
