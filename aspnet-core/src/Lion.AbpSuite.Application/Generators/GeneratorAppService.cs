@@ -7,16 +7,18 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     private readonly ProjectEntityManager _projectEntityManager;
     private readonly EntityModelManager _entityModelManager;
     private readonly ProjectManager _projectManager;
+    private readonly TreeManager _treeManager;
 
     public GeneratorAppService(GeneratorManager generatorManager, TemplateManager templateManager, ProjectEntityManager projectEntityManager,
         EntityModelManager entityModelManager,
-        ProjectManager projectManager)
+        ProjectManager projectManager, TreeManager treeManager)
     {
         _generatorManager = generatorManager;
         _templateManager = templateManager;
         _projectEntityManager = projectEntityManager;
         _entityModelManager = entityModelManager;
         _projectManager = projectManager;
+        _treeManager = treeManager;
     }
 
     /// <summary>
@@ -45,23 +47,19 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
 
         var context = await _projectEntityManager.GetProjectContextAsync(input.ProjectId);
         var result = await RecursionTemplate(template.TemplateDetails, context);
-        return result;
+        return FormatResult(result);
     }
 
-    // public List<TemplateTreeDto> FormatResult(List<TemplateTreeDto> list)
-    // {
-    //     var tree = new List<TemplateTreeDto>();
-    //     foreach (var item in list)
-    //     {
-    //         if (item.IsFolder)
-    //         {
-    //             tree.AddRange(FormatResult(item.Children));
-    //         }
-    //         else
-    //         {
-    //         }
-    //     }
-    // }
+    /// <summary>
+    /// 合并重复节点
+    /// </summary>
+    /// <returns></returns>
+    private List<TemplateTreeDto> FormatResult(List<TemplateTreeDto> list)
+    {
+        var treeNodes = ObjectMapper.Map<List<TemplateTreeDto>, List<TreeNode>>(list);
+        var distinctResult = _treeManager.Distinct(treeNodes);
+        return ObjectMapper.Map<List<TreeNode>, List<TemplateTreeDto>>(distinctResult);
+    }
 
     /// <summary>
     /// 遍历模板
