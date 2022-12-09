@@ -68,10 +68,10 @@
         /// </summary>
         public void AddTemplateDetail(Guid id, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
         {
-            if (TemplateDetails.Any(e => e.Name == name))
-            {
-                throw new UserFriendlyException("模板已存在");
-            }
+            // if (TemplateDetails.Any(e => e.Name == name))
+            // {
+            //     throw new UserFriendlyException("模板已存在");
+            // }
 
             TemplateDetails.Add(new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId));
         }
