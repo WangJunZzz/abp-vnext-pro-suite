@@ -24,7 +24,7 @@
     },
     emits: ['reload', 'register'],
     setup(_, { emit }) {
-      const [registerUserForm, { getFieldsValue, resetFields, validate }] = useForm({
+      const [register{{ context.EntityModel.AggregateCode }}Form, { getFieldsValue, resetFields, validate }] = useForm({
         labelWidth: 120,
         schemas: createFormSchema,
         showActionButtonGroup: false,

@@ -13,13 +13,6 @@ public class GeneratorController : AbpSuiteController, IGeneratorAppService
         _generatorAppService = generatorAppService;
     }
 
-
-    [HttpPost("PreView")]
-    [SwaggerOperation(summary: "预览", Tags = new[] { "Generator" })]
-    public Task<string> PreViewAsync(PreViewInput input)
-    {
-        return _generatorAppService.PreViewAsync(input);
-    }
     [HttpPost("PreViewCode")]
     [SwaggerOperation(summary: "预览", Tags = new[] { "Generator" })]
     public Task<List<TemplateTreeDto>> PreViewCodeAsync(PreViewCodeInput input)

@@ -1,6 +1,11 @@
 import { FormSchema } from '/@/components/Table';
 import { BasicColumn } from '/@/components/Table';
-import { {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy, Delete{{ context.EntityModel.AggregateCodePluralized }}Input } from '/@/services/ServiceProxies';
+import { {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy, Delete{{ context.EntityModel.AggregateCode }}Input } from '/@/services/ServiceProxies';
+import {
+   {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy,
+    Delete{{ context.EntityModel.AggregateCode }}Input,
+    Page{{ context.EntityModel.AggregateCode }}Input,
+} from '/@/services/ServiceProxies';
 
 // 分页表格{{ context.EntityModel.Description }} BasicColumn
 export const tableColumns: BasicColumn[] = [
@@ -38,7 +43,7 @@ export const updateFormSchema: FormSchema[] = [
     field: 'id',
     label: 'Id',
     component: "Input",
-    ifShow: false
+    ifShow: false,
     colProps: { span: 18 }
   },
 {{~ for prop in context.EntityModel.Properties ~}}
@@ -82,7 +87,7 @@ export async function updateAsync({ params }) {
  */
 export async function deleteAsync({ id }) {
   const {{ context.EntityModel.AggregateCodeCamelCase }}ServiceProxy = new {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy();
-  const request = new Delete{{ context.EntityModel.AggregateCodePluralized }}Input();
+  const request = new Delete{{ context.EntityModel.AggregateCode }}Input();
   request.id = id;
   await {{ context.EntityModel.AggregateCodeCamelCase }}ServiceProxy.update(request);
 }

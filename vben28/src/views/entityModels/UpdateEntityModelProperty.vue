@@ -47,7 +47,7 @@
           enumTypeId: data.record.enumTypeId,
           isRequired: data.record.isRequired,
           maxLength: data.record.maxLength,
-          minLength: data.record.maxLength,
+          minLength: data.record.minLength,
           decimalPrecision: data.record.decimalPrecision,
           decimalScale: data.record.decimalScale,
         });
@@ -58,7 +58,6 @@
             { field: 'decimalPrecision', ifShow: false },
             { field: 'decimalScale', ifShow: false },
           ]);
-       
         }
 
         if (data.record.dataTypeCode == 'decimal' || data.record.dataTypeCode == 'float') {
@@ -68,7 +67,6 @@
             { field: 'decimalPrecision', ifShow: true },
             { field: 'decimalScale', ifShow: true },
           ]);
-     
         }
 
         if (data.record.dataTypeCode == 'string') {
@@ -90,7 +88,6 @@
             { field: 'decimalPrecision', ifShow: false },
             { field: 'decimalScale', ifShow: false },
           ]);
-         
         }
 
         if (data.record.dataTypeCode == 'bool') {
@@ -100,7 +97,6 @@
             { field: 'decimalPrecision', ifShow: false },
             { field: 'decimalScale', ifShow: false },
           ]);
-        
         }
       });
 

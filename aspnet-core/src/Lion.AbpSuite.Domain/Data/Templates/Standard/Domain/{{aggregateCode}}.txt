@@ -99,7 +99,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// <summary>
         /// 更新{{ context.EntityModel.Description }}
         /// </summary> 
-        public void Update({{-  for prop in context.EntityModel.Properties -}} {{- if prop.IsEnum ~}}{{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}{{- else ~}}{{ prop.DataType.Code }} {{ prop.CodeCamelCase }}{{- end ~}}{{- if for.last; ""; else; ; end ~}}{{-  end ~}})
+        public void Update({{-  for prop in context.EntityModel.Properties -}} {{- if prop.IsEnum ~}}{{ prop.EnumType.Code }} {{ prop.CodeCamelCase }},{{- else ~}}{{ prop.DataType.Code }} {{ prop.CodeCamelCase }},{{- end ~}}{{- if for.last; ""; else; ; end ~}}{{-  end ~}})
         {
            {{~ for prop in context.EntityModel.Properties ~}}
              Set{{ prop.Code }}({{prop.CodeCamelCase}})

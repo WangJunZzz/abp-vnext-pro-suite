@@ -1,5 +1,5 @@
 <template>
-  <BasicModal title="编辑{{ context.EntityModel.Description }}" :canFullscreen="false" @ok="submit" @register="registerModal">
+  <BasicModal title="编辑{{ context.EntityModel.Description }}" :canFullscreen="false" @ok="submit" @register="register{{ context.EntityModel.AggregateCode }}Modal">
     <BasicForm @register="register{{ context.EntityModel.AggregateCode }}Form" />
   </BasicModal>
 </template>
@@ -8,7 +8,7 @@
   import { defineComponent } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { editFormSchema, updateAsync } from './Index';
+  import { updateFormSchema, updateAsync } from './Index';
 
   export default defineComponent({
     name: 'Update{{ context.EntityModel.AggregateCode }}',
@@ -20,7 +20,7 @@
     setup(_, { emit }) {
       const [register{{ context.EntityModel.AggregateCode }}Form, { getFieldsValue, setFieldsValue }] = useForm({
         labelWidth: 120,
-        schemas: editFormSchema,
+        schemas: updateFormSchema,
         showActionButtonGroup: false,
       });
       const [register{{ context.EntityModel.AggregateCode }}Modal, { changeOkLoading, closeModal }] = useModalInner((data) => {

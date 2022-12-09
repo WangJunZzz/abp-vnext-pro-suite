@@ -15,7 +15,7 @@ const generators: AppRouteModule = {
       name: 'Code',
       component: () => import('/@/views/generators/CodeSetting.vue'),
       meta: {
-        title: '自动生成',
+        title: '预览',
         icon: 'ant-design:file-sync-outlined',
       },
     },

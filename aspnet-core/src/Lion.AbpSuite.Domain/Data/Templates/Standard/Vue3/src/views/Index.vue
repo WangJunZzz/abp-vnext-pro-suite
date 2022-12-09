@@ -54,7 +54,6 @@
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
   import { tableColumns, searchFormSchema, pageAsync, deleteAsync } from './Index';
   import { useModal } from '/@/components/Modal';
-  import { useRouter } from 'vue-router';
   import Create{{ context.EntityModel.AggregateCode }} from './Create{{ context.EntityModel.AggregateCode }}.vue';
   import Update{{ context.EntityModel.AggregateCode }} from './Update{{ context.EntityModel.AggregateCode }}.vue';
   export default defineComponent({
@@ -66,7 +65,6 @@
       Update{{ context.EntityModel.AggregateCode }},
     },
     setup() {
-      const router = useRouter();
       // table配置
       const [registerTable, { reload }] = useTable({
         columns: tableColumns,
@@ -93,7 +91,7 @@
       const [registerUpdate{{ context.EntityModel.AggregateCode }}Modal, { openModal: openUpdate{{ context.EntityModel.AggregateCode }}Modal }] = useModal();
 
       function handleEdit(record: Recordable) {
-        open{{ context.EntityModel.AggregateCode }}Update{{ context.EntityModel.AggregateCode }}Modal(true, {
+        openUpdate{{ context.EntityModel.AggregateCode }}Modal(true, {
           record: record,
         });
       }
