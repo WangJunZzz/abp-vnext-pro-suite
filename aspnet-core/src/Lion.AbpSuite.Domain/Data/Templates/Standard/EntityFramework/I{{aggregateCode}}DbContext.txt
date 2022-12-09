@@ -1,6 +1,0 @@
-namespace {{ context.Project.NameSpace }};
-
-public interface I{{aggregateCode}}DbContext : IEfCoreDbContext
-{
-   
-}

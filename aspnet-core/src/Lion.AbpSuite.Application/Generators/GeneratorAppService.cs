@@ -64,8 +64,7 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     /// <summary>
     /// 遍历模板
     /// </summary>
-    private async Task<List<TemplateTreeDto>> RecursionTemplate(List<TemplateDetailDto> templateDetails, GeneratorProjectTemplateContext context,
-        Guid? parentId = null)
+    private async Task<List<TemplateTreeDto>> RecursionTemplate(List<TemplateDetailDto> templateDetails, GeneratorProjectTemplateContext context, Guid? parentId = null)
     {
         var tree = new List<TemplateTreeDto>();
         var templates = templateDetails.Where(e => e.ParentId == parentId);
@@ -73,13 +72,13 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         {
             if (template.TemplateType == TemplateType.Folder)
             {
-                var code = await GeneratorFolderAsync(template.Name);
+                var code = await _generatorManager.GeneratorFolderAsync(template.Name);
                 tree.Add(code);
                 code.Children.AddRange(await RecursionTemplate(templateDetails, context, template.Id));
             }
             else
             {
-                tree.AddRange(await RenderAggregateAsync(context, template));
+                tree.AddRange(await _generatorManager.RenderTemplateAsync(context, template));
             }
         }
 
@@ -94,14 +93,15 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     private async Task<List<TemplateTreeDto>> RenderAggregateAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template)
     {
         var result = new List<TemplateTreeDto>();
-        var aggregates = context.EntityModels.Where(e => e.IsRoot);
+        var aggregates = context.TreeEntityModels.Where(e => e.IsRoot);
         foreach (var aggregate in aggregates)
         {
             var folder = await GeneratorFolderAsync(aggregate.CodePluralized);
             result.Add(folder);
+            
             if (template.ControlType == ControlType.Aggregate)
             {
-                var code = await GeneratorCodeAsync(template, context.Projects, aggregate);
+                var code = await GeneratorCodeAsync(template, context.Project, aggregate);
                 folder.Children.Add(code);
             }
             else if (template.ControlType == ControlType.Enum)
@@ -124,13 +124,13 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     /// <param name="template">模板</param>
     /// <param name="entityModelContexts">当前实体</param>
     private async Task<List<TemplateTreeDto>> RenderEntityAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template,
-        List<GeneratorEntityModelContext> entityModelContexts)
+        List<GeneratorTreeEntityModelContext> entityModelContexts)
     {
         var result = new List<TemplateTreeDto>();
         if (template.ControlType != ControlType.Entity) return result;
         foreach (var entity in entityModelContexts)
         {
-            var code = await GeneratorCodeAsync(template, context.Projects, entity);
+            var code = await GeneratorCodeAsync(template, context.Project, entity);
             result.Add(code);
             result.AddRange(await RenderEntityAsync(context, template, entity.EntityModels));
         }
@@ -143,14 +143,14 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     /// </summary>
     /// <param name="context">实体上下文信息</param>
     /// <param name="template">模板</param>
-    /// <param name="entityModelContexts">当前实体</param>
-    private async Task<List<TemplateTreeDto>> RenderEnumAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template, GeneratorEntityModelContext entityModelContexts)
+    /// <param name="treeEntityModelContexts">当前实体</param>
+    private async Task<List<TemplateTreeDto>> RenderEnumAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template, GeneratorTreeEntityModelContext treeEntityModelContexts)
     {
         var result = new List<TemplateTreeDto>();
         if (template.ControlType != ControlType.Enum) return result;
-        foreach (var entity in entityModelContexts.EnumTypes)
+        foreach (var entity in treeEntityModelContexts.EnumTypes)
         {
-            var code = await GeneratorCodeAsync(template, context.Projects, entityModelContexts, entity);
+            var code = await GeneratorCodeAsync(template, context.Project, treeEntityModelContexts, entity);
             result.Add(code);
         }
 
@@ -174,13 +174,13 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         return await Task.FromResult(result);
     }
 
-    private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorEntityModelContext entityModel, GeneratorEnumTypeContext enumType = null)
+    private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorTreeEntityModelContext treeEntityModel, GeneratorEnumTypeContext enumType = null)
     {
-        var fileName = await RenderFileNameAsync(template.Name, project.Name, entityModel.AggregateCode, entityModel.Code, enumType?.Code);
+        var fileName = await RenderFileNameAsync(template.Name, project.Name, treeEntityModel.AggregateCode, treeEntityModel.Code, enumType?.Code);
         var generatorContext = new GeneratorTemplateContext()
         {
             Project = project,
-            EntityModel = entityModel,
+            EntityModel = treeEntityModel,
             EnumType = enumType
         };
         var result = new TemplateTreeDto()

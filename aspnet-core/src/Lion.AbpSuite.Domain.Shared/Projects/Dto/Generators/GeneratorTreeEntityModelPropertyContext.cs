@@ -1,24 +1,23 @@
 ﻿namespace Lion.AbpSuite.Projects.Dto.Generators;
 
-public class GeneratorEntityModelPropertyContext
+public class GeneratorTreeEntityModelPropertyContext
 {
+    
     public Guid Id { get; set; }
-
     /// <summary>
     /// 实体模型Id
     /// </summary>
     public Guid EntityModelId { get; set; }
-
     /// <summary>
     /// 名称
     /// </summary>
     public string Code { get; set; }
-
+    
     /// <summary>
     /// 首字母小写
     /// </summary>
     public string CodeCamelCase => Code.Camelize();
-
+    
     /// <summary>
     /// 复数形式
     /// </summary>
@@ -59,21 +58,20 @@ public class GeneratorEntityModelPropertyContext
     /// </summary>
     public Guid? EnumTypeId { get; set; }
 
-    /// <summary>
-    /// 数据类型Id
-    /// </summary>
-    public Guid? DataTypeId { get; set; }
-
     public bool IsEnum { get; set; }
 
+    public GeneratorEnumTypeContext EnumType { get; set; }
 
     /// <summary>
     /// 是否是基础类型
     /// </summary>
     public bool IsDataType { get; set; }
     
-    public GeneratorEnumTypeContext EnumType { get; set; }
-
+    /// <summary>
+    /// 数据类型Id
+    /// </summary>
+    public Guid? DataTypeId { get; set; }
 
     public GeneratorDataTypeContext DataType { get; set; }
+
 }

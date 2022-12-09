@@ -1,0 +1,9 @@
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }}.Dto;
+
+/// <summary>
+/// 创建{{ context.EntityModel.Description }}
+/// </summary>
+public class Page{{ context.EntityModel.Code }}Input : PagingBase
+{
+
+}

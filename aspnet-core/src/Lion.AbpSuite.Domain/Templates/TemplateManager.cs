@@ -180,6 +180,7 @@ public class TemplateManager : AbpSuiteDomainService
                 Title = detail.Name,
                 Description = detail.Description,
                 Content = detail.Content,
+                ControlType = detail.ControlType,
                 TemplateType = detail.TemplateType,
                 Icon = detail.TemplateType == TemplateType.Folder ? AbpSuiteConsts.AntIconFolder : AbpSuiteConsts.AntIconFile
             };

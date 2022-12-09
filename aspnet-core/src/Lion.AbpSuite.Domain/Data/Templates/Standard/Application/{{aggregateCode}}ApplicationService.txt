@@ -11,4 +11,49 @@ namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePl
 /// </summary>
 public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ context.EntityModel.Code }}AppService
 {
+    private readonly {{ context.EntityModel.Code }}Manager _{{ context.EntityModel.CodeCamelCase }}Manager;
+
+    public {{ context.EntityModel.Code }}AppService({{ context.EntityModel.Code }}Manager {{ context.EntityModel.CodeCamelCase }}Manager)
+    {
+        _{{ context.EntityModel.CodeCamelCase }}Manager = {{ context.EntityModel.CodeCamelCase }}Manager;
+    }
+    
+    /// <summary>
+    /// 分页查询{{ context.EntityModel.Description }}
+    /// </summary>
+    /// <returns>PagedResultDto<Page{{ context.EntityModel.Code }}Output></returns>        
+    public async Task<PagedResultDto<Page{{ context.EntityModel.Code }}Output>> PageAsync(Page{{ context.EntityModel.Code }}Input input)
+    {
+        var result = new PagedResultDto<Page{{ context.EntityModel.Code }}Output>();
+        var totalCount = await _{{ context.EntityModel.CodeCamelCase }}Manager.GetCountAsync();
+        result.TotalCount = totalCount;
+        if (totalCount <= 0) return result;
+        var list = await _{{ context.EntityModel.CodeCamelCase }}Manager.GetListAsync(input.PageSize, input.SkipCount);
+        result.Items = ObjectMapper.Map<List<{{ context.EntityModel.Code }}Dto>, List<Page{{ context.EntityModel.Code }}Output>>(list);
+        return result;
+    }  
+
+    /// <summary>
+    /// 创建{{ context.EntityModel.Description }}
+    /// </summary>
+    public Task CreateAsync(Create{{ context.EntityModel.Code }}Input input)
+    {
+        return  _{{ context.EntityModel.CodeCamelCase }}Manager.CreateAsync(GuidGenerator.Create(), {{-  for prop in context.EntityModel.Properties -}} input.{{ prop.Code }}, {{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+    }
+
+    /// <summary>
+    /// 编辑{{ context.EntityModel.Description }}
+    /// </summary>
+    public Task UpdateAsync(Update{{ context.EntityModel.Code }}Input input)
+    {
+        return  _{{ context.EntityModel.CodeCamelCase }}Manager.UpdateAsync(input.Id, {{-  for prop in context.EntityModel.Properties -}} input.{{ prop.Code }}, {{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+    }
+
+    /// <summary>
+    /// 删除{{ context.EntityModel.Description }}
+    /// </summary>
+    public Task DeleteAsync(Delete{{ context.EntityModel.Code }}Input input)
+    {
+        return  _{{ context.EntityModel.CodeCamelCase }}Manager.DeleteAsync(input.Id);
+    }          
 }

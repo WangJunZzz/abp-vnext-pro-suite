@@ -20,5 +20,6 @@ public class AbpSuiteAutoMapperProfile : Profile
         CreateMap<TemplateTreeDto, TreeNode>()
             .ForMember(e => e.FullTitle, opt => opt.Ignore())
             .ForMember(e => e.ParentFullTitle, opt => opt.Ignore());
+
     }
 }

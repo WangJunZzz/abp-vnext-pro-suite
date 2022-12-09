@@ -1,0 +1,27 @@
+namespace {{ context.Project.NameSpace }};
+
+public static class {{context.Project.ProjectName}}DbContextModelCreatingExtensions
+{
+   public static void Configure{{context.Project.ProjectName}}(this ModelBuilder builder)
+   {
+         Check.NotNull(builder, nameof(builder));
+         {{~ for model in context.AllEntityModels ~}}
+         builder.Entity<{{ model.Code}}>(b =>
+         {
+             b.ToTable({{context.Project.ProjectName}}DomainConsts.DbTablePrefix + nameof({{ model.Code}}).Pluralize());
+             {{~ for property in model.Properties ~}}
+             b.Property(e => e.{{ property.Code}}).HasComment("{{ property.Description}}");
+                 {{~ if  property.IsRequired ~}}
+             b.Property(e => e.{{ property.Code}}).IsRequired();
+                 {{~ end ~}}
+                 {{~ if  property.IsDataType ~}}
+                    {{~ if  property.DataType.Code == "string" ~}}
+             b.Property(e => e.{{ property.Code}}).HasMaxLength({{ property.MaxLength}});
+                    {{~ end ~}}        
+                 {{~ end ~}}                 
+             {{~ end ~}}
+             b.ConfigureByConvention();
+         });
+         {{~ end ~}}
+   }
+}

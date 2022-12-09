@@ -21,5 +21,11 @@
     <EmbeddedResource Include="Data\Templates\Standard\**\*.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Data\Templates\Standard\ApplicationContract\Dto\Delete{{aggregateCode}}Input.txt" />
+    <Content Include="Data\Templates\Standard\ApplicationContract\Dto\Page{{aggregateCode}}Input.txt" />
+    <Content Include="Data\Templates\Standard\ApplicationContract\Dto\Page{{aggregateCode}}Output.txt" />
+  </ItemGroup>
+
   
 </Project>

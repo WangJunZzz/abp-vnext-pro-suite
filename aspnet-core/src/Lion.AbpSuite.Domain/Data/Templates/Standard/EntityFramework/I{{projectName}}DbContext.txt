@@ -1,0 +1,8 @@
+namespace {{ context.Project.NameSpace }};
+
+public interface I{{context.Project.ProjectName}}DbContext : IEfCoreDbContext
+{
+        {{~ for model in context.AllEntityModels ~}}
+          DbSet<{{ model.Code}}> {{ model.CodePluralized}} { get; set; }
+        {{~ end ~}}
+}

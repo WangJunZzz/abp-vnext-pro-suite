@@ -5,7 +5,7 @@ public class {{ context.Project.ProjectName }}DomainAutoMapperProfile :Profile
     public {{ context.Project.ProjectName }}DomainAutoMapperProfile()
     {
        {{~ for model in context.AllEntityModels ~}}
-         CreateMap<{{ model.Code}}, {{ model.Code}}Dto>();
+         CreateMap<{{ model.Code}}Dto, Page{{ model.Code}}Output>();
        {{~ end ~}}
     }
 }

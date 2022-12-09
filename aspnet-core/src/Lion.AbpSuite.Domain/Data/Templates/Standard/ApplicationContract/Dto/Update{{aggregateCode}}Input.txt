@@ -1,0 +1,29 @@
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }}.Dto;
+
+/// <summary>
+/// 删除{{ context.EntityModel.Description }}
+/// </summary>
+public class Update{{ context.EntityModel.Code }}Input
+{
+       /// <summary>
+       /// {{ context.EntityModel.Description }}Id
+       /// </summary>
+       public Guid Id { get; set; }
+       
+        {{~ for prop in context.EntityModel.Properties ~}}
+            {{~ if prop.IsEnum ~}}
+        /// <summary>
+        /// {{ prop.Description }}
+        /// </summary>
+        public {{ prop.EnumType.Code }} {{ prop.Code }} { get;  set; }
+            {{~ else ~}}
+        /// <summary>
+        /// {{ prop.Description }}
+        /// </summary>
+        {{~ if prop.IsRequired ~}}
+        [Required(ErrorMessage = "{{prop.Description}}不能为空")]
+        {{~ end ~}}
+        public {{ prop.DataType.Code }} {{ prop.Code }} { get;  set; }
+            {{~ end ~}}
+       {{~ end ~}}       
+}

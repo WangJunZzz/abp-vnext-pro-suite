@@ -9,6 +9,25 @@ namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePl
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public class I{{ context.EntityModel.Code }}AppService : IApplicationService
+public interface I{{ context.EntityModel.Code }}AppService : IApplicationService
 {
+    /// <summary>
+    /// 分页查询{{ context.EntityModel.Description }}
+    /// </summary>
+    Task<PagedResultDto<Page{{ context.EntityModel.Code }}Output>> PageAsync(Page{{ context.EntityModel.Code }}Input input);
+    
+    /// <summary>
+    /// 创建{{ context.EntityModel.Description }}
+    /// </summary>    
+    Task CreateAsync(Create{{ context.EntityModel.Code }}Input input);
+
+    /// <summary>
+    /// 编辑{{ context.EntityModel.Description }}
+    /// </summary>
+    Task UpdateAsync(Update{{ context.EntityModel.Code }}Input input);
+
+    /// <summary>
+    /// 删除{{ context.EntityModel.Description }}
+    /// </summary>
+    Task DeleteAsync(Delete{{ context.EntityModel.Code }}Input input);
 }

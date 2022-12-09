@@ -1,0 +1,9 @@
+namespace {{ context.Project.NameSpace }};
+
+[ConnectionStringName("Default")]
+public class {{context.Project.ProjectName}}DbContext : AbpDbContext<{{context.Project.ProjectName}}DbContext> : I{{context.Project.ProjectName}}DbContext
+{
+     {{~ for model in context.AllEntityModels ~}}
+        public  DbSet<{{ model.Code}}> {{ model.CodePluralized}} { get; set; }
+     {{~ end ~}}
+}

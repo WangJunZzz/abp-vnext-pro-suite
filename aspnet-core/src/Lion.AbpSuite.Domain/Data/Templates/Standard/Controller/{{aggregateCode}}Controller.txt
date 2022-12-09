@@ -1,7 +1,40 @@
-namespace YH.ModelDesign.Controllers;
+namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
 
 [Route("{{ context.EntityModel.AggregateCodePluralized }}")]
 public class {{ context.EntityModel.AggregateCode }}Controller : AbpController, I{{ context.EntityModel.AggregateCode }}AppService
 {
+    private readonly I{{ context.EntityModel.AggregateCode }}AppService _{{ context.EntityModel.AggregateCodeCamelCase }}AppService;
 
+    public {{ context.EntityModel.AggregateCode }}Controller(I{{ context.EntityModel.AggregateCode }}AppService {{ context.EntityModel.AggregateCodeCamelCase }}AppService)
+    {
+        _{{ context.EntityModel.AggregateCodeCamelCase }}AppService = {{ context.EntityModel.AggregateCodeCamelCase }}AppService;
+    }
+
+    [HttpPost("Page")]
+    [SwaggerOperation(summary: "分页查询{{ context.EntityModel.Description }}", Tags = new[] { "{{ context.EntityModel.AggregateCodePluralized }}" })]     
+    public async Task<PagedResultDto<Page{{ context.EntityModel.AggregateCode }}Output>> PageAsync(Page{{ context.EntityModel.AggregateCode }}Input input)
+    {
+        return await _{{ context.EntityModel.AggregateCodeCamelCase }}AppService.PageAsync(input);
+    }  
+
+    [HttpPost("Create")]
+    [SwaggerOperation(summary: "创建{{ context.EntityModel.Description }}", Tags = new[] { "{{ context.EntityModel.AggregateCodePluralized }}" })]        
+    public async Task CreateAsync(Create{{ context.EntityModel.AggregateCode }}Input input)
+    {
+        await _{{ context.EntityModel.AggregateCodeCamelCase }}AppService.CreateAsync(input);
+    }
+
+    [HttpPost("Update")]
+    [SwaggerOperation(summary: "编辑{{ context.EntityModel.Description }}", Tags = new[] { "{{ context.EntityModel.AggregateCodePluralized }}" })]         
+    public async Task UpdateAsync(Update{{ context.EntityModel.AggregateCode }}Input input)
+    {
+        await _{{ context.EntityModel.AggregateCodeCamelCase }}AppService.UpdateAsync(input);
+    }
+
+    [HttpPost("Delete")]
+    [SwaggerOperation(summary: "删除{{ context.EntityModel.Description }}", Tags = new[] { "{{ context.EntityModel.AggregateCodePluralized }}" })]         
+    public async Task DeleteAsync(Delete{{ context.EntityModel.AggregateCode }}Input input)
+    {
+        await _{{ context.EntityModel.AggregateCodeCamelCase }}AppService.DeleteAsync(input);
+    }     
 }
