@@ -1,6 +1,5 @@
 ﻿using Lion.AbpSuite.DataTypes;
 using Lion.AbpSuite.EntityModels;
-using Lion.AbpSuite.Projects.Dto.Generators;
 
 namespace Lion.AbpSuite.Projects;
 
@@ -30,7 +29,8 @@ public class ProjectEntityManager : AbpSuiteDomainService
         var enumTypes = await _enumTypeManager.ListByProjectIdAsync(projectId);
         result.EntityModels = RecursionEntity(entities, null, dataTypes, enumTypes);
         var project = await _projectManager.GetAsync(projectId);
-        result.Projects = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
+        result.Projects = ObjectMapper.Map<ProjectDto, ProjectContext>(project);
+        result.FlatEntityModels = ObjectMapper.Map<List<EntityModelDto>, List<TreeEntityModelContext>>(entities);
         return result;
     }
 
@@ -39,9 +39,9 @@ public class ProjectEntityManager : AbpSuiteDomainService
     /// 包括项目
     /// </summary>
     /// <param name="aggregateId">聚合根id</param>
-    public async Task<GeneratorTemplateContext> GetAggregateContextAsync(Guid aggregateId)
+    public async Task<TemplateContext> GetAggregateContextAsync(Guid aggregateId)
     {
-        var result = new GeneratorTemplateContext();
+        var result = new TemplateContext();
         var entity = await _entityModelManager.FindAggregateAsync(aggregateId);
 
         if (entity == null) throw new UserFriendlyException("聚合根不存在");
@@ -51,9 +51,9 @@ public class ProjectEntityManager : AbpSuiteDomainService
         // 获取实体枚举
         var enumTypes = await _enumTypeManager.ListAsync(aggregateId);
         var list = RecursionEntity(entity, null, dataTypes, enumTypes);
-        result.EntityModel = list.FirstOrDefault();
+        result.TreeEntityModel = list.FirstOrDefault();
         var project = await _projectManager.GetAsync(entity.First().ProjectId);
-        result.Project = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
+        result.Project = ObjectMapper.Map<ProjectDto, ProjectContext>(project);
         return result;
     }
 
@@ -62,9 +62,9 @@ public class ProjectEntityManager : AbpSuiteDomainService
     /// 包括项目，聚合根
     /// </summary>
     /// <param name="entityId">聚合根id</param>
-    public async Task<GeneratorTemplateContext> GetEntityContextAsync(Guid entityId)
+    public async Task<TemplateContext> GetEntityContextAsync(Guid entityId)
     {
-        var result = new GeneratorTemplateContext();
+        var result = new TemplateContext();
         var entity = await _entityModelManager.FindAsync(entityId);
 
         if (entity == null) throw new UserFriendlyException("实体不存在");
@@ -73,33 +73,34 @@ public class ProjectEntityManager : AbpSuiteDomainService
         // 获取实体枚举
         var enumTypes = await _enumTypeManager.ListAsync(entityId);
         var list = RecursionEntity(new List<EntityModelDto>() { entity }, entity.ParentId, dataTypes, enumTypes);
-        result.EntityModel = list.FirstOrDefault();
+        result.TreeEntityModel = list.FirstOrDefault();
         var project = await _projectManager.GetAsync(entity.ProjectId);
-        result.Project = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
+        result.Project = ObjectMapper.Map<ProjectDto, ProjectContext>(project);
         return result;
     }
 
-    private List<GeneratorEntityModelContext> RecursionEntity(List<EntityModelDto> entities, Guid? parentId, List<DataTypeDto> dataTypes, List<EnumTypeDto> enumTypes)
+    private List<TreeEntityModelContext> RecursionEntity(List<EntityModelDto> entities, Guid? parentId, List<DataTypeDto> dataTypes, List<EnumTypeDto> enumTypes)
     {
-        var tree = new List<GeneratorEntityModelContext>();
+        var tree = new List<TreeEntityModelContext>();
         var list = entities.Where(e => e.ParentId == parentId);
         foreach (var detail in list)
         {
             // 找到实体聚合根信息
             var aggregate = entities.First(e => e.Id == detail.AggregateId);
-            var child = new GeneratorEntityModelContext()
+            var child = new TreeEntityModelContext()
             {
                 Id = detail.Id,
                 Code = detail.Code,
                 Description = detail.Description,
                 RelationalType = detail.RelationalType,
                 IsRoot = !detail.ParentId.HasValue,
+                ParentId = detail.ParentId,
                 AggregateCode = aggregate.Code
             };
 
             foreach (var detailEntityModelProperty in detail.EntityModelProperties)
             {
-                var property = new GeneratorEntityModelPropertyContext()
+                var property = new TreeEntityModelPropertyContext()
                 {
                     Id = detailEntityModelProperty.Id,
                     Code = detailEntityModelProperty.Code,
@@ -117,28 +118,12 @@ public class ProjectEntityManager : AbpSuiteDomainService
                 if (property.IsEnum)
                 {
                     var currentEnum = enumTypes.FirstOrDefault(e => property.EnumTypeId != null && e.Id == property.EnumTypeId.Value);
-                  
+
                     if (currentEnum != null)
                     {
-                        var enumType= new GeneratorEnumTypeContext()
-                        {
-                            Id = currentEnum.Id,
-                            Code = currentEnum.Code,
-                            Description = currentEnum.Description
-                        };
-                        foreach (var currentEnumEnumTypeProperty in currentEnum.EnumTypeProperties)
-                        {
-                            enumType.Properties.Add(new GeneratorEnumTypePropertyContext()
-                            {
-                                Id = currentEnumEnumTypeProperty.Id,
-                                Code = currentEnumEnumTypeProperty.Code,
-                                Description = currentEnumEnumTypeProperty.Description,
-                                Value = currentEnumEnumTypeProperty.Value
-                            });
-                        }
-
-                        property.EnumType = enumType;
-                        child.EnumTypes.Add(enumType);
+                        property.EnumTypeCode = currentEnum.Code;
+                        property.EnumTypeDescription = currentEnum.Description;
+                        child.EnumTypes.Add(ObjectMapper.Map<EnumTypeDto, EnumTypeContext>(currentEnum));
                     }
                 }
                 else
@@ -146,12 +131,8 @@ public class ProjectEntityManager : AbpSuiteDomainService
                     var currentData = dataTypes.FirstOrDefault(e => property.DataTypeId != null && e.Id == property.DataTypeId.Value);
                     if (currentData != null)
                     {
-                        property.DataType = new GeneratorDataTypeContext()
-                        {
-                            Id = currentData.Id,
-                            Code = currentData.Code,
-                            Description = currentData.Description
-                        };
+                        property.DataTypeCode = currentData.Code;
+                        property.DataTypeDescription = currentData.Description;
                     }
                 }
 
@@ -161,7 +142,6 @@ public class ProjectEntityManager : AbpSuiteDomainService
             child.EntityModels.AddRange(RecursionEntity(entities, detail.Id, dataTypes, enumTypes));
             tree.Add(child);
         }
-
         return tree;
     }
 }

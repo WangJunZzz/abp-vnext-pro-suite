@@ -3,12 +3,16 @@ namespace Lion.AbpSuite.Projects.Dto.Generators;
 
 public class GeneratorProjectTemplateContext
 {
-    public GeneratorProjectContext Projects { get; set; }
+    public ProjectContext Projects { get; set; }
 
-    public List<GeneratorEntityModelContext> EntityModels { get; set; }
+    public List<TreeEntityModelContext> EntityModels { get; set; }
 
+    
+    public List<TreeEntityModelContext> FlatEntityModels { get; set; }
+    
     public GeneratorProjectTemplateContext()
     {
-        EntityModels = new List<GeneratorEntityModelContext>();
+        EntityModels = new List<TreeEntityModelContext>();
+        FlatEntityModels = new List<TreeEntityModelContext>();
     }
 }

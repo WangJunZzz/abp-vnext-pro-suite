@@ -1,5 +1,4 @@
 ﻿using Lion.AbpSuite.Extensions;
-using Lion.AbpSuite.Projects.Dto.Generators;
 
 namespace Lion.AbpSuite;
 
@@ -11,7 +10,7 @@ public class AbpSuiteAutoMapperProfile : Profile
         CreateMap<TemplateDetail, TemplateDetailDto>();
         CreateMap<DataType, DataTypeDto>();
         CreateMap<Project, ProjectDto>();
-        CreateMap<ProjectDto, GeneratorProjectContext>();
+        CreateMap<ProjectDto, ProjectContext>();
         CreateMap<EntityModel, EntityModelDto>();
         CreateMap<EntityModelProperty, EntityModelPropertyDto>();
         CreateMap<EnumType, EnumTypeDto>();
@@ -20,5 +19,10 @@ public class AbpSuiteAutoMapperProfile : Profile
         CreateMap<TemplateTreeDto, TreeNode>()
             .ForMember(e => e.FullTitle, opt => opt.Ignore())
             .ForMember(e => e.ParentFullTitle, opt => opt.Ignore());
+
+        CreateMap<EntityModelDto, TreeEntityModelContext>();
+        CreateMap<EntityModelPropertyDto, TreeEntityModelPropertyContext>();
+        CreateMap<EnumTypeDto, EnumTypeContext>();
+        CreateMap<EnumTypePropertyDto, EnumTypePropertyContext>();
     }
 }

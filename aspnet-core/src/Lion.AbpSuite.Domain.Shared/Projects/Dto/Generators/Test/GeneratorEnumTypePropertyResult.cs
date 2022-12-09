@@ -1,6 +1,6 @@
-﻿namespace Lion.AbpSuite.Projects.Dto.Generators;
+﻿namespace Lion.AbpSuite.Projects.Dto.Generators.Test;
 
-public class GeneratorDataTypeContext
+public class GeneratorEnumTypePropertyResult
 {
     public Guid Id { get; set; }
 
@@ -13,12 +13,17 @@ public class GeneratorDataTypeContext
     /// 首字母小写
     /// </summary>
     public string CodeCamelCase => Code.Camelize();
-    
+
     /// <summary>
     /// 复数形式
     /// </summary>
     public string CodePluralized => Code.Pluralize();
-    
+
+    /// <summary>
+    /// 枚举值
+    /// </summary>
+    public int Value { get; set; }
+
     /// <summary>
     /// 描述
     /// </summary>

@@ -1,0 +1,21 @@
+﻿namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCode }};
+
+public class {{ context.EntityModel.AggregateCode }}DomainAutoMapperProfile :Profile 
+{
+    public {{ context.EntityModel.AggregateCode }}DomainAutoMapperProfile()
+    {
+           {{~ for prop in context.EntityModel.EntityModels ~}}
+             {{~ if  prop.RelationalType == 10 ~}}
+             /// <summary>
+             /// {{ prop.Description }} 一对一
+             /// </summary>
+             public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; } 
+               {{~ else ~}}
+             /// <summary>
+             /// {{ prop.Description }}  一对多
+             /// </summary>
+             public List<{{ prop.Code }}> {{ prop.CodePluralized }}  { get; private set; }
+               {{~ end ~}}
+           {{~ end ~}}
+    }
+}

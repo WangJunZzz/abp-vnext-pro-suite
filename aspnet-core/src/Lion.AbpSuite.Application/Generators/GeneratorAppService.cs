@@ -71,16 +71,14 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         var templates = templateDetails.Where(e => e.ParentId == parentId);
         foreach (var template in templates)
         {
-            if (template.TemplateType == TemplateType.Folder)
-            {
-                var code = await GeneratorFolderAsync(template.Name);
-                tree.Add(code);
-                code.Children.AddRange(await RecursionTemplate(templateDetails, context, template.Id));
-            }
-            else
+            if (template.TemplateType == TemplateType.File)
             {
                 tree.AddRange(await RenderAggregateAsync(context, template));
             }
+
+            var code = await GeneratorFolderAsync(template.Name);
+            tree.Add(code);
+            code.Children.AddRange(await RecursionTemplate(templateDetails, context, template.Id));
         }
 
         return tree;
@@ -102,6 +100,7 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
             if (template.ControlType == ControlType.Aggregate)
             {
                 var code = await GeneratorCodeAsync(template, context.Projects, aggregate);
+                var autoMapperCode = await RenderAutoMapperAsync(context, template, aggregate);
                 folder.Children.Add(code);
             }
             else if (template.ControlType == ControlType.Enum)
@@ -124,7 +123,7 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     /// <param name="template">模板</param>
     /// <param name="entityModelContexts">当前实体</param>
     private async Task<List<TemplateTreeDto>> RenderEntityAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template,
-        List<GeneratorEntityModelContext> entityModelContexts)
+        List<TreeEntityModelContext> entityModelContexts)
     {
         var result = new List<TemplateTreeDto>();
         if (template.ControlType != ControlType.Entity) return result;
@@ -139,18 +138,64 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
     }
 
     /// <summary>
+    /// AutoMapper模板生成
+    /// </summary>
+    /// <param name="context">实体上下文信息</param>
+    /// <param name="template">模板</param>
+    /// <param name="treeEntityModel">聚合根</param>
+    private async Task<List<TemplateTreeDto>> RenderAutoMapperAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template, TreeEntityModelContext treeEntityModel)
+    {
+        var result = new List<TemplateTreeDto>();
+        if (template.ControlType != ControlType.Aggregate) return result;
+        var tempInfo = context.FlatEntityModels.Where(e => e.ParentId == treeEntityModel.Id).ToList();
+        tempInfo.Add(context.FlatEntityModels.First(e => e.Id == treeEntityModel.Id));
+        foreach (var entity in tempInfo)
+        {
+            var code = await GeneratorCodeAsync(template, context.Projects, entity);
+            result.Add(code);
+        }
+
+        return result;
+    }
+
+    private async Task<TemplateTreeDto> GeneratorCodeAutoMapperAsync(TemplateDetailDto template, ProjectContext project, TreeEntityModelContext treeEntityModel,
+        List<TreeEntityModelContext> flatEntityModels)
+    {
+        var fileName = await RenderFileNameAsync(template.Name, project.Name, treeEntityModel.AggregateCode, treeEntityModel.Code, null);
+        var generatorContext = new TemplateContext()
+        {
+            Project = project,
+            TreeEntityModel = treeEntityModel
+        };
+        var result = new TemplateTreeDto()
+        {
+            //Key = template.Id,
+            Key = GuidGenerator.Create(),
+            Name = fileName,
+            Title = fileName,
+            Description = template.Description,
+            Content = await _generatorManager.RenderAsync(template.Content, new { context = generatorContext }),
+            TemplateType = template.TemplateType,
+            Icon = AbpSuiteConsts.AntIconFile,
+            IsFolder = false
+        };
+
+        return result;
+    }
+
+    /// <summary>
     /// 枚举模板生成
     /// </summary>
     /// <param name="context">实体上下文信息</param>
     /// <param name="template">模板</param>
-    /// <param name="entityModelContexts">当前实体</param>
-    private async Task<List<TemplateTreeDto>> RenderEnumAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template, GeneratorEntityModelContext entityModelContexts)
+    /// <param name="treeEntityModelContexts">当前实体</param>
+    private async Task<List<TemplateTreeDto>> RenderEnumAsync(GeneratorProjectTemplateContext context, TemplateDetailDto template, TreeEntityModelContext treeEntityModelContexts)
     {
         var result = new List<TemplateTreeDto>();
         if (template.ControlType != ControlType.Enum) return result;
-        foreach (var entity in entityModelContexts.EnumTypes)
+        foreach (var entity in treeEntityModelContexts.EnumTypes)
         {
-            var code = await GeneratorCodeAsync(template, context.Projects, entityModelContexts, entity);
+            var code = await GeneratorCodeAsync(template, context.Projects, treeEntityModelContexts, entity);
             result.Add(code);
         }
 
@@ -174,13 +219,13 @@ public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
         return await Task.FromResult(result);
     }
 
-    private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, GeneratorProjectContext project, GeneratorEntityModelContext entityModel, GeneratorEnumTypeContext enumType = null)
+    private async Task<TemplateTreeDto> GeneratorCodeAsync(TemplateDetailDto template, ProjectContext project, TreeEntityModelContext treeEntityModel, EnumTypeContext enumType = null)
     {
-        var fileName = await RenderFileNameAsync(template.Name, project.Name, entityModel.AggregateCode, entityModel.Code, enumType?.Code);
-        var generatorContext = new GeneratorTemplateContext()
+        var fileName = await RenderFileNameAsync(template.Name, project.Name, treeEntityModel.AggregateCode, treeEntityModel.Code, enumType?.Code);
+        var generatorContext = new TemplateContext()
         {
             Project = project,
-            EntityModel = entityModel,
+            TreeEntityModel = treeEntityModel,
             EnumType = enumType
         };
         var result = new TemplateTreeDto()

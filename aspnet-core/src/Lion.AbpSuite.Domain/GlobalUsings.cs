@@ -19,6 +19,8 @@ global using Lion.AbpSuite.EnumTypes.Dto;
 global using Lion.AbpSuite.MultiTenancy;
 global using Lion.AbpSuite.Projects.Aggregates;
 global using Lion.AbpSuite.Projects.Dto;
+global using Lion.AbpSuite.Projects.Dto.Generators;
+global using Lion.AbpSuite.Projects.Dto.Generators.Test;
 global using Lion.AbpSuite.Templates;
 global using Lion.AbpSuite.Templates.Aggregates;
 global using Lion.AbpSuite.Users.Dto;

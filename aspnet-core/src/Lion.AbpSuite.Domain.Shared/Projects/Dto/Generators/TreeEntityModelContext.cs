@@ -2,17 +2,21 @@
 
 namespace Lion.AbpSuite.Projects.Dto.Generators;
 
-public class GeneratorEntityModelContext
+/// <summary>
+/// 树形实体上下文
+/// </summary>
+public class TreeEntityModelContext
 {
-    public GeneratorEntityModelContext()
+    public TreeEntityModelContext()
     {
-        Properties = new List<GeneratorEntityModelPropertyContext>();
-        EntityModels = new List<GeneratorEntityModelContext>();
-        EnumTypes = new List<GeneratorEnumTypeContext>();
+        Properties = new List<TreeEntityModelPropertyContext>();
+        EntityModels = new List<TreeEntityModelContext>();
+        EnumTypes = new List<EnumTypeContext>();
     }
 
     public Guid Id { get; set; }
-
+    
+    public Guid? ParentId { get; set; }
     /// <summary>
     /// 编码
     /// </summary>
@@ -58,17 +62,16 @@ public class GeneratorEntityModelContext
     /// </summary>
     public RelationalType? RelationalType { get; set; }
 
-    // public string RelationalTypeDescription => RelationalType.ToDescription();
 
     /// <summary>
     /// 实体模型属性集合
     /// </summary>
-    public List<GeneratorEntityModelPropertyContext> Properties { get; set; }
+    public List<TreeEntityModelPropertyContext> Properties { get; set; }
 
     /// <summary>
     /// 实体拥有枚举集合
     /// </summary>
-    public List<GeneratorEnumTypeContext> EnumTypes { get; set; }
+    public List<EnumTypeContext> EnumTypes { get; set; }
 
-    public List<GeneratorEntityModelContext> EntityModels { get; set; }
+    public List<TreeEntityModelContext> EntityModels { get; set; }
 }

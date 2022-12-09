@@ -1,9 +1,0 @@
-﻿namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
-
-public class {{NameSpace}}DomainAutoMapperProfile :Profile 
-{
-    public {{NameSpace}}DomainAutoMapperProfile()
-    {
-    
-    }
-}

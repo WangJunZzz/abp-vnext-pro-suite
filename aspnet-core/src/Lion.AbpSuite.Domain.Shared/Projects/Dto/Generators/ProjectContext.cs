@@ -2,7 +2,7 @@
 
 namespace Lion.AbpSuite.Projects.Dto.Generators;
 
-public class GeneratorProjectContext 
+public class ProjectContext 
 {
     public Guid Id { get; set; }
 

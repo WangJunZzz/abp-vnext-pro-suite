@@ -1,6 +1,6 @@
 ﻿namespace Lion.AbpSuite.Projects.Dto.Generators;
 
-public class GeneratorEnumTypeContext
+public class EnumTypeContext
 {
     public Guid Id { get; set; }
 
@@ -24,10 +24,10 @@ public class GeneratorEnumTypeContext
     /// </summary>
     public string Description { get; set; }
     
-    public List<GeneratorEnumTypePropertyContext> Properties { get; set; }
+    public List<EnumTypePropertyContext> Properties { get; set; }
 
-    public GeneratorEnumTypeContext()
+    public EnumTypeContext()
     {
-        Properties = new List<GeneratorEnumTypePropertyContext>();
+        Properties = new List<EnumTypePropertyContext>();
     }
 }

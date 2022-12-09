@@ -9,6 +9,7 @@ global using System.Reflection;
 global using System.Text;
 global using System.Threading.Tasks;
 global using Humanizer;
+global using Lion.AbpSuite.EntityModels;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Localization;
 global using Volo.Abp;
