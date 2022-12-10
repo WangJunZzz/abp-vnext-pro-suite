@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using  {{ context.Project.NameSpace }}.Domain;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
 /// <summary>
 /// {{ context.EntityModel.Description }} 仓储Ef core 实现

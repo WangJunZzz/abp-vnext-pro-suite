@@ -11,8 +11,8 @@ const generators: AppRouteModule = {
   },
   children: [
     {
-      path: 'code',
-      name: 'Code',
+      path: 'setting',
+      name: 'Setting',
       component: () => import('/@/views/generators/CodeSetting.vue'),
       meta: {
         title: '预览',

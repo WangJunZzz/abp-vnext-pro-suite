@@ -1,4 +1,4 @@
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.Code }};
+namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
 public static class EfCore{{ context.EntityModel.Code }}QueryableExtension
 {

@@ -2,7 +2,7 @@
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 using  {{ context.Project.NameSpace }}.Application.Contracts;
 
-namespace {{ context.Project.NameSpace }}.Domain;
+namespace {{ context.Project.NameSpace }}.Application;
 
 public class {{ context.Project.ProjectName }}DomainAutoMapperProfile :Profile 
 {

@@ -37,7 +37,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
 
         if (templateGroup == null)
         {
-            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConsts.TemplateGroupName, "系统初始化模板",_currentTenant.GetId());
+            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConsts.TemplateGroupName, "系统初始化模板",_currentTenant.Id);
         }
 
         #endregion

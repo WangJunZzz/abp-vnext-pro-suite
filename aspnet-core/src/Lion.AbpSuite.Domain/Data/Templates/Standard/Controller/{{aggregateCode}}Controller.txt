@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using  {{ context.Project.NameSpace }}.Application.Contracts;
 
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+namespace {{ context.Project.NameSpace }}.Controller;
 
 [Route("{{ context.EntityModel.AggregateCodePluralized }}")]
 public class {{ context.EntityModel.AggregateCode }}Controller : AbpController, I{{ context.EntityModel.AggregateCode }}AppService

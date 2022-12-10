@@ -4,7 +4,7 @@ using Volo.Abp.EntityFrameworkCore;
 using  {{ context.Project.NameSpace }}.Domain;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 
-namespace {{ context.Project.NameSpace }};
+namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
 [ConnectionStringName("Default")]
 public class {{context.Project.ProjectName}}DbContext : AbpDbContext<{{context.Project.ProjectName}}DbContext> : I{{context.Project.ProjectName}}DbContext

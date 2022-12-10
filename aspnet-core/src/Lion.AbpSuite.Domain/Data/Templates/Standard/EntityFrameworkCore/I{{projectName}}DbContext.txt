@@ -4,7 +4,7 @@ using Volo.Abp.EntityFrameworkCore;
 using  {{ context.Project.NameSpace }}.Domain;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 
-namespace {{ context.Project.NameSpace }};
+namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
 public interface I{{context.Project.ProjectName}}DbContext : IEfCoreDbContext
 {
