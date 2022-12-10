@@ -1,6 +1,8 @@
-﻿using Lion.AbpSuite.Files;
+﻿using System.Diagnostics.CodeAnalysis;
+using Lion.AbpSuite.Files;
 using Lion.AbpSuite.Templates;
 using Lion.AbpSuite.Templates.Aggregates;
+using Volo.Abp.Guids;
 using Volo.Abp.Timing;
 
 namespace Lion.AbpSuite.Data;
@@ -10,132 +12,261 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
     private readonly ITemplateRepository _templateRepository;
     private readonly IFileLoader _fileLoader;
     private readonly IClock _clock;
-    public TemplateDataSeedContributor(ITemplateRepository templateRepository, IFileLoader fileLoader, IClock clock)
+    private readonly IGuidGenerator _guidGenerator;
+    private readonly ICurrentTenant _currentTenant;
+
+    public TemplateDataSeedContributor(ITemplateRepository templateRepository, IFileLoader fileLoader, IClock clock, IGuidGenerator guidGenerator, ICurrentTenant currentTenant)
     {
         _templateRepository = templateRepository;
         _fileLoader = fileLoader;
         _clock = clock;
+        _guidGenerator = guidGenerator;
+        _currentTenant = currentTenant;
     }
 
     public async Task SeedAsync(DataSeedContext context)
     {
-        var template = await _templateRepository.FindAsync(TemplateDataSeedConst.TemplateId);
-        if (template == null)
+        await TemplateAsync();
+    }
+
+    public async Task TemplateAsync()
+    {
+        var templateGroup = await _templateRepository.FindByNameAsync(StandardTemplateDataSeedConsts.TemplateGroupName);
+
+        #region 模板组
+
+        if (templateGroup == null)
         {
-            template = new Template(TemplateDataSeedConst.TemplateId, "默认模板", "标准模板");
-
-            template.AddTemplateDetail(TemplateDataSeedConst.SrcId, TemplateType.Folder, null, "src", "src", null, null);
-            // 控制器层
-            template.AddTemplateDetail(TemplateDataSeedConst.Controller.ControllerTemplateFolderId, TemplateType.Folder, null, "Controller", "控制器", null,
-                TemplateDataSeedConst.SrcId);
-            var controllerContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Controller.ControllerTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.Controller.ControllerTemplateId, TemplateType.File, ControlType.Aggregate,
-                TemplateDataSeedConst.Controller.ControllerTemplateName, "控制器", controllerContent, TemplateDataSeedConst.Controller.ControllerTemplateFolderId);
-
-            // 应用层
-            template.AddTemplateDetail(TemplateDataSeedConst.Application.ApplicationTemplateFolderId, TemplateType.Folder, null, "Application", "应用层", null,
-                TemplateDataSeedConst.SrcId);
-            var applicationServiceContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Application.ApplicationTemplatePath);
-            template.AddTemplateDetail(
-                TemplateDataSeedConst.Application.ApplicationTemplateId,
-                TemplateType.File, ControlType.Aggregate,
-                TemplateDataSeedConst.Application.ApplicationTemplateName,
-                "应用层", applicationServiceContent,
-                TemplateDataSeedConst.Application.ApplicationTemplateFolderId);
-            
-            // 应用抽象层
-            template.AddTemplateDetail(TemplateDataSeedConst.ApplicationContract.ApplicationContractTemplateFolderId, TemplateType.Folder, null, "Application.Contracts", "应用抽象层",
-                null, TemplateDataSeedConst.SrcId);
-            var applicationServiceContentContract = await _fileLoader.LoadAsync(TemplateDataSeedConst.ApplicationContract.ApplicationContractTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.ApplicationContract.ApplicationContractTemplateId, TemplateType.File, ControlType.Aggregate,
-                TemplateDataSeedConst.ApplicationContract.ApplicationContractTemplateName, "应用抽象层",
-                applicationServiceContentContract, TemplateDataSeedConst.ApplicationContract.ApplicationContractTemplateFolderId);
-
-            // 领域层
-            template.AddTemplateDetail(
-                TemplateDataSeedConst.Domain.DomainTemplateFolderId,
-                TemplateType.Folder,
-                null,
-                "Domain",
-                "领域层",
-                null,
-                TemplateDataSeedConst.SrcId);
-
-            var aggregateServiceContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Domain.AggregateTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.Domain.AggregateTemplateId,
-                TemplateType.File,
-                ControlType.Aggregate,
-                TemplateDataSeedConst.Domain.AggregateTemplateName,
-                "聚合根", aggregateServiceContent,
-                TemplateDataSeedConst.Domain.DomainTemplateFolderId);
-
-            var entityServiceContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Domain.EntityTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.Domain.EntityTemplateId,
-                TemplateType.File,
-                ControlType.Entity,
-                TemplateDataSeedConst.Domain.EntityTemplateName,
-                "实体", entityServiceContent,
-                TemplateDataSeedConst.Domain.DomainTemplateFolderId);
-            var managerServiceContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Domain.ManagerTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.Domain.ManagerTemplateId,
-                TemplateType.File,
-                ControlType.Aggregate,
-                TemplateDataSeedConst.Domain.ManagerTemplateName,
-                "领域服务", managerServiceContent,
-                TemplateDataSeedConst.Domain.DomainTemplateFolderId);
-            var repositoryServiceContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Domain.RepositoryTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.Domain.RepositoryTemplateId,
-                TemplateType.File,
-                ControlType.Aggregate,
-                TemplateDataSeedConst.Domain.RepositoryTemplateName,
-                "聚合根仓储接口", repositoryServiceContent,
-                TemplateDataSeedConst.Domain.DomainTemplateFolderId);
-            
-            // var domainAutoMapperContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.Domain.AutoMapperTemplatePath);
-            // template.AddTemplateDetail(TemplateDataSeedConst.Domain.RepositoryTemplateId,
-            //     TemplateType.File,
-            //     ControlType.Aggregate,
-            //     TemplateDataSeedConst.Domain.AutoMapperTemplateName,
-            //     "聚合根仓储接口", domainAutoMapperContent,
-            //     TemplateDataSeedConst.Domain.DomainTemplateFolderId);
-            // 领域共享层
-            template.AddTemplateDetail(TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId, TemplateType.Folder, null, "Domain.Shared", "领域共享层",
-                null, TemplateDataSeedConst.SrcId);
-            var domainSharedAggregateContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.DomainShared.AggregateTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.DomainShared.AggregateTemplateId,
-                TemplateType.File,
-                ControlType.Aggregate,
-                TemplateDataSeedConst.DomainShared.AggregateTemplateName,
-                "聚合根Dto", domainSharedAggregateContent,
-                TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId);
-            
-            var domainSharedEntityContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.DomainShared.EntityTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.DomainShared.EntityTemplateId,
-                TemplateType.File,
-                ControlType.Entity,
-                TemplateDataSeedConst.DomainShared.EntityTemplateName,
-                "实体Dto", domainSharedEntityContent,
-                TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId);
-            
-            var enumSharedEntityContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.DomainShared.EnumTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.DomainShared.EnumTemplateId,
-                TemplateType.File,
-                ControlType.Enum,
-                TemplateDataSeedConst.DomainShared.EnumTemplateName,
-                "枚举", enumSharedEntityContent,
-                TemplateDataSeedConst.DomainShared.DomainSharedTemplateFolderId);
-            // ef 层
-            template.AddTemplateDetail(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateFolderId, TemplateType.Folder, null, "EntityFrameworkCore", "EF层",
-                null, TemplateDataSeedConst.SrcId);
-            var efAggregateContent = await _fileLoader.LoadAsync(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplatePath);
-            template.AddTemplateDetail(TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateId,
-                TemplateType.File,
-                ControlType.Aggregate,
-                TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateName,
-                "EF仓储实现", efAggregateContent,
-                TemplateDataSeedConst.EntityFramework.EntityFrameworkTemplateFolderId);
-            
-            await _templateRepository.InsertAsync(template);
+            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConsts.TemplateGroupName, "系统初始化模板",_currentTenant.GetId());
         }
+
+        #endregion
+
+        #region AspNetCore
+
+        TemplateDetail aspNetCore = null;
+        if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConsts.AspNetCore.Name) == null)
+        {
+            aspNetCore = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Name);
+        }
+
+        #endregion
+
+        #region src
+
+        TemplateDetail src;
+        src = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Name, parentId: aspNetCore?.Id);
+
+        #endregion
+
+        #region Controller
+
+        TemplateDetail controller;
+        controller = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Controller.Name, parentId: src.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Controller.ControllerName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Controller.ControllerPath),
+            controller.Id);
+
+        #endregion
+
+        #region Application
+
+        TemplateDetail application;
+        application = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Application.Name, parentId: src.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Application.ApplicationServiceName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Application.ApplicationServicePath),
+            application.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Application.AutoMapperName,
+            ControlType.Global,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Application.AutoMapperPath),
+            application.Id);
+
+        #endregion
+
+        #region ApplicationContracts
+
+        TemplateDetail applicationContracts;
+        applicationContracts = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.Name, parentId: src.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.IApplicationServiceName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.IApplicationServicePath),
+            applicationContracts.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.CreateInputName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.CreateInputPath),
+            applicationContracts.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.UpdateInputName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.UpdateInputPath),
+            applicationContracts.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.DeleteInputName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.DeleteInputPath),
+            applicationContracts.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageInputName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageInputPath),
+            applicationContracts.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageOutputName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageOutputPath),
+            applicationContracts.Id);
+
+        #endregion
+
+        #region Domain
+
+        TemplateDetail domain;
+        domain = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.Name, parentId: src.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodePath),
+            domain.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.EntityCodeName,
+            ControlType.Entity,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.EntityCodePath),
+            domain.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeRepositoryName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeRepositoryPath),
+            domain.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeManagerName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeManagerPath),
+            domain.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AutoMapperName,
+            ControlType.Global,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AutoMapperPath),
+            domain.Id);
+
+        # endregion
+        
+        #region DomainShared
+
+        TemplateDetail domainShared;
+        domainShared = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.Name, parentId: src.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.AggregateCodeName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.AggregateCodePath),
+            domainShared.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EntityCodeName,
+            ControlType.Entity,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EntityCodePath),
+            domainShared.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EnumName,
+            ControlType.Enum,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EnumPath),
+            domainShared.Id);
+
+        # endregion
+        
+        #region EntityFrameworkCore
+
+        TemplateDetail entityFrameworkCore;
+        entityFrameworkCore = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.Name, parentId: src.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.IDbContextName,
+            ControlType.Global,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.IDbContextPath),
+            entityFrameworkCore.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextName,
+            ControlType.Global,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextPath),
+            entityFrameworkCore.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.RepositoryName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.RepositoryPath),
+            entityFrameworkCore.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingName,
+            ControlType.Global,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingPath),
+            entityFrameworkCore.Id);
+        # endregion
+        
+        #region Vue3
+        TemplateDetail vue3 = null;
+        if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConsts.Vue3.Name) == null)
+        {
+            vue3 = AddFolder(templateGroup, StandardTemplateDataSeedConsts.Vue3.Name);
+        }
+        #endregion
+
+        #region src
+
+        TemplateDetail vueSrc;
+        vueSrc = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Name, parentId: vue3?.Id);
+
+        #endregion
+        
+        #region routes
+        TemplateDetail route;
+        route = AddFolder(templateGroup, StandardTemplateDataSeedConsts.Vue3.Src.Routes.Name, parentId: vueSrc.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.Vue3.Src.Routes.RouteName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Routes.RoutePath),
+            route.Id);
+        #endregion
+        
+        #region views
+        TemplateDetail view;
+        view = AddFolder(templateGroup, StandardTemplateDataSeedConsts.Vue3.Src.Views.Name, parentId: vueSrc.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexPath),
+            view.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexVueName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexVuePath),
+            view.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.Vue3.Src.Views.CreateVueName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.CreateVuePath),
+            view.Id);
+        AddFile(templateGroup,
+            StandardTemplateDataSeedConsts.Vue3.Src.Views.UpdateVueName,
+            ControlType.Aggregate,
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.UpdateVuePath),
+            view.Id);
+        #endregion
+
+        await _templateRepository.InsertAsync(templateGroup);
+    }
+
+    private TemplateDetail AddFolder(Template template, string name, string description = "Default", Guid? parentId = null)
+    {
+        var detail = template.AddTemplateDetail(_guidGenerator.Create(), TemplateType.Folder, null, name, description, string.Empty, parentId);
+        return detail;
+    }
+
+    private TemplateDetail AddFile(Template template, string name, ControlType controlType, string content, Guid parentId, string description = "Default")
+    {
+        var detail = template.AddTemplateDetail(_guidGenerator.Create(), TemplateType.File, controlType, name, description, content, parentId);
+        return detail;
     }
 }

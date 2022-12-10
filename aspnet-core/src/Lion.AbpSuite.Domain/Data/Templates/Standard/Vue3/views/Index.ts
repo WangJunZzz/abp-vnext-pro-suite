@@ -18,11 +18,7 @@ export const tableColumns: BasicColumn[] = [
 ];
 
 // 分页查询{{ context.EntityModel.Description }} FormSchema
-export const searchFormSchema: FormSchema[] = [
-    {
-      
-    },
-];
+export const searchFormSchema: FormSchema[] = [];
 
 // 创建{{ context.EntityModel.Description }} FormSchema
 export const createFormSchema: FormSchema[] = [

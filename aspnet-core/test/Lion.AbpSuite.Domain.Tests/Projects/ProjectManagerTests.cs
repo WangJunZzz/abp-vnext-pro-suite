@@ -21,9 +21,11 @@ public sealed class ProjectManagerTests : AbpSuiteDomainTestBase
     [Fact]
     public async Task CreateAsync()
     {
-        var result = await _projectManager.CreateAsync("xx", "data", "owner", "remark");
+        var result = await _projectManager.CreateAsync("xx", "xx", "data", "owner",remark:"remark");
         result.Name.ShouldBe("xx");
-        result.NameSpace.ShouldBe("data");
+        result.CompanyName.ShouldBe("xx");
+        result.ProjectName.ShouldBe("data");
+        result.NameSpace.ShouldBe("xx.data");
         result.Owner.ShouldBe("owner");
         result.Remark.ShouldBe("remark");
 
@@ -35,9 +37,11 @@ public sealed class ProjectManagerTests : AbpSuiteDomainTestBase
     [Fact]
     public async Task UpdateAsync()
     {
-        var result = await _projectManager.UpdateAsync(AbpSuiteTestConst.ProjectId, "xx", "data", "owner", "remark");
+        var result = await _projectManager.UpdateAsync(AbpSuiteTestConst.ProjectId, "xx", "xx", "data", "owner",remark:"remark");
         result.Name.ShouldBe("xx");
-        result.NameSpace.ShouldBe("data");
+        result.CompanyName.ShouldBe("xx");
+        result.ProjectName.ShouldBe("data");
+        result.NameSpace.ShouldBe("xx.data");
         result.Owner.ShouldBe("owner");
         result.Remark.ShouldBe("remark");
         

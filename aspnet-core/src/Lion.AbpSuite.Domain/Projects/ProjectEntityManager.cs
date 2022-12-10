@@ -20,6 +20,10 @@ public class ProjectEntityManager : AbpSuiteDomainService
         _enumTypeManager = enumTypeManager;
     }
 
+    /// <summary>
+    /// 获取上下文信息
+    /// </summary>
+    /// <param name="projectId">项目id</param>
     public async Task<GeneratorProjectTemplateContext> GetProjectContextAsync(Guid projectId)
     {
         var result = new GeneratorProjectTemplateContext();
@@ -35,52 +39,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
         result.EntityModels = BuildEntityModelContext(entities, dataTypes, enumTypes);
         return result;
     }
-
-    /// <summary>
-    /// 获取聚合根上下文信息
-    /// 包括项目
-    /// </summary>
-    /// <param name="aggregateId">聚合根id</param>
-    public async Task<GeneratorTemplateContext> GetAggregateContextAsync(Guid aggregateId)
-    {
-        var result = new GeneratorTemplateContext();
-        var entity = await _entityModelManager.FindAggregateAsync(aggregateId);
-
-        if (entity == null) throw new UserFriendlyException("聚合根不存在");
-
-        // 获取实体模型数据类型
-        var dataTypes = await _dataTypeManager.ListAsync();
-        // 获取实体枚举
-        var enumTypes = await _enumTypeManager.ListAsync(aggregateId);
-        var list = RecursionEntity(entity, null, dataTypes, enumTypes);
-        result.EntityModel = list.FirstOrDefault();
-        var project = await _projectManager.GetAsync(entity.First().ProjectId);
-        result.Project = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
-        return result;
-    }
-
-    /// <summary>
-    /// 获取实体上下文信息
-    /// 包括项目，聚合根
-    /// </summary>
-    /// <param name="entityId">聚合根id</param>
-    public async Task<GeneratorTemplateContext> GetEntityContextAsync(Guid entityId)
-    {
-        var result = new GeneratorTemplateContext();
-        var entity = await _entityModelManager.FindAsync(entityId);
-
-        if (entity == null) throw new UserFriendlyException("实体不存在");
-        // 获取实体模型数据类型
-        var dataTypes = await _dataTypeManager.ListAsync();
-        // 获取实体枚举
-        var enumTypes = await _enumTypeManager.ListAsync(entityId);
-        var list = RecursionEntity(new List<EntityModelDto>() { entity }, entity.ParentId, dataTypes, enumTypes);
-        result.EntityModel = list.FirstOrDefault();
-        var project = await _projectManager.GetAsync(entity.ProjectId);
-        result.Project = ObjectMapper.Map<ProjectDto, GeneratorProjectContext>(project);
-        return result;
-    }
-
+    
     private List<GeneratorEntityModelContext> BuildEntityModelContext(List<EntityModelDto> entities, List<DataTypeDto> dataTypes, List<EnumTypeDto> enumTypes)
     {
         var result = new List<GeneratorEntityModelContext>();

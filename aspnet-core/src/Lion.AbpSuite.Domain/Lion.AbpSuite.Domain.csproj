@@ -19,13 +19,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Data\Templates\Standard\**\*.txt" />
+    <EmbeddedResource Include="Data\Templates\Standard\**\*.ts" />
+    <EmbeddedResource Include="Data\Templates\Standard\**\*.vue" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Data\Templates\Standard\ApplicationContract\Dto\Delete{{aggregateCode}}Input.txt" />
-    <Content Include="Data\Templates\Standard\ApplicationContract\Dto\Page{{aggregateCode}}Input.txt" />
-    <Content Include="Data\Templates\Standard\ApplicationContract\Dto\Page{{aggregateCode}}Output.txt" />
-  </ItemGroup>
-
-  
 </Project>

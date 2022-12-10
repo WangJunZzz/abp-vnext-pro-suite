@@ -66,14 +66,16 @@
         /// <summary>
         /// 新增模板明细
         /// </summary>
-        public void AddTemplateDetail(Guid id, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
+        public TemplateDetail AddTemplateDetail(Guid id, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
         {
             // if (TemplateDetails.Any(e => e.Name == name))
             // {
             //     throw new UserFriendlyException("模板已存在");
             // }
 
-            TemplateDetails.Add(new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId));
+            var detail = new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId);
+            TemplateDetails.Add(detail);
+            return detail;
         }
 
         public void UpdateDetailContent(Guid id, string content)

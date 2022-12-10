@@ -21,10 +21,10 @@ public sealed class GeneratorAppServiceTests : AbpSuiteApplicationTestBase
         //     ProjectId = AbpSuiteTestConst.ProjectId,
         //     TemplateId = AbpSuiteTestConst.TemplateId
         // });
-        var result = await _generatorAppService.PreViewCodeAsync(new PreViewCodeInput()
-        {
-            ProjectId = AbpSuiteTestConst.ProjectId,
-            TemplateId = TemplateDataSeedConst.TemplateId
-        });
+        // var result = await _generatorAppService.PreViewCodeAsync(new PreViewCodeInput()
+        // {
+        //     ProjectId = AbpSuiteTestConst.ProjectId,
+        //     TemplateId = TemplateDataSeedConsts.TemplateId
+        // });
     }
 }

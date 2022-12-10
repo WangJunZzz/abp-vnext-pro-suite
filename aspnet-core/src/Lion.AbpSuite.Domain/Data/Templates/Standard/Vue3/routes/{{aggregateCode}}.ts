@@ -1,7 +1,7 @@
 import type { AppRouteModule } from '/@/router/types';
 import { LAYOUT } from '/@/router/constant';
 
-const {{ context.EntityModel.AggregateCodeCodeCamelCase }}: AppRouteModule = {
+const {{ context.EntityModel.AggregateCodeCamelCase }}: AppRouteModule = {
     path: '/{{ context.EntityModel.AggregateCodeCamelCase }}',
     name: '{{ context.EntityModel.AggregateCodeCode }}',
     component: LAYOUT,
