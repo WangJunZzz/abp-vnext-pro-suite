@@ -18,13 +18,13 @@ jobs:
         run: dotnet build aspnet-core/Lion.AbpSuite.sln
 
       - name: Run Xunit
-        run: dotnet test aspnet-core/services/test/Lion.AbpSuite.Domain.Tests/Lion.AbpSuite.Domain.Tests.csproj
+        run: dotnet test aspnet-core/test/Lion.AbpSuite.Domain.Tests/Lion.AbpSuite.Domain.Tests.csproj
 
       - name: Publish Lion.AbpSuite.HttpApi.Host
-        run: dotnet publish aspnet-core/services/host/Lion.AbpSuite.HttpApi.Host/Lion.AbpSuite.HttpApi.Host.csproj -o aspnet-core/services/host/Lion.AbpSuite.HttpApi.Host/publish
+        run: dotnet publish aspnet-core/host/Lion.AbpSuite.HttpApi.Host/Lion.AbpSuite.HttpApi.Host.csproj -o aspnet-core/host/Lion.AbpSuite.HttpApi.Host/publish
 
       - name: Publish Lion.AbpSuite.DbMigrator
-        run: dotnet publish aspnet-core/services/src/Lion.AbpSuite.DbMigrator/Lion.AbpSuite.DbMigrator.csproj -o aspnet-core/services/src/Lion.AbpSuite.DbMigrator/publish
+        run: dotnet publish aspnet-core/src/Lion.AbpSuite.DbMigrator/Lion.AbpSuite.DbMigrator.csproj -o aspnet-core/src/Lion.AbpSuite.DbMigrator/publish
 
       - name: Setting Version
         id: vars
@@ -45,14 +45,14 @@ jobs:
       - name: Push Lion.AbpSuite.HttpApi.Host Image
         uses: docker/build-push-action@v2
         with:
-          context: aspnet-core/services/host/Lion.AbpSuite.HttpApi.Host
+          context: aspnet-core/host/Lion.AbpSuite.HttpApi.Host
           push: true
           tags: zzzwangjun/lion.abp.suite:${{ steps.vars.outputs.RELEASE_VERSION }}
 
       - name: Push Lion.AbpSuite.DbMigrator Image
         uses: docker/build-push-action@v2
         with:
-          context: aspnet-core/services/src/Lion.AbpSuite.DbMigrator
+          context: aspnet-core/src/Lion.AbpSuite.DbMigrator
           push: true
           tags: zzzwangjun/lion.abp.suite.migrator:${{ steps.vars.outputs.RELEASE_VERSION }}
 
