@@ -1,0 +1,100 @@
+name: 部署
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dotnet 6.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0"
+          include-prerelease: True
+      - name: Build
+        run: dotnet build aspnet-core/Lion.AbpSuite.sln
+
+      - name: Run Xunit
+        run: dotnet test aspnet-core/services/test/Lion.AbpSuite.Domain.Tests/Lion.AbpSuite.Domain.Tests.csproj
+
+      - name: Publish Lion.AbpSuite.HttpApi.Host
+        run: dotnet publish aspnet-core/services/host/Lion.AbpSuite.HttpApi.Host/Lion.AbpSuite.HttpApi.Host.csproj -o aspnet-core/services/host/Lion.AbpSuite.HttpApi.Host/publish
+
+      - name: Publish Lion.AbpSuite.DbMigrator
+        run: dotnet publish aspnet-core/services/src/Lion.AbpSuite.DbMigrator/Lion.AbpSuite.DbMigrator.csproj -o aspnet-core/services/src/Lion.AbpSuite.DbMigrator/publish
+
+      - name: Setting Version
+        id: vars
+        run: echo ::set-output name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+
+      # docker login
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 设置 docker 环境
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # build 并且 push docker 镜像
+      - name: Push Lion.AbpSuite.HttpApi.Host Image
+        uses: docker/build-push-action@v2
+        with:
+          context: aspnet-core/services/host/Lion.AbpSuite.HttpApi.Host
+          push: true
+          tags: zzzwangjun/lion.abp.suite:${{ steps.vars.outputs.RELEASE_VERSION }}
+
+      - name: Push Lion.AbpSuite.DbMigrator Image
+        uses: docker/build-push-action@v2
+        with:
+          context: aspnet-core/services/src/Lion.AbpSuite.DbMigrator
+          push: true
+          tags: zzzwangjun/lion.abp.suite.migrator:${{ steps.vars.outputs.RELEASE_VERSION }}
+
+  vben28:
+    runs-on: ubuntu-latest
+    needs: api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 6.0.2
+
+      - name: Build
+        run: |
+          cd vben28
+          pnpm install
+          npm run build
+
+      - name: Setting Version
+        id: vars
+        run: echo ::set-output name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+
+      # docker login
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 设置 docker 环境
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # build 并且 push docker 镜像
+      - name: Push Vue3 Image
+        uses: docker/build-push-action@v2
+        with:
+          context: vben28
+          push: true
+          tags: zzzwangjun/lion.abp.suite.vben28:${{ steps.vars.outputs.RELEASE_VERSION }}
