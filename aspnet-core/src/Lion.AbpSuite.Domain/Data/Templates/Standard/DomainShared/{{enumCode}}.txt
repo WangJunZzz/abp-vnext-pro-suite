@@ -1,4 +1,4 @@
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+namespace {{ context.Project.NameSpace }}.Domain.Shared;
 
 /// <summary>
 /// {{ context.EnumType.Description }}

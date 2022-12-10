@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+using  {{ context.Project.NameSpace }}.Domain;
+using  {{ context.Project.NameSpace }}.Domain.Shared;
+
 namespace {{ context.Project.NameSpace }};
 
 public static class {{context.Project.ProjectName}}DbContextModelCreatingExtensions

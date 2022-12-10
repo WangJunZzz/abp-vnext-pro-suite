@@ -1,4 +1,9 @@
-﻿namespace Lion.AbpSuite.Templates.Aggregates
+﻿using Lion.AbpPro.Core;
+using Volo.Abp;
+using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.MultiTenancy;
+
+namespace Lion.AbpSuite.Templates.Aggregates
 {
     /// <summary>
     /// 模板 

@@ -1,4 +1,9 @@
-﻿namespace Lion.AbpSuite.Templates;
+﻿
+
+using Lion.AbpSuite.Templates.Aggregates;
+using Volo.Abp;
+
+namespace Lion.AbpSuite.Templates;
 
 public class TemplateManager : AbpSuiteDomainService
 {

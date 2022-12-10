@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using  {{ context.Project.NameSpace }}.Domain;
+using  {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
 

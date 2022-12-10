@@ -1,4 +1,7 @@
-namespace {{ context.Project.NameSpace }}.{{ context.EntityModel.AggregateCodePluralized }};
+using Volo.Abp;
+using  {{ context.Project.NameSpace }}.Domain.Shared;
+
+namespace {{ context.Project.NameSpace }}.Domain;
 
 public class {{ context.EntityModel.Code }}Manager : DomainService
 {

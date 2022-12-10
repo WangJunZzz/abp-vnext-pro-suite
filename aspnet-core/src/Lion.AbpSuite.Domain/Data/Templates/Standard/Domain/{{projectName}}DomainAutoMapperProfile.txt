@@ -1,4 +1,8 @@
-﻿namespace {{ context.Project.NameSpace }}.Domain;
+﻿using AutoMapper;
+using  {{ context.Project.NameSpace }}.Domain;
+using  {{ context.Project.NameSpace }}.Domain.Shared;
+
+namespace {{ context.Project.NameSpace }}.Domain;
 
 public class {{ context.Project.ProjectName }}DomainAutoMapperProfile :Profile 
 {

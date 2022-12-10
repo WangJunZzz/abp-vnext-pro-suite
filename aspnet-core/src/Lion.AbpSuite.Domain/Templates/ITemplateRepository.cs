@@ -1,4 +1,8 @@
-﻿namespace Lion.AbpSuite.Templates;
+﻿
+using Lion.AbpSuite.Templates.Aggregates;
+using Volo.Abp.Domain.Repositories;
+
+namespace Lion.AbpSuite.Templates;
 
 public interface ITemplateRepository : IBasicRepository<Template, Guid>
 {
