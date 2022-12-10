@@ -43,6 +43,7 @@
         <PackageReference Include="MiniProfiler.EntityFrameworkCore" />
         <PackageReference Include="MiniProfiler.Shared" />
         <PackageReference Include="Lion.AbpPro.Shared.Hosting.Microservices" />
+        <PackageReference Include="Hangfire.Redis.StackExchange" />
     </ItemGroup>
 
     <ItemGroup>

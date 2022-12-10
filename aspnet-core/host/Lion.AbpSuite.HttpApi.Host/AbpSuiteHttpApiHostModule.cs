@@ -1,3 +1,4 @@
+using Hangfire.Redis;
 using Lion.AbpPro;
 using Lion.AbpPro.DataDictionaryManagement;
 using Lion.AbpPro.NotificationManagement;
@@ -40,7 +41,7 @@ namespace Lion.AbpSuite
             ConfigureCache(context);
             ConfigureSwaggerServices(context);
             ConfigureJwtAuthentication(context, configuration);
-            ConfigureHangfireMysql(context);
+            ConfigureHangfire(context);
             ConfigureMiniProfiler(context);
             ConfigureIdentity(context);
             ConfigureAuditLog(context);
@@ -93,28 +94,21 @@ namespace Lion.AbpSuite
  
    
 
-        private void ConfigureHangfireMysql(ServiceConfigurationContext context)
+        private void ConfigureHangfire(ServiceConfigurationContext context)
         {
+            var redisStorageOptions = new RedisStorageOptions()
+            {
+                Db = context.Services.GetConfiguration().GetValue<int>("Hangfire:Redis:DB")
+            };
+
             Configure<AbpBackgroundJobOptions>(options => { options.IsJobExecutionEnabled = true; });
             context.Services.AddHangfireServer();
             context.Services.AddHangfire(config =>
             {
-                config.UseStorage(new MySqlStorage(
-                    context.Services.GetConfiguration().GetConnectionString("Default"),
-                    new MySqlStorageOptions()
-                    {
-                        //CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                        //SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                        //QueuePollInterval = TimeSpan.Zero,
-                        //UseRecommendedIsolationLevel = true,
-                        //DisableGlobalLocks = true
-                        JobExpirationCheckInterval = TimeSpan.FromMinutes(30),
-                        TablesPrefix = "Hangfire_"
-                    }));
+                config.UseRedisStorage(ConnectionMultiplexer.Connect(context.Services.GetConfiguration().GetValue<string>("Hangfire:Redis:Host")), redisStorageOptions);
                 var delaysInSeconds = new[] { 10, 60, 60 * 3 }; // 重试时间间隔
                 const int Attempts = 3; // 重试次数
                 config.UseFilter(new AutomaticRetryAttribute() { Attempts = Attempts, DelaysInSeconds = delaysInSeconds });
-                config.UseFilter(new AutoDeleteAfterSuccessAttributer(TimeSpan.FromDays(7)));
                 config.UseFilter(new JobRetryLastFilter(Attempts));
             });
         }
