@@ -496,7 +496,7 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
     ifShow: false,
     componentProps: {
       max: 4096,
-      min: 1,
+      min: 0,
     },
   },
   {
@@ -506,7 +506,7 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
     ifShow: false,
     componentProps: {
       max: 4096,
-      min: 1,
+      min: 0,
     },
   },
   {
@@ -649,7 +649,6 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
               decimalScale: undefined,
             });
           }
-          
           if (option.code == 'Guid') {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: false },
@@ -657,7 +656,7 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
               { field: 'decimalPrecision', ifShow: false },
               { field: 'decimalScale', ifShow: false },
             ]);
-
+          }
           if (option.code == 'bool') {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: false },

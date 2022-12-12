@@ -28,7 +28,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
     {
         var result = new GeneratorProjectTemplateContext();
         var entities = await _entityModelManager.FindByProjectIdAsync(projectId);
-       
+
         // 获取实体模型数据类型
         var dataTypes = await _dataTypeManager.ListAsync();
         // 获取实体枚举
@@ -39,7 +39,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
         result.EntityModels = BuildEntityModelContext(entities, dataTypes, enumTypes);
         return result;
     }
-    
+
     private List<GeneratorEntityModelContext> BuildEntityModelContext(List<EntityModelDto> entities, List<DataTypeDto> dataTypes, List<EnumTypeDto> enumTypes)
     {
         var result = new List<GeneratorEntityModelContext>();
@@ -115,6 +115,8 @@ public class ProjectEntityManager : AbpSuiteDomainService
                     }
                 }
 
+                var dataType = property.IsEnum ? property.EnumType.Code : property.DataType.Code;
+                property.Null = FormatNull(detailEntityModelProperty.IsRequired, dataType);
                 child.Properties.Add(property);
 
                 #endregion
@@ -124,6 +126,17 @@ public class ProjectEntityManager : AbpSuiteDomainService
         }
 
         return result;
+    }
+
+
+    private string FormatNull(bool isRequired, string code)
+    {
+        if (code.ToLower() != "string" && !isRequired)
+        {
+            return "?";
+        }
+
+        return String.Empty;
     }
 
     private List<GeneratorTreeEntityModelContext> RecursionEntity(List<EntityModelDto> entities, Guid? parentId, List<DataTypeDto> dataTypes, List<EnumTypeDto> enumTypes)
@@ -202,7 +215,8 @@ public class ProjectEntityManager : AbpSuiteDomainService
                         };
                     }
                 }
-
+                var dataType = property.IsEnum ? property.EnumType.Code : property.DataType.Code;
+                property.Null = FormatNull(detailEntityModelProperty.IsRequired, dataType);
                 child.Properties.Add(property);
             }
 

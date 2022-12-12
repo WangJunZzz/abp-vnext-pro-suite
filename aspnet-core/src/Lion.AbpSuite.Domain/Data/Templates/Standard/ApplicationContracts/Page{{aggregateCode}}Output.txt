@@ -23,12 +23,12 @@ public class Page{{ context.EntityModel.Code }}Output
         /// <summary>
         /// {{ prop.Description }}
         /// </summary>
-        public {{ prop.DataType.Code }} {{ prop.Code }} { get;  set; }
+        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }
             {{~ end ~}}
        {{~ end ~}}  
        
-       /// <summary>
-       /// 创建时间
-       /// </summary>       
-       public DateTime CreationTime { get; set; }     
+        /// <summary>
+        /// 创建时间
+        /// </summary>       
+        public DateTime CreationTime { get; set; }     
 }

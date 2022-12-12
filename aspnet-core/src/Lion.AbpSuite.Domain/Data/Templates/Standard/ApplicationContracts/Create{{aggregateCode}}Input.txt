@@ -22,8 +22,10 @@ public class Create{{ context.EntityModel.Code }}Input
         /// </summary>
         {{~ if prop.IsRequired ~}}
         [Required(ErrorMessage = "{{prop.Description}}不能为空")]
-        {{~ end ~}}
         public {{ prop.DataType.Code }} {{ prop.Code }} { get;  set; }
+            {{~ else ~}}
+        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }            
             {{~ end ~}}
-       {{~ end ~}}
+            {{~ end ~}}
+       {{~ end ~}}          
 }

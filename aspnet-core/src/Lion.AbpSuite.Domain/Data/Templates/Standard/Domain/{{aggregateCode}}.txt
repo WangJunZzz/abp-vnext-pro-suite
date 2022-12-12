@@ -25,9 +25,9 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
             {{-  for prop in context.EntityModel.Properties -}}
             {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
             {{- if prop.IsEnum ~}}
-            {{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
            	{{- else ~}}
-            {{ prop.DataType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
             {{- end ~}}
             {{- if for.last; "\r\n"; else; ; end ~}}
             {{-  end ~}}
@@ -43,12 +43,12 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// <summary>
         /// {{ prop.Description }}
         /// </summary>
-        public {{ prop.EnumType.Code }} {{ prop.Code }} { get; private set; }
+        public {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.Code }} { get; private set; }
             {{~ else ~}}
         /// <summary>
         /// {{ prop.Description }}
         /// </summary>
-        public {{ prop.DataType.Code }} {{ prop.Code }} { get; private set; }
+        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get; private set; }
             {{~ end ~}}
        {{~ end ~}}
     
@@ -72,7 +72,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// <summary>
         /// 设置{{ prop.Description }}
         /// </summary>
-        private void Set{{ prop.Code }}({{ prop.EnumType.Code }} {{prop.CodeCamelCase}})
+        private void Set{{ prop.Code }}({{ prop.EnumType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
         {
              {{ prop.Code }} = {{ prop.Code }};
         }
@@ -81,7 +81,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// <summary>
         /// 设置{{ prop.Description }}
         /// </summary>        
-        private void Set{{ prop.Code }}({{ prop.DataType.Code }} {{prop.CodeCamelCase}})
+        private void Set{{ prop.Code }}({{ prop.DataType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
         {
             {{~ if prop.DataType.Code=="string" ~}}
                 {{~ if prop.IsRequired ~}}
@@ -102,9 +102,9 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
             {{-  for prop in context.EntityModel.Properties -}}
             {{- if for.first;  "\r\n"; else; ",\r\n"; end ~}}
             {{- if prop.IsEnum ~}}
-            {{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
            	{{- else ~}}
-            {{ prop.DataType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
             {{- end ~}}
             {{- if for.last; "\r\n"; else; ; end ~}}
             {{-  end ~}}

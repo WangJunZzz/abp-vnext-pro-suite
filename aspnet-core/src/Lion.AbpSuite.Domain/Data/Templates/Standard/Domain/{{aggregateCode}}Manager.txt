@@ -35,9 +35,9 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
             {{-  for prop in context.EntityModel.Properties -}}
              {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
              {{- if prop.IsEnum ~}}
-            {{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
              {{- else ~}}
-            {{ prop.DataType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
              {{- end ~}}
            {{- if for.last; "\r\n"; else; ; end ~}}
             {{-  end ~}}
@@ -58,9 +58,9 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
             {{-  for prop in context.EntityModel.Properties -}}
              {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
              {{- if prop.IsEnum ~}}
-            {{ prop.EnumType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
              {{- else ~}}
-            {{ prop.DataType.Code }} {{ prop.CodeCamelCase }}
+            {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
              {{- end ~}}
            {{- if for.last; "\r\n"; else; ; end ~}}
             {{-  end ~}}

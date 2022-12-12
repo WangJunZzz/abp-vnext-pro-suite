@@ -12,7 +12,10 @@ public class GeneratorTreeEntityModelPropertyContext
     /// 名称
     /// </summary>
     public string Code { get; set; }
-    
+    /// <summary>
+    /// 如果不是必填 Guid? Int? DateTime? 枚举?
+    /// </summary>
+    public string Null { get; set; }
     /// <summary>
     /// 首字母小写
     /// </summary>

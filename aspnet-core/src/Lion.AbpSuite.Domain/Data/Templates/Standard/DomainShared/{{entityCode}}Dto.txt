@@ -20,12 +20,12 @@ public class {{ context.EntityModel.Code }}Dto
         /// <summary>
         /// {{ prop.Description }}
         /// </summary>
-        public {{ prop.EnumType.Code }} {{ prop.Code }} { get;  set; }
+        public {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }
             {{~ else ~}}
         /// <summary>
         /// {{ prop.Description }}
         /// </summary>
-        public {{ prop.DataType.Code }} {{ prop.Code }} { get;  set; }
+        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }
             {{~ end ~}}
        {{~ end ~}}
     
@@ -43,10 +43,10 @@ public class {{ context.EntityModel.Code }}Dto
           {{~ end ~}}
       {{~ end ~}}
                     
-       private const string CacheKeyFormat = "i:{0}";
+        private const string CacheKeyFormat = "i:{0}";
       
-       public static string CalculateCacheKey(Guid id)
-       {
-           return string.Format(CacheKeyFormat, id);
-       }
+        public static string CalculateCacheKey(Guid id)
+        {
+            return string.Format(CacheKeyFormat, id);
+        }
 }
