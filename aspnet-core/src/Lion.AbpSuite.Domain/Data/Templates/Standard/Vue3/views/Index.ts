@@ -1,6 +1,5 @@
 import { FormSchema } from '/@/components/Table';
 import { BasicColumn } from '/@/components/Table';
-import { {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy, Delete{{ context.EntityModel.AggregateCode }}Input } from '/@/services/ServiceProxies';
 import {
    {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy,
     Delete{{ context.EntityModel.AggregateCode }}Input,
@@ -85,5 +84,5 @@ export async function deleteAsync({ id }) {
   const {{ context.EntityModel.AggregateCodeCamelCase }}ServiceProxy = new {{ context.EntityModel.AggregateCodePluralized }}ServiceProxy();
   const request = new Delete{{ context.EntityModel.AggregateCode }}Input();
   request.id = id;
-  await {{ context.EntityModel.AggregateCodeCamelCase }}ServiceProxy.update(request);
+  await {{ context.EntityModel.AggregateCodeCamelCase }}ServiceProxy.delete(request);
 }

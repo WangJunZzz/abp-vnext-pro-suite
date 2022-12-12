@@ -421,8 +421,6 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
           entityModelId: formModel.id,
         },
         onChange(e, option) {
-          debugger;
-          console.log(option);
           if (option.isEnum) {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: false },
@@ -462,6 +460,15 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
           }
 
           if (option.code == 'bool') {
+            formActionType.updateSchema([
+              { field: 'maxLength', ifShow: false },
+              { field: 'minLength', ifShow: false },
+              { field: 'decimalPrecision', ifShow: false },
+              { field: 'decimalScale', ifShow: false },
+            ]);
+          }
+
+          if (option.code == 'Guid') {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: false },
               { field: 'minLength', ifShow: false },
@@ -642,6 +649,14 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
               decimalScale: undefined,
             });
           }
+          
+          if (option.code == 'Guid') {
+            formActionType.updateSchema([
+              { field: 'maxLength', ifShow: false },
+              { field: 'minLength', ifShow: false },
+              { field: 'decimalPrecision', ifShow: false },
+              { field: 'decimalScale', ifShow: false },
+            ]);
 
           if (option.code == 'bool') {
             formActionType.updateSchema([

@@ -25,7 +25,7 @@ public class EfCore{{ context.EntityModel.Code }}Repository :
                 .ToListAsync();
         }
 
-        public async Task<long> GetCountAsync(string filter = null)
+        public async Task<long> GetCountAsync()
         {
             return await (await GetDbSetAsync()).CountAsync();
         }

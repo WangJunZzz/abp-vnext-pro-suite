@@ -23,9 +23,6 @@ public class Page{{ context.EntityModel.Code }}Output
         /// <summary>
         /// {{ prop.Description }}
         /// </summary>
-        {{~ if prop.IsRequired ~}}
-        [Required(ErrorMessage = "{{prop.Description}}不能为空")]
-        {{~ end ~}}
         public {{ prop.DataType.Code }} {{ prop.Code }} { get;  set; }
             {{~ end ~}}
        {{~ end ~}}  

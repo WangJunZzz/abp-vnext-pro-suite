@@ -25,8 +25,8 @@ public class DataTypeDataSeedContributor : IDataSeedContributor, ITransientDepen
             { "decimal", "Decimal" },
             { "float", "Float" },
             { "bool", "Bool" },
-            { "guid", "Guid" },
-            { "datetime", "DateTime" }
+            { "Guid", "Guid" },
+            { "DateTime", "DateTime" }
         };
 
         foreach (var item in dic)
@@ -60,11 +60,11 @@ public class DataTypeDataSeedContributor : IDataSeedContributor, ITransientDepen
                 {
                     id = DataTypeDataSeedConst.DataTypeBoolId;
                 }
-                if (item.Key == "guid")
+                if (item.Key == "Guid")
                 {
                     id = DataTypeDataSeedConst.DataTypeGuidId;
                 }
-                if (item.Key == "datetime")
+                if (item.Key == "Datetime")
                 {
                     id = DataTypeDataSeedConst.DataTypeDateTimeId;
                 }

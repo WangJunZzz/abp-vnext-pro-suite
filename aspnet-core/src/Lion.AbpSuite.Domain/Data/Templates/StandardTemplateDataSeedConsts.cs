@@ -124,8 +124,8 @@ public class StandardTemplateDataSeedConsts
                 public static string Name = "views";
                 public static string IndexName = "Index.ts";
                 public static string IndexPath = "/Lion.AbpSuite/Data/Templates/Standard/Vue3/views/Index.ts";
-                public static string IndexVueName = "Index.Vue";
-                public static string IndexVuePath = "/Lion.AbpSuite/Data/Templates/Standard/Vue3/views/Index.Vue";
+                public static string IndexVueName = "Index.vue";
+                public static string IndexVuePath = "/Lion.AbpSuite/Data/Templates/Standard/Vue3/views/Index.vue";
                 public static string CreateVueName = "Create{{aggregateCode}}.vue";
                 public static string CreateVuePath = "/Lion.AbpSuite/Data/Templates/Standard/Vue3/views/Create{{aggregateCode}}.vue";
                 public static string UpdateVueName = "Update{{aggregateCode}}.vue";

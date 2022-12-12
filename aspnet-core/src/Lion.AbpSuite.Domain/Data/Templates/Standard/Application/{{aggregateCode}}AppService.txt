@@ -37,15 +37,29 @@ public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ 
     /// </summary>
     public Task CreateAsync(Create{{ context.EntityModel.Code }}Input input)
     {
-        return  _{{ context.EntityModel.CodeCamelCase }}Manager.CreateAsync(GuidGenerator.Create(), {{-  for prop in context.EntityModel.Properties -}} input.{{ prop.Code }}, {{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+        return  _{{ context.EntityModel.CodeCamelCase }}Manager.CreateAsync(
+         GuidGenerator.Create() 
+         {{-  for prop in context.EntityModel.Properties -}}
+         {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
+         input.{{ prop.Code }}
+         {{- if for.last; "\r\n"; else; ; end ~}}
+         {{-  end ~}}
+				);
     }
 
     /// <summary>
     /// 编辑{{ context.EntityModel.Description }}
     /// </summary>
     public Task UpdateAsync(Update{{ context.EntityModel.Code }}Input input)
-    {
-        return  _{{ context.EntityModel.CodeCamelCase }}Manager.UpdateAsync(input.Id, {{-  for prop in context.EntityModel.Properties -}} input.{{ prop.Code }}, {{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+    { 
+        return  _{{ context.EntityModel.CodeCamelCase }}Manager.UpdateAsync(
+         input.Id
+         {{-  for prop in context.EntityModel.Properties -}}
+         {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
+         input.{{ prop.Code }}
+         {{- if for.last; "\r\n"; else; ; end ~}}
+         {{-  end ~}}
+         );
     }
 
     /// <summary>

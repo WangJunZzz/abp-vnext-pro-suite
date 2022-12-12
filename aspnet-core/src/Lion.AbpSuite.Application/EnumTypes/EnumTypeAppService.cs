@@ -23,6 +23,7 @@ public class EnumTypeAppService : AbpSuiteAppService, IEnumTypeAppService
     public async Task<PagedResultDto<PageEnumTypePropertyOutput>> PagePropertyAsync(PageEnumTypePropertyInput input)
     {
         var entity = await _enumTypeManager.FindAsync(input.Id);
+        if (entity == null) return new PagedResultDto<PageEnumTypePropertyOutput>();
         var result = new PagedResultDto<PageEnumTypePropertyOutput>
         {
             TotalCount = entity.EnumTypeProperties.Count

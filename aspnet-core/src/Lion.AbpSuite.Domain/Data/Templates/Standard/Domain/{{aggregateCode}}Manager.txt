@@ -1,4 +1,6 @@
 using Volo.Abp;
+using Volo.Abp.Domain.Services;
+using Volo.Abp.ObjectMapping;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Domain;
@@ -6,10 +8,12 @@ namespace {{ context.Project.NameSpace }}.Domain;
 public class {{ context.EntityModel.Code }}Manager : DomainService
 {
       private readonly I{{ context.EntityModel.Code }}Repository _{{ context.EntityModel.CodeCamelCase }}Repository;
-    
-      public ProjectManager(I{{ context.EntityModel.Code }}Repository {{ context.EntityModel.CodeCamelCase }}Repository)
+      private readonly IObjectMapper _objectMapper;
+      
+      public {{ context.EntityModel.Code }}Manager(I{{ context.EntityModel.Code }}Repository {{ context.EntityModel.CodeCamelCase }}Repository,IObjectMapper objectMapper)
       {
           _{{ context.EntityModel.CodeCamelCase }}Repository = {{ context.EntityModel.CodeCamelCase }}Repository;
+          _objectMapper = objectMapper;
       }
       
        public async Task<List<{{ context.EntityModel.Code }}Dto>> GetListAsync(int maxResultCount = 10, int skipCount = 0)
@@ -43,7 +47,7 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
             if (entity != null) throw new UserFriendlyException($"{{ context.EntityModel.Description }}已存在");
             entity = new {{ context.EntityModel.Code }}(id, {{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
             entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.InsertAsync(entity);
-            return ObjectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
+            return _objectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
         }   
         
         /// <summary>
@@ -64,9 +68,9 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
         {
             var entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.FindAsync(id);
             if (entity == null) throw new UserFriendlyException($"{{ context.EntityModel.Description }}不存在");
-            entity.Update(id, {{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+            entity.Update(id, {{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }},{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
             entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.UpdateAsync(entity);
-            return ObjectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
+            return _objectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
         }     
 
         /// <summary>
