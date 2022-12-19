@@ -16,15 +16,11 @@ public static class {{context.Project.ProjectName}}DbContextModelCreatingExtensi
          {
              b.ToTable({{context.Project.ProjectName}}DomainConsts.DbTablePrefix + nameof({{ model.Code}}).Pluralize());
              {{~ for property in model.Properties ~}}
+             {{~ if  property.IsRequired && property.IsDataType && property.DataType.Code == "string" ~}}
+             b.Property(e => e.{{ property.Code}}).IsRequired().HasMaxLength({{ property.MaxLength}}).HasComment("{{ property.Description}}");
+             {{~ else ~}}
              b.Property(e => e.{{ property.Code}}).HasComment("{{ property.Description}}");
-                 {{~ if  property.IsRequired ~}}
-             b.Property(e => e.{{ property.Code}}).IsRequired();
-                 {{~ end ~}}
-                 {{~ if  property.IsDataType ~}}
-                    {{~ if  property.DataType.Code == "string" ~}}
-             b.Property(e => e.{{ property.Code}}).HasMaxLength({{ property.MaxLength}});
-                    {{~ end ~}}        
-                 {{~ end ~}}                 
+             {{~ end ~}}
              {{~ end ~}}
              b.ConfigureByConvention();
          });

@@ -4,7 +4,8 @@
       <BasicForm @register="register" />
       <div class="flex justify-center">
         <a-button @click="resetFields"> 重置 </a-button>
-        <a-button class="!ml-4" type="primary" @click="customSubmitFunc">确认</a-button>
+        <a-button class="!ml-4" type="primary" @click="customSubmitFunc">预览</a-button>
+        <a-button class="!ml-4" type="primary" @click="customDownFunc">下载</a-button>
       </div>
     </div>
   </PageWrapper>
@@ -12,11 +13,10 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form';
-  import { createFormSchema } from './Generator';
+  import { createFormSchema, downAsync } from './Generator';
   import { Divider } from 'ant-design-vue';
   import { PageWrapper } from '/@/components/Page';
   import { useRouter } from 'vue-router';
-  import { useMessage } from '/@/hooks/web/useMessage';
   export default defineComponent({
     components: {
       BasicForm,
@@ -41,7 +41,14 @@
           });
         } catch (error) {}
       }
-      return { register, customSubmitFunc, resetFields };
+      async function customDownFunc() {
+        try {
+          const values = await validate();
+          const { templateId, projectId } = values;
+          await downAsync(templateId, projectId);
+        } catch (error) {}
+      }
+      return { register, customSubmitFunc, resetFields, customDownFunc };
     },
   });
 </script>

@@ -1,4 +1,5 @@
-﻿using Lion.AbpSuite.Generators;
+﻿using System.Net;
+using Lion.AbpSuite.Generators;
 using Lion.AbpSuite.Generators.Dto;
 
 namespace Lion.AbpSuite.Controllers;
@@ -18,5 +19,13 @@ public class GeneratorController : AbpSuiteController, IGeneratorAppService
     public Task<List<TemplateTreeDto>> PreViewCodeAsync(PreViewCodeInput input)
     {
         return _generatorAppService.PreViewCodeAsync(input);
+    }
+
+    [HttpPost("Down")]
+    [SwaggerOperation(summary: "下载", Tags = new[] { "Generator" })]
+    [ProducesResponseType(typeof(FileContentResult), (int)HttpStatusCode.OK)]
+    public Task<ActionResult> DownCodeAsync(DownCodeInput input)
+    {
+        return _generatorAppService.DownCodeAsync(input);
     }
 }

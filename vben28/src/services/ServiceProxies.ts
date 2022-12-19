@@ -1160,8 +1160,8 @@ export class DataDictionaryServiceProxy extends ServiceProxyBase {
      * @param body (optional) 
      * @return Success
      */
-    deleteDictinaryType(body: IdInput | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
-        let url_ = this.baseUrl + "/DataDictionary/deleteDictinaryType";
+    deleteDataDictionaryType(body: IdInput | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/DataDictionary/deleteDataDictionaryType";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -1185,11 +1185,11 @@ export class DataDictionaryServiceProxy extends ServiceProxyBase {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteDictinaryType(_response));
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteDataDictionaryType(_response));
         });
     }
 
-    protected processDeleteDictinaryType(response: AxiosResponse): Promise<void> {
+    protected processDeleteDataDictionaryType(response: AxiosResponse): Promise<void> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -3484,108 +3484,6 @@ export class GeneratorServiceProxy extends ServiceProxyBase {
      * @param body (optional) 
      * @return Success
      */
-    preView(body: PreViewInput | undefined , cancelToken?: CancelToken | undefined): Promise<string> {
-        let url_ = this.baseUrl + "/Generator/PreView";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(body);
-
-        let options_ = <AxiosRequestConfig>{
-            data: content_,
-            method: "POST",
-            url: url_,
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "text/plain"
-            },
-            cancelToken
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.instance.request(transformedOptions_);
-        }).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
-            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPreView(_response));
-        });
-    }
-
-    protected processPreView(response: AxiosResponse): Promise<string> {
-        const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
-        if (status === 200) {
-            const _responseText = response.data;
-            let result200: any = null;
-            let resultData200  = _responseText;
-                result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
-            return Promise.resolve<string>(result200);
-
-        } else if (status === 403) {
-            const _responseText = response.data;
-            let result403: any = null;
-            let resultData403  = _responseText;
-            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
-            return throwException("Forbidden", status, _responseText, _headers, result403);
-
-        } else if (status === 401) {
-            const _responseText = response.data;
-            let result401: any = null;
-            let resultData401  = _responseText;
-            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
-            return throwException("Unauthorized", status, _responseText, _headers, result401);
-
-        } else if (status === 400) {
-            const _responseText = response.data;
-            let result400: any = null;
-            let resultData400  = _responseText;
-            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
-            return throwException("Bad Request", status, _responseText, _headers, result400);
-
-        } else if (status === 404) {
-            const _responseText = response.data;
-            let result404: any = null;
-            let resultData404  = _responseText;
-            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
-            return throwException("Not Found", status, _responseText, _headers, result404);
-
-        } else if (status === 501) {
-            const _responseText = response.data;
-            let result501: any = null;
-            let resultData501  = _responseText;
-            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
-            return throwException("Server Error", status, _responseText, _headers, result501);
-
-        } else if (status === 500) {
-            const _responseText = response.data;
-            let result500: any = null;
-            let resultData500  = _responseText;
-            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
-            return throwException("Server Error", status, _responseText, _headers, result500);
-
-        } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-        }
-        return Promise.resolve<string>(null as any);
-    }
-
-    /**
-     * 预览
-     * @param body (optional) 
-     * @return Success
-     */
     preViewCode(body: PreViewCodeInput | undefined , cancelToken?: CancelToken | undefined): Promise<TemplateTreeDto[]> {
         let url_ = this.baseUrl + "/Generator/PreViewCode";
         url_ = url_.replace(/[?&]$/, "");
@@ -3687,6 +3585,112 @@ export class GeneratorServiceProxy extends ServiceProxyBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Promise.resolve<TemplateTreeDto[]>(null as any);
+    }
+
+    /**
+     * 下载
+     * @param body (optional) 
+     * @return Success
+     */
+    down(body: DownCodeInput | undefined , cancelToken?: CancelToken | undefined): Promise<FileResponse> {
+        let url_ = this.baseUrl + "/Generator/Down";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            responseType: "blob",
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDown(_response));
+        });
+    }
+
+    protected processDown(response: AxiosResponse): Promise<FileResponse> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers["content-disposition"] : undefined;
+            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
+            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
+            if (fileName) {
+                fileName = decodeURIComponent(fileName);
+            } else {
+                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            }
+            return Promise.resolve({ fileName: fileName, status: status, data: new Blob([response.data], { type: response.headers["content-type"] }), headers: _headers });
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403  = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401  = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400  = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404  = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501  = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<FileResponse>(null as any);
     }
 }
 
@@ -10573,6 +10577,7 @@ export class ApplicationConfigurationDto implements IApplicationConfigurationDto
     timing!: TimingDto;
     clock!: ClockDto;
     objectExtensions!: ObjectExtensionsDto;
+    extraProperties!: { [key: string]: any; } | undefined;
 
     constructor(data?: IApplicationConfigurationDto) {
         if (data) {
@@ -10596,6 +10601,13 @@ export class ApplicationConfigurationDto implements IApplicationConfigurationDto
             this.timing = _data["timing"] ? TimingDto.fromJS(_data["timing"]) : <any>undefined;
             this.clock = _data["clock"] ? ClockDto.fromJS(_data["clock"]) : <any>undefined;
             this.objectExtensions = _data["objectExtensions"] ? ObjectExtensionsDto.fromJS(_data["objectExtensions"]) : <any>undefined;
+            if (_data["extraProperties"]) {
+                this.extraProperties = {} as any;
+                for (let key in _data["extraProperties"]) {
+                    if (_data["extraProperties"].hasOwnProperty(key))
+                        (<any>this.extraProperties)![key] = _data["extraProperties"][key];
+                }
+            }
         }
     }
 
@@ -10619,6 +10631,13 @@ export class ApplicationConfigurationDto implements IApplicationConfigurationDto
         data["timing"] = this.timing ? this.timing.toJSON() : <any>undefined;
         data["clock"] = this.clock ? this.clock.toJSON() : <any>undefined;
         data["objectExtensions"] = this.objectExtensions ? this.objectExtensions.toJSON() : <any>undefined;
+        if (this.extraProperties) {
+            data["extraProperties"] = {};
+            for (let key in this.extraProperties) {
+                if (this.extraProperties.hasOwnProperty(key))
+                    (<any>data["extraProperties"])[key] = (<any>this.extraProperties)[key];
+            }
+        }
         return data;
     }
 }
@@ -10635,6 +10654,7 @@ export interface IApplicationConfigurationDto {
     timing: TimingDto;
     clock: ClockDto;
     objectExtensions: ObjectExtensionsDto;
+    extraProperties: { [key: string]: any; } | undefined;
 }
 
 export class ApplicationFeatureConfigurationDto implements IApplicationFeatureConfigurationDto {
@@ -10957,6 +10977,7 @@ export enum ControlType {
     Aggregate = 10,
     Entity = 20,
     Enum = 30,
+    Global = 40,
 }
 
 export class ControllerApiDescriptionModel implements IControllerApiDescriptionModel {
@@ -12289,6 +12310,46 @@ export class DeleteTemplateInput implements IDeleteTemplateInput {
 
 export interface IDeleteTemplateInput {
     id: string;
+}
+
+export class DownCodeInput implements IDownCodeInput {
+    templateId!: string;
+    projectId!: string;
+
+    constructor(data?: IDownCodeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.projectId = _data["projectId"];
+        }
+    }
+
+    static fromJS(data: any): DownCodeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DownCodeInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["projectId"] = this.projectId;
+        return data;
+    }
+}
+
+export interface IDownCodeInput {
+    templateId: string;
+    projectId: string;
 }
 
 export class EntityExtensionDto implements IEntityExtensionDto {
@@ -18202,50 +18263,6 @@ export interface IPreViewCodeInput {
     projectId: string;
 }
 
-export class PreViewInput implements IPreViewInput {
-    aggregateId!: string;
-    templateId!: string;
-    templateDetailId!: string;
-
-    constructor(data?: IPreViewInput) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.aggregateId = _data["aggregateId"];
-            this.templateId = _data["templateId"];
-            this.templateDetailId = _data["templateDetailId"];
-        }
-    }
-
-    static fromJS(data: any): PreViewInput {
-        data = typeof data === 'object' ? data : {};
-        let result = new PreViewInput();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["aggregateId"] = this.aggregateId;
-        data["templateId"] = this.templateId;
-        data["templateDetailId"] = this.templateDetailId;
-        return data;
-    }
-}
-
-export interface IPreViewInput {
-    aggregateId: string;
-    templateId: string;
-    templateDetailId: string;
-}
-
 export class ProjectDto implements IProjectDto {
     id!: string;
     creationTime!: dayjs.Dayjs;
@@ -18380,6 +18397,11 @@ export class PropertyApiDescriptionModel implements IPropertyApiDescriptionModel
     type!: string | undefined;
     typeSimple!: string | undefined;
     isRequired!: boolean;
+    minLength!: number | undefined;
+    maxLength!: number | undefined;
+    minimum!: string | undefined;
+    maximum!: string | undefined;
+    regex!: string | undefined;
 
     constructor(data?: IPropertyApiDescriptionModel) {
         if (data) {
@@ -18397,6 +18419,11 @@ export class PropertyApiDescriptionModel implements IPropertyApiDescriptionModel
             this.type = _data["type"];
             this.typeSimple = _data["typeSimple"];
             this.isRequired = _data["isRequired"];
+            this.minLength = _data["minLength"];
+            this.maxLength = _data["maxLength"];
+            this.minimum = _data["minimum"];
+            this.maximum = _data["maximum"];
+            this.regex = _data["regex"];
         }
     }
 
@@ -18414,6 +18441,11 @@ export class PropertyApiDescriptionModel implements IPropertyApiDescriptionModel
         data["type"] = this.type;
         data["typeSimple"] = this.typeSimple;
         data["isRequired"] = this.isRequired;
+        data["minLength"] = this.minLength;
+        data["maxLength"] = this.maxLength;
+        data["minimum"] = this.minimum;
+        data["maximum"] = this.maximum;
+        data["regex"] = this.regex;
         return data;
     }
 }
@@ -18424,6 +18456,11 @@ export interface IPropertyApiDescriptionModel {
     type: string | undefined;
     typeSimple: string | undefined;
     isRequired: boolean;
+    minLength: number | undefined;
+    maxLength: number | undefined;
+    minimum: string | undefined;
+    maximum: string | undefined;
+    regex: string | undefined;
 }
 
 export enum RelationalType {
@@ -19214,6 +19251,7 @@ export interface ITemplateDtoPagedResultDto {
 export class TemplateTreeDto implements ITemplateTreeDto {
     key!: string;
     templateType!: TemplateType;
+    controlType!: ControlType;
     icon!: string | undefined;
     isFolder!: boolean;
     name!: string | undefined;
@@ -19235,6 +19273,7 @@ export class TemplateTreeDto implements ITemplateTreeDto {
         if (_data) {
             this.key = _data["key"];
             this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
             this.icon = _data["icon"];
             this.isFolder = _data["isFolder"];
             this.name = _data["name"];
@@ -19260,6 +19299,7 @@ export class TemplateTreeDto implements ITemplateTreeDto {
         data = typeof data === 'object' ? data : {};
         data["key"] = this.key;
         data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
         data["icon"] = this.icon;
         data["isFolder"] = this.isFolder;
         data["name"] = this.name;
@@ -19278,6 +19318,7 @@ export class TemplateTreeDto implements ITemplateTreeDto {
 export interface ITemplateTreeDto {
     key: string;
     templateType: TemplateType;
+    controlType: ControlType;
     icon: string | undefined;
     isFolder: boolean;
     name: string | undefined;

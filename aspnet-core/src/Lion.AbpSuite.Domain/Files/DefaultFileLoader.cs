@@ -9,8 +9,8 @@ public class DefaultFileLoader : AbpSuiteDomainService, IFileLoader
         _virtualFileProvider = virtualFileProvider;
     }
 
-    public async Task<string> LoadAsync(string sqlPath)
+    public async Task<string> LoadAsync(string path)
     {
-        return await _virtualFileProvider.GetFileInfo(sqlPath).ReadAsStringAsync();
+        return await _virtualFileProvider.GetFileInfo(path).ReadAsStringAsync();
     }
 }

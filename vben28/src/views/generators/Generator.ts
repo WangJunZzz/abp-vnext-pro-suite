@@ -3,8 +3,14 @@ import {
   TemplatesServiceProxy,
   GeneratorServiceProxy,
   PreViewCodeInput,
+  DownCodeInput,
 } from '/@/services/ServiceProxies';
 import { FormSchema } from '/@/components/Form';
+import { useLoading } from '/@/components/Loading';
+const [openFullLoading, closeFullLoading] = useLoading({
+  tip: 'Loading...',
+});
+import { message } from 'ant-design-vue';
 export const createFormSchema: FormSchema[] = [
   {
     field: 'projectId',
@@ -59,4 +65,25 @@ export async function preViewCodeAsync({ templateId, projectId }) {
   request.templateId = templateId;
   request.projectId = projectId;
   return generatorServiceProxy.preViewCode(request);
+}
+
+/**
+ * 导出
+ * @param params
+ * @returns
+ */
+export function downAsync(templateId, projectId) {
+  openFullLoading();
+  const generatorServiceProxy = new GeneratorServiceProxy();
+  const request = new DownCodeInput();
+  request.templateId = templateId;
+  request.projectId = projectId;
+  generatorServiceProxy.down(request).then((res) => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(res.data);
+    a.download = '源码.zip';
+    a.click();
+    closeFullLoading();
+  });
+  message.info('下载成功,请检查浏览器下载内容.');
 }

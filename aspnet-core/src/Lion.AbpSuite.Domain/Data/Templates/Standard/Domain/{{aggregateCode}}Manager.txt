@@ -43,9 +43,7 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
             {{-  end ~}}
         )
         {
-            var entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.FindAsync(id);
-            if (entity != null) throw new UserFriendlyException($"{{ context.EntityModel.Description }}已存在");
-            entity = new {{ context.EntityModel.Code }}(id, {{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+            var entity = new {{ context.EntityModel.Code }}(id, {{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
             entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.InsertAsync(entity);
             return _objectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
         }   
