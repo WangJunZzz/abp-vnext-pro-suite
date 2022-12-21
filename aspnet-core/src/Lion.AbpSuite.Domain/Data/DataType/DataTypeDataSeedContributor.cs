@@ -1,7 +1,4 @@
-﻿using Lion.AbpSuite.DataTypes;
-using Volo.Abp.Guids;
-
-namespace Lion.AbpSuite.Data.DataType;
+﻿namespace Lion.AbpSuite.Data.DataType;
 
 public class DataTypeDataSeedContributor : IDataSeedContributor, ITransientDependency
 {

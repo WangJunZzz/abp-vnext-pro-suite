@@ -78,4 +78,5 @@ export default {
   organizationUnit: '组织机构',
   member: '成员',
   role: '角色',
+  executionMessage: '异常信息',
 };

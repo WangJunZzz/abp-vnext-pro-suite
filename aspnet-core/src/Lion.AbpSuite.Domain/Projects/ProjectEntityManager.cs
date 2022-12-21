@@ -1,6 +1,4 @@
-﻿using Lion.AbpSuite.DataTypes;
-using Lion.AbpSuite.EntityModels;
-using Lion.AbpSuite.Projects.Dto.Generators;
+﻿using Lion.AbpSuite.EntityModels;
 
 namespace Lion.AbpSuite.Projects;
 

@@ -25,18 +25,23 @@
           :actions="[
             {
               icon: 'ant-design:eye-outlined',
-              tooltip: '查看模板明细',
+              label: '明细',
               onClick: handleLook.bind(null, record),
             },
             {
+              icon: 'ant-design:book-outlined',
+              label: '复制',
+              onClick: handleCopy.bind(null, record),
+            },
+            {
               icon: 'clarity:note-edit-line',
-              tooltip: '编辑模板组',
+              label: '编辑',
               onClick: handleEdit.bind(null, record),
             },
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
-              tooltip: '删除',
+              label: '删除',
               popConfirm: {
                 title: '是否确认删除',
                 placement: 'left',
@@ -58,6 +63,11 @@
       @reload="reload"
       :bodyStyle="{ 'padding-top': '0' }"
     />
+    <CopyTemplate
+      @register="registerCopyTemplateModal"
+      @reload="reload"
+      :bodyStyle="{ 'padding-top': '0' }"
+    />
   </div>
 </template>
 
@@ -74,6 +84,7 @@
   import { useModal } from '/@/components/Modal';
   import CreateTemplate from './CreateTemplate.vue';
   import UpdateTemplate from './UpdateTemplate.vue';
+  import CopyTemplate from './CopyTemplate.vue';
   export default defineComponent({
     name: 'Template',
     components: {
@@ -81,6 +92,7 @@
       TableAction,
       CreateTemplate,
       UpdateTemplate,
+      CopyTemplate,
     },
     setup() {
       const router = useRouter();
@@ -108,17 +120,18 @@
       });
       const [registerCreateTemplateModal, { openModal: openCreateTemplateModal }] = useModal();
       const [registerUpdateTemplateModal, { openModal: openUpdateTemplateModal }] = useModal();
+      const [registerCopyTemplateModal, { openModal: openCopyTemplateModal }] = useModal();
       // const [registerTemplateDrawer, { openDrawer: openTemplateDetailDrawer }] = useDrawer();
       function handleEdit(record: Recordable) {
         openUpdateTemplateModal(true, {
           record: record,
         });
       }
-      // function handleEditDetail(record: Recordable) {
-      //   openTemplateDetailDrawer(true, {
-      //     record: record,
-      //   });
-      // }
+      function handleCopy(record: Recordable) {
+        openCopyTemplateModal(true, {
+          record: record,
+        });
+      }
       async function handleDelete(record: Recordable) {
         await deleteTemplateAsync({ id: record.id });
         await reload();
@@ -135,8 +148,8 @@
         handleDelete,
         handleLook,
         registerUpdateTemplateModal,
-        //registerTemplateDrawer,
-        //handleEditDetail,
+        registerCopyTemplateModal,
+        handleCopy,
       };
     },
   });

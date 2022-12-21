@@ -2,8 +2,6 @@
 
 public class EnumTypeProperty : FullAuditedEntity<Guid>
 {
-  
-
     public Guid EnumTypeId { get; private set; }
 
     /// <summary>

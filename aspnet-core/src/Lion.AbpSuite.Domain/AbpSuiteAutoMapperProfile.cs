@@ -1,7 +1,4 @@
-﻿using Lion.AbpSuite.Extensions;
-using Lion.AbpSuite.Projects.Dto.Generators;
-
-namespace Lion.AbpSuite;
+﻿namespace Lion.AbpSuite;
 
 public class AbpSuiteAutoMapperProfile : Profile
 {
@@ -20,6 +17,10 @@ public class AbpSuiteAutoMapperProfile : Profile
         CreateMap<TemplateTreeDto, TreeNode>()
             .ForMember(e => e.FullTitle, opt => opt.Ignore())
             .ForMember(e => e.ParentFullTitle, opt => opt.Ignore());
+        CreateMap<TemplateDetailDto, CopyTemplateDetailDto>()
+            .ForMember(e => e.NewId, opt => opt.Ignore())
+            .ForMember(e => e.NewTemplateId, opt => opt.Ignore())
+            .ForMember(e => e.NewParentId, opt => opt.Ignore());
 
     }
 }

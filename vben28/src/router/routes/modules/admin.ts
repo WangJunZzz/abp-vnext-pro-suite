@@ -11,7 +11,7 @@ const admin: AppRouteModule = {
     orderNo: 20,
     icon: 'ion:grid-outline',
     title: t('routes.admin.systemManagement'),
-    policy: 'AbpIdentity'
+    policy: 'AbpIdentity',
   },
   children: [
     {
@@ -64,16 +64,16 @@ const admin: AppRouteModule = {
         icon: 'ant-design:snippets-twotone',
       },
     },
-    {
-      path: 'dataDictionary',
-      name: 'dataDictionary',
-      component: () => import('/@/views/admin/dictionary/AbpDictionary.vue'),
-      meta: {
-        title: t('routes.admin.dictionaryManagement'),
-        icon: 'ant-design:table-outlined',
-        policy: 'AbpIdentity.DataDictionaryManagement',
-      },
-    }
+    // {
+    //   path: 'dataDictionary',
+    //   name: 'dataDictionary',
+    //   component: () => import('/@/views/admin/dictionary/AbpDictionary.vue'),
+    //   meta: {
+    //     title: t('routes.admin.dictionaryManagement'),
+    //     icon: 'ant-design:table-outlined',
+    //     policy: 'AbpIdentity.DataDictionaryManagement',
+    //   },
+    // },
   ],
 };
 

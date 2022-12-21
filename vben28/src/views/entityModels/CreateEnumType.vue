@@ -23,11 +23,13 @@
       BasicForm,
     },
     setup(_, { emit }) {
-      const [registerUserForm, { getFieldsValue, setFieldsValue, resetFields }] = useForm({
-        labelWidth: 120,
-        schemas: createEnumFormSchema,
-        showActionButtonGroup: false,
-      });
+      const [registerUserForm, { getFieldsValue, setFieldsValue, resetFields, validate }] = useForm(
+        {
+          labelWidth: 120,
+          schemas: createEnumFormSchema,
+          showActionButtonGroup: false,
+        },
+      );
 
       const [registerModal, { changeOkLoading, closeModal }] = useModalInner((data) => {
         setFieldsValue({
@@ -38,6 +40,7 @@
 
       const submit = async () => {
         try {
+          await validate();
           const params = getFieldsValue();
           changeOkLoading(true);
           await createEnumTypeAsync({ params });

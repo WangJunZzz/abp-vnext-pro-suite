@@ -1,7 +1,7 @@
 <template>
   <PageWrapper title="配置" contentBackground content="请选择项目和模板" contentClass="p-4">
-    <div class="py-8 bg-white flex flex-col justify-center items-center">
-      <BasicForm @register="register" />
+    <div class="py-8 bg-white content-wrap">
+      <BasicForm class="base-form" @register="register" />
       <div class="flex justify-center">
         <a-button @click="resetFields"> 重置 </a-button>
         <a-button class="!ml-4" type="primary" @click="customSubmitFunc">预览</a-button>
@@ -18,6 +18,7 @@
   import { PageWrapper } from '/@/components/Page';
   import { useRouter } from 'vue-router';
   export default defineComponent({
+    name: 'CodeSetting',
     components: {
       BasicForm,
       [Divider.name]: Divider,
@@ -53,7 +54,12 @@
   });
 </script>
 <style lang="less" scoped>
-  .content {
-    margin: 0 auto;
+  .content-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .base-form {
+      width: 50%;
+    }
   }
 </style>

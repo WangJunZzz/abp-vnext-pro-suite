@@ -26,12 +26,14 @@
       BasicForm,
     },
     setup(_, { emit }) {
-      const [registerUserForm, { getFieldsValue, setFieldsValue, resetSchema, resetFields }] =
-        useForm({
-          labelWidth: 120,
-          schemas: createEntityModelPropertyFormSchema,
-          showActionButtonGroup: false,
-        });
+      const [
+        registerUserForm,
+        { getFieldsValue, setFieldsValue, resetSchema, resetFields, validate },
+      ] = useForm({
+        labelWidth: 120,
+        schemas: createEntityModelPropertyFormSchema,
+        showActionButtonGroup: false,
+      });
       let entityModelId;
       const [registerModal, { changeOkLoading, closeModal }] = useModalInner((data) => {
         resetSchema(createEntityModelPropertyFormSchema);
@@ -43,6 +45,7 @@
 
       const submit = async () => {
         try {
+          await validate();
           const params = getFieldsValue();
           changeOkLoading(true);
           await createEntityModelPropertyAsync({ params });

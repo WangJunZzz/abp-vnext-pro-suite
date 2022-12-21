@@ -1,130 +1,124 @@
-﻿using Lion.AbpPro.Core;
-using Volo.Abp;
-using Volo.Abp.Domain.Entities.Auditing;
-using Volo.Abp.MultiTenancy;
+﻿namespace Lion.AbpSuite.Templates.Aggregates;
 
-namespace Lion.AbpSuite.Templates.Aggregates
+/// <summary>
+/// 模板 
+/// </summary>
+public class Template : FullAuditedAggregateRoot<Guid>, IMultiTenant
 {
     /// <summary>
-    /// 模板 
+    /// 租户id
     /// </summary>
-    public class Template : FullAuditedAggregateRoot<Guid>, IMultiTenant
+    public Guid? TenantId { get; private set; }
+
+    /// <summary>
+    /// 名称
+    /// </summary>
+    public string Name { get; private set; }
+
+    /// <summary>
+    /// 备注
+    /// </summary>
+    public string Remark { get; private set; }
+
+    /// <summary>
+    /// 模板明细集合
+    /// </summary>
+    public List<TemplateDetail> TemplateDetails { get; private set; }
+
+    private Template()
     {
-        /// <summary>
-        /// 租户id
-        /// </summary>
-        public Guid? TenantId { get; private set; }
+        TemplateDetails = new List<TemplateDetail>();
+    }
 
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string Name { get; private set; }
+    public Template(
+        Guid id,
+        string name,
+        string remark,
+        Guid? tenantId = null
+    ) : base(id)
+    {
+        TemplateDetails = new List<TemplateDetail>();
 
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public string Remark { get; private set; }
+        SetName(name);
+        SetRemark(remark);
+        TenantId = tenantId;
+    }
 
-        /// <summary>
-        /// 模板明细集合
-        /// </summary>
-        public List<TemplateDetail> TemplateDetails { get; private set; }
 
-        private Template()
+    private void SetName(string name)
+    {
+        Guard.NotNullOrWhiteSpace(name, nameof(name), AbpSuiteDomainSharedConsts.MaxLength128);
+        Name = name;
+    }
+
+    private void SetRemark(string remark)
+    {
+        Guard.Length(remark, nameof(remark), AbpSuiteDomainSharedConsts.MaxLength512);
+        Remark = remark;
+    }
+
+    public void Update(string name, string remark)
+    {
+        SetName(name);
+        SetRemark(remark);
+    }
+
+    /// <summary>
+    /// 新增模板明细
+    /// </summary>
+    public TemplateDetail AddTemplateDetail(Guid id, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
+    {
+        // if (TemplateDetails.Any(e => e.Name == name))
+        // {
+        //     throw new UserFriendlyException("模板已存在");
+        // }
+
+        var detail = new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId);
+        TemplateDetails.Add(detail);
+        return detail;
+    }
+
+    public void UpdateDetailContent(Guid id, string content)
+    {
+        var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
+        if (detail == null)
         {
-            TemplateDetails = new List<TemplateDetail>();
+            throw new UserFriendlyException("模板不存在");
         }
 
-        public Template(
-            Guid id,
-            string name,
-            string remark,
-            Guid? tenantId = null
-        ) : base(id)
-        {
-            TemplateDetails = new List<TemplateDetail>();
+        detail.Update(content);
+    }
 
-            SetName(name);
-            SetRemark(remark);
-            TenantId = tenantId;
+    public void UpdateDetail(Guid id, string name, string description, string content)
+    {
+        var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
+        if (detail == null)
+        {
+            throw new UserFriendlyException("模板不存在");
         }
 
+        detail.Update(name, description, content);
+    }
 
-        private void SetName(string name)
+    public void UpdateDetail(Guid id, string name, string description, ControlType controlType)
+    {
+        var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
+        if (detail == null)
         {
-            Guard.NotNullOrWhiteSpace(name, nameof(name), AbpSuiteDomainSharedConsts.MaxLength128);
-            Name = name;
+            throw new UserFriendlyException("模板不存在");
         }
 
-        private void SetRemark(string remark)
+        detail.Update(name, description, controlType);
+    }
+
+    public void DeleteDetail(Guid id)
+    {
+        var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
+        if (detail == null)
         {
-            Guard.Length(remark, nameof(remark), AbpSuiteDomainSharedConsts.MaxLength512);
-            Remark = remark;
+            throw new UserFriendlyException("模板不存在");
         }
 
-        public void Update(string name, string remark)
-        {
-            SetName(name);
-            SetRemark(remark);
-        }
-
-        /// <summary>
-        /// 新增模板明细
-        /// </summary>
-        public TemplateDetail AddTemplateDetail(Guid id, TemplateType templateType, ControlType? controlType, string name, string description, string content, Guid? parentId)
-        {
-            // if (TemplateDetails.Any(e => e.Name == name))
-            // {
-            //     throw new UserFriendlyException("模板已存在");
-            // }
-
-            var detail = new TemplateDetail(id, Id, templateType, controlType, name, description, content, parentId);
-            TemplateDetails.Add(detail);
-            return detail;
-        }
-
-        public void UpdateDetailContent(Guid id, string content)
-        {
-            var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
-            if (detail == null)
-            {
-                throw new UserFriendlyException("模板不存在");
-            }
-
-            detail.Update(content);
-        }
-
-        public void UpdateDetail(Guid id, string name, string description, string content)
-        {
-            var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
-            if (detail == null)
-            {
-                throw new UserFriendlyException("模板不存在");
-            }
-
-            detail.Update(name, description, content);
-        }
-
-        public void UpdateDetail(Guid id, string name, string description, ControlType controlType)
-        {
-            var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
-            if (detail == null)
-            {
-                throw new UserFriendlyException("模板不存在");
-            }
-
-            detail.Update(name, description, controlType);
-        }
-
-        public void DeleteDetail(Guid id)
-        {
-            var detail = TemplateDetails.FirstOrDefault(e => e.Id == id);
-            if (detail == null)
-            {
-                throw new UserFriendlyException("模板不存在");
-            }
-
-            TemplateDetails.Remove(detail);
-        }
+        TemplateDetails.Remove(detail);
     }
 }

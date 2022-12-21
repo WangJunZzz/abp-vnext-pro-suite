@@ -8532,6 +8532,103 @@ export class TemplatesServiceProxy extends ServiceProxyBase {
         }
         return Promise.resolve<StringInt32KeyValuePair[]>(null as any);
     }
+
+    /**
+     * 复制模板
+     * @param body (optional) 
+     * @return Success
+     */
+    copy(body: CopyTemplateInput | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/Copy";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCopy(_response));
+        });
+    }
+
+    protected processCopy(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403  = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401  = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400  = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404  = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501  = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500  = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
 }
 
 export class TenantsServiceProxy extends ServiceProxyBase {
@@ -11094,6 +11191,50 @@ export class ControllerInterfaceApiDescriptionModel implements IControllerInterf
 
 export interface IControllerInterfaceApiDescriptionModel {
     type: string | undefined;
+}
+
+export class CopyTemplateInput implements ICopyTemplateInput {
+    id!: string;
+    name!: string | undefined;
+    remark!: string | undefined;
+
+    constructor(data?: ICopyTemplateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.remark = _data["remark"];
+        }
+    }
+
+    static fromJS(data: any): CopyTemplateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CopyTemplateInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["remark"] = this.remark;
+        return data;
+    }
+}
+
+export interface ICopyTemplateInput {
+    id: string;
+    name: string | undefined;
+    remark: string | undefined;
 }
 
 export class CreateAggregateInput implements ICreateAggregateInput {

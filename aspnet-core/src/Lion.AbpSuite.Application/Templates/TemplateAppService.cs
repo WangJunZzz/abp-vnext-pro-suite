@@ -13,7 +13,7 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
     {
         return await _templateManager.GetListAsync(maxResultCount: int.MaxValue);
     }
-    
+
     public async Task<PagedResultDto<TemplateDto>> PageAsync(PageTemplateInput input)
     {
         var result = new PagedResultDto<TemplateDto>();
@@ -57,14 +57,14 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
 
     public Task UpdateDetailAsync(UpdateTemplateDetailInput input)
     {
-        return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Name, input.Description,input.ControlType);
+        return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Name, input.Description, input.ControlType);
     }
 
     public Task UpdateDetailAsync(UpdateTemplateDetailContentInput input)
     {
         return _templateManager.UpdateDetailAsync(input.TemplateId, input.TemplateDetailId, input.Content);
     }
-    
+
 
     public Task DeleteDetailAsync(DeleteTemplateDetailInput input)
     {
@@ -81,10 +81,14 @@ public class TemplateAppService : AbpSuiteAppService, ITemplateAppService
         return EnumExtensions.GetEntityStringIntKeyValueList<TemplateType>();
     }
 
+    public Task CopyTemplateAsync(CopyTemplateInput input)
+    {
+        return _templateManager.CopyAsync(input.Id, input.Name, input.Remark);
+    }
+
     public async Task<List<GetTemplateTreeOutput>> TemplateTreeAsync(GetTemplteTreeInput input)
     {
         var result = await _templateManager.TemplateTreeAsync(input.TemplateId);
         return ObjectMapper.Map<List<TemplateTreeDto>, List<GetTemplateTreeOutput>>(result);
     }
-
 }

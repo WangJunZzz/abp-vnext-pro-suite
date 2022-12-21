@@ -12,10 +12,10 @@ const generators: AppRouteModule = {
   children: [
     {
       path: 'setting',
-      name: 'Setting',
+      name: 'CodeSetting',
       component: () => import('/@/views/generators/CodeSetting.vue'),
       meta: {
-        title: '预览',
+        title: '配置',
         icon: 'ant-design:file-sync-outlined',
       },
     },

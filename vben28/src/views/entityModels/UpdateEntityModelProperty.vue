@@ -28,7 +28,7 @@
     setup(_, { emit }) {
       const [
         registerUserForm,
-        { getFieldsValue, setFieldsValue, resetSchema, updateSchema, resetFields },
+        { getFieldsValue, setFieldsValue, resetSchema, updateSchema, resetFields, validate },
       ] = useForm({
         labelWidth: 120,
         schemas: updateEntityModelPropertyFormSchema,
@@ -71,8 +71,8 @@
 
         if (data.record.dataTypeCode == 'string') {
           updateSchema([
-            { field: 'maxLength', ifShow: true },
-            { field: 'minLength', ifShow: true },
+            { field: 'maxLength', ifShow: true, required: true },
+            { field: 'minLength', ifShow: true, required: true },
             { field: 'decimalPrecision', ifShow: false },
             { field: 'decimalScale', ifShow: false },
           ]);
@@ -102,6 +102,7 @@
 
       const submit = async () => {
         try {
+          await validate();
           const params = getFieldsValue();
           changeOkLoading(true);
           await updateEntityModelPropertyAsync({ params });

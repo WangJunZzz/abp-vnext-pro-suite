@@ -14,14 +14,14 @@ namespace Lion.AbpSuite.EntityFrameworkCore
 
             builder.Entity<Template>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(Template).Pluralize());
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(Template).Pluralize());
                 b.Property(e => e.Name).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Remark).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength512);
                 b.ConfigureByConvention();
             });
             builder.Entity<TemplateDetail>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(TemplateDetail).Pluralize());
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(TemplateDetail).Pluralize());
                 b.Property(e => e.Name).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Description).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.ConfigureByConvention();
@@ -29,7 +29,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             
             builder.Entity<Project>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(Project).Pluralize());
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(Project).Pluralize());
                 b.Property(e => e.Name).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Owner).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.CompanyName).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
@@ -41,7 +41,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             
             builder.Entity<EntityModel>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(EntityModel).Pluralize());
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(EntityModel).Pluralize());
                 b.Property(e => e.Code).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.HasIndex(e => e.Code);
                 b.Property(e => e.Description).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
@@ -50,7 +50,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             
             builder.Entity<EntityModelProperty>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(EntityModelProperty).Pluralize());
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(EntityModelProperty).Pluralize());
                 b.Property(e => e.Code).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Description).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.ConfigureByConvention();
@@ -58,7 +58,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             
             builder.Entity<DataType>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(DataType));
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(DataType));
                 b.Property(e => e.Code).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.Property(e => e.Description).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.ConfigureByConvention();
@@ -66,7 +66,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             
             builder.Entity<EnumType>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(EnumType));
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(EnumType));
                 b.Property(e => e.Code).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.HasIndex(e => e.Code);
                 b.Property(e => e.Description).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
@@ -75,7 +75,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
             
             builder.Entity<EnumTypeProperty>(b =>
             {
-                b.ToTable(AbpSuiteConsts.DbTablePrefix + nameof(EnumTypeProperty));
+                b.ToTable(AbpSuiteConst.DbTablePrefix + nameof(EnumTypeProperty));
                 b.Property(e => e.Code).IsRequired().HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);
                 b.HasIndex(e => e.Code);
                 b.Property(e => e.Description).HasMaxLength(AbpSuiteDomainSharedConsts.MaxLength128);

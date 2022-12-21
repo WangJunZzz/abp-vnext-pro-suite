@@ -34,7 +34,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         ) : base(id)
         {
              {{~  for prop in context.EntityModel.Properties ~}}
-             Set{{ prop.Code }}({{prop.CodeCamelCase}})
+             Set{{ prop.Code }}({{prop.CodeCamelCase}});
              {{~  end ~}}
         }
         
@@ -74,7 +74,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
         /// </summary>
         private void Set{{ prop.Code }}({{ prop.EnumType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
         {
-             {{ prop.Code }} = {{ prop.Code }};
+             {{ prop.Code }} = {{ prop.CodeCamelCase }};
         }
         {{~ else ~}}
         
@@ -87,7 +87,7 @@ public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot; 
                 {{~ if prop.IsRequired ~}}
             Guard.NotNullOrWhiteSpace({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}), ,{{prop.MaxLength}}, {{prop.MinLength}});
                 {{~ else ~}}
-            Guard.Length({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}),{{prop.MaxLength}},{{prop.MinLength}})
+            Guard.Length({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}),{{prop.MaxLength}},{{prop.MinLength}});
                 {{~ end ~}}
             {{~ end ~}}
             {{ prop.Code }} = {{ prop.CodeCamelCase }};

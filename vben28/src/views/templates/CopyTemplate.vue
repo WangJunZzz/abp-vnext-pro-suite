@@ -1,12 +1,6 @@
 <template>
-  <BasicModal
-    title="新增枚举属性"
-    :canFullscreen="false"
-    @ok="submit"
-    @cancel="cancel"
-    @register="registerModal"
-  >
-    <BasicForm @register="registerUserForm" />
+  <BasicModal title="复制模板组" :canFullscreen="false" @ok="submit" @register="registerModal">
+    <BasicForm @register="registerTemplateForm" />
   </BasicModal>
 </template>
 
@@ -14,29 +8,25 @@
   import { defineComponent } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import {
-    createEnumPropertyFormSchema,
-    createEnumTypePropertyAsync,
-  } from '/@/views/entityModels/EntityModel';
+  import { copyFormSchema, copyTemplateAsync } from '/@/views/templates/Template';
 
   export default defineComponent({
-    name: 'CreateEnumTypeProperty',
+    name: 'CopyTemplate',
     components: {
       BasicModal,
       BasicForm,
     },
+    emits: ['reload', 'register'],
     setup(_, { emit }) {
-      const [registerUserForm, { getFieldsValue, setFieldsValue, resetFields, validate }] = useForm(
-        {
+      const [registerTemplateForm, { getFieldsValue, setFieldsValue, resetFields, validate }] =
+        useForm({
           labelWidth: 120,
-          schemas: createEnumPropertyFormSchema,
+          schemas: copyFormSchema,
           showActionButtonGroup: false,
-        },
-      );
-
+        });
       const [registerModal, { changeOkLoading, closeModal }] = useModalInner((data) => {
         setFieldsValue({
-          enumTypeId: data.enumTypeId,
+          id: data.record.id,
         });
       });
 
@@ -45,24 +35,19 @@
           await validate();
           const params = getFieldsValue();
           changeOkLoading(true);
-          await createEnumTypePropertyAsync({ params });
-          await resetFields();
+          await copyTemplateAsync({ params });
           closeModal();
+          resetFields();
           emit('reload');
         } finally {
           changeOkLoading(false);
         }
       };
 
-      const cancel = () => {
-        resetFields();
-        closeModal();
-      };
       return {
         registerModal,
-        registerUserForm,
+        registerTemplateForm,
         submit,
-        cancel,
       };
     },
   });

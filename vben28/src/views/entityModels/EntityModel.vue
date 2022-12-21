@@ -52,13 +52,13 @@
                   :actions="[
                     {
                       icon: 'clarity:note-edit-line',
-                      tooltip: '编辑属性',
+                      label: '编辑',
                       onClick: handleEdit.bind(null, record),
                     },
                     {
                       icon: 'ant-design:delete-outlined',
                       color: 'error',
-                      tooltip: '删除',
+                      label: '删除',
                       popConfirm: {
                         title: '是否确认删除',
                         placement: 'left',
@@ -94,13 +94,13 @@
                       :actions="[
                         {
                           icon: 'clarity:note-edit-line',
-                          tooltip: '编辑枚举',
+                          label: '编辑',
                           onClick: handleEnumTypeEdit.bind(null, record),
                         },
                         {
                           icon: 'ant-design:delete-outlined',
                           color: 'error',
-                          tooltip: '删除',
+                          label: '删除',
                           popConfirm: {
                             title: '是否确认删除',
                             placement: 'left',
@@ -134,12 +134,13 @@
                       :actions="[
                         {
                           icon: 'clarity:note-edit-line',
-                          tooltip: '编辑枚举属性',
+                          label: '编辑',
                           onClick: handleEnumTypePropertyEdit.bind(null, record),
                         },
                         {
                           icon: 'ant-design:delete-outlined',
                           color: 'error',
+                          label: '删除',
                           popConfirm: {
                             title: '是否确认删除',
                             placement: 'left',

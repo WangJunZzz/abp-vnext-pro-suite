@@ -44,6 +44,7 @@ export const tableColumns: BasicColumn[] = [
   {
     title: '创建时间',
     dataIndex: 'creationTime',
+    width: 200,
     customRender: ({ text }) => {
       return formatToDateTime(text);
     },

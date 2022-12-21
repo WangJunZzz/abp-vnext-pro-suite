@@ -16,18 +16,18 @@
           :actions="[
             {
               icon: 'ant-design:eye-outlined',
-              tooltip: '查看模型',
+              label: '模型',
               onClick: handleLook.bind(null, record),
             },
             {
               icon: 'clarity:note-edit-line',
-              tooltip: '编辑项目',
+              label: '编辑',
               onClick: handleEdit.bind(null, record),
             },
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
-              tooltip: '删除项目',
+              label: '删除',
               popConfirm: {
                 title: '是否确认删除',
                 placement: 'left',

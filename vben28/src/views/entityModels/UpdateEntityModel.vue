@@ -29,7 +29,7 @@
     setup(_, { emit }) {
       const [
         registerUserForm,
-        { getFieldsValue, setFieldsValue, updateSchema, resetSchema, resetFields },
+        { getFieldsValue, setFieldsValue, updateSchema, validate, resetFields },
       ] = useForm({
         labelWidth: 120,
         schemas: updateEntityModelFormSchema,
@@ -66,6 +66,7 @@
 
       const submit = async () => {
         try {
+          await validate();
           const params = getFieldsValue();
           changeOkLoading(true);
           await updateEntityModelAsync({ params });

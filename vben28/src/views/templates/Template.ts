@@ -32,6 +32,7 @@ export const tableColumns: BasicColumn[] = [
   {
     title: '创建时间',
     dataIndex: 'creationTime',
+
     customRender: ({ text }) => {
       return formatToDateTime(text);
     },
@@ -223,7 +224,33 @@ export const editFormSchema: FormSchema[] = [
     },
   },
 ];
-
+export const copyFormSchema: FormSchema[] = [
+  {
+    field: 'id',
+    label: '名称',
+    component: 'Input',
+    required: true,
+    ifShow: false,
+  },
+  {
+    field: 'name',
+    label: '名称',
+    component: 'Input',
+    required: true,
+  },
+  {
+    field: 'remark',
+    label: '备注',
+    component: 'InputTextArea',
+    colProps: {
+      span: 16,
+    },
+    componentProps: {
+      placeholder: '请输入备注',
+      rows: 4,
+    },
+  },
+];
 export async function getTableListAsync(params: PageTemplateInput) {
   const templatesServiceProxy = new TemplatesServiceProxy();
   return templatesServiceProxy.page(params);
@@ -285,4 +312,9 @@ export async function getControlTypeAsync() {
 export async function getTemplateTypeAsync() {
   const templatesServiceProxy = new TemplatesServiceProxy();
   return templatesServiceProxy.templateType();
+}
+
+export async function copyTemplateAsync({ params }) {
+  const templatesServiceProxy = new TemplatesServiceProxy();
+  return templatesServiceProxy.copy(params);
 }

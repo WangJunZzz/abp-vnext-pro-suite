@@ -444,8 +444,8 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
 
           if (option.code == 'string') {
             formActionType.updateSchema([
-              { field: 'maxLength', ifShow: true },
-              { field: 'minLength', ifShow: true },
+              { field: 'maxLength', ifShow: true, required: true },
+              { field: 'minLength', ifShow: true, required: true },
               { field: 'decimalPrecision', ifShow: false },
               { field: 'decimalScale', ifShow: false },
             ]);
@@ -591,7 +591,6 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
           entityModelId: formModel.id,
         },
         onChange(e, option) {
-          console.log(option);
           if (option.isEnum) {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: false },
@@ -625,8 +624,8 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
 
           if (option.code == 'string') {
             formActionType.updateSchema([
-              { field: 'maxLength', ifShow: true },
-              { field: 'minLength', ifShow: true },
+              { field: 'maxLength', ifShow: true, required: true },
+              { field: 'minLength', ifShow: true, required: true },
               { field: 'decimalPrecision', ifShow: false },
               { field: 'decimalScale', ifShow: false },
             ]);
@@ -692,7 +691,7 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
     ifShow: false,
     componentProps: {
       max: 4096,
-      min: 1,
+      min: 0,
     },
   },
   {
@@ -702,7 +701,7 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
     ifShow: false,
     componentProps: {
       max: 4096,
-      min: 1,
+      min: 0,
     },
   },
   {

@@ -24,7 +24,7 @@
     },
     emits: ['reload', 'register'],
     setup(_, { emit }) {
-      const [registerUserForm, { getFieldsValue, resetFields }] = useForm({
+      const [registerUserForm, { getFieldsValue, resetFields, validate }] = useForm({
         labelWidth: 120,
         schemas: createFormSchema,
         showActionButtonGroup: false,
@@ -34,6 +34,7 @@
 
       const submit = async () => {
         try {
+          await validate();
           const params = getFieldsValue();
           changeOkLoading(true);
           await createTemplateAsync({ params });

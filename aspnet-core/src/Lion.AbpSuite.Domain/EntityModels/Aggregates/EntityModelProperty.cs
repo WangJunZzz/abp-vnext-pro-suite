@@ -136,7 +136,7 @@
         {
             if (maxLength.HasValue)
             {
-                Guard.GreaterThan(maxLength.Value, nameof(maxLength), 0);
+                Guard.GreaterThan(maxLength.Value, nameof(maxLength), 0, true);
             }
 
             MaxLength = maxLength;
@@ -146,7 +146,7 @@
         {
             if (minLength.HasValue)
             {
-                Guard.GreaterThan(minLength.Value, nameof(minLength), 0);
+                Guard.GreaterThan(minLength.Value, nameof(minLength), 0, true);
             }
 
             MinLength = minLength;

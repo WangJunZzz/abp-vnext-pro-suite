@@ -79,4 +79,5 @@ export default {
   organizationUnit: 'OrganizationUnit',
   member: 'Member',
   role: 'Role',
+  executionMessage: 'ExecutionMessage',
 };

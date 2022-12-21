@@ -9,6 +9,7 @@ public class TemplateController : AbpSuiteController, ITemplateAppService
     {
         _templateAppService = templateAppService;
     }
+
     [HttpPost("All")]
     [SwaggerOperation(summary: "获取所有模板组", Tags = new[] { "Templates" })]
     public Task<List<TemplateDto>> AllAsync()
@@ -57,7 +58,7 @@ public class TemplateController : AbpSuiteController, ITemplateAppService
     {
         return _templateAppService.UpdateDetailAsync(input);
     }
-    
+
 
     [HttpPost("UpdateDetailContent")]
     [SwaggerOperation(summary: "编辑模板", Tags = new[] { "Templates" })]
@@ -93,10 +94,18 @@ public class TemplateController : AbpSuiteController, ITemplateAppService
     {
         return _templateAppService.GetControlTypeAsync();
     }
+
     [HttpPost("TemplateType")]
     [SwaggerOperation(summary: "获取模板类型", Tags = new[] { "Templates" })]
     public List<KeyValuePair<string, int>> GetTemplateTypeAsync()
     {
         return _templateAppService.GetTemplateTypeAsync();
+    }
+
+    [HttpPost("Copy")]
+    [SwaggerOperation(summary: "复制模板", Tags = new[] { "Templates" })]
+    public Task CopyTemplateAsync(CopyTemplateInput input)
+    {
+        return _templateAppService.CopyTemplateAsync(input);
     }
 }

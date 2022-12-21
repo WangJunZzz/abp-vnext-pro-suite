@@ -82,6 +82,10 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
         SetParentId(parentId);
     }
 
+    /// <summary>
+    /// 新增实体属性
+    /// </summary>
+    /// <exception cref="UserFriendlyException"></exception>
     public void AddProperty(
         Guid id,
         string code,
@@ -103,6 +107,10 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
             enumTypeId, dataTypeId, Id));
     }
 
+    /// <summary>
+    /// 更新实体属性
+    /// </summary>
+    /// <exception cref="UserFriendlyException"></exception>
     public void UpdateProperty(
         Guid propertyId,
         string code,
@@ -124,6 +132,10 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
         property.Update(code, description, isRequired, maxLength, minLength, decimalPrecision, decimalScale, enumTypeId, dataTypeId);
     }
 
+    /// <summary>
+    /// 删除实体属性
+    /// </summary>
+    /// <exception cref="UserFriendlyException"></exception>
     public void DeleteProperty(Guid propertyId)
     {
         var property = EntityModelProperties.FirstOrDefault(e => e.Id == propertyId);
@@ -135,6 +147,9 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
         property.Delete();
     }
 
+    /// <summary>
+    /// 更新实体
+    /// </summary>
     public void Update(string code, string description, RelationalType relationalType)
     {
         SetCode(code);
@@ -142,11 +157,16 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
         SetRelationalType(relationalType);
     }
 
+    /// <summary>
+    /// 更新实体
+    /// </summary>
     public void Update(string code, string description)
     {
         SetCode(code);
         SetDescription(description);
     }
+
+    #region 私有方法
 
     private void SetCode(string code)
     {
@@ -169,4 +189,6 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
     {
         ParentId = parentId;
     }
+
+    #endregion
 }

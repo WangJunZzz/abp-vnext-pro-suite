@@ -1,11 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Lion.AbpSuite.Files;
-using Lion.AbpSuite.Templates;
-using Lion.AbpSuite.Templates.Aggregates;
-using Volo.Abp.Guids;
+﻿using Lion.AbpSuite.Files;
 using Volo.Abp.Timing;
 
-namespace Lion.AbpSuite.Data;
+namespace Lion.AbpSuite.Data.Templates;
 
 public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
@@ -31,13 +27,13 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
 
     public async Task TemplateAsync()
     {
-        var templateGroup = await _templateRepository.FindByNameAsync(StandardTemplateDataSeedConsts.TemplateGroupName);
+        var templateGroup = await _templateRepository.FindByNameAsync(StandardTemplateDataSeedConst.TemplateGroupName);
 
         #region 模板组
 
         if (templateGroup == null)
         {
-            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConsts.TemplateGroupName, "系统初始化模板",_currentTenant.Id);
+            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConst.TemplateGroupName, "系统初始化模板",_currentTenant.Id);
         }
 
         #endregion
@@ -45,9 +41,9 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region AspNetCore
 
         TemplateDetail aspNetCore = null;
-        if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConsts.AspNetCore.Name) == null)
+        if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConst.AspNetCore.Name) == null)
         {
-            aspNetCore = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Name);
+            aspNetCore = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Name);
         }
 
         #endregion
@@ -55,18 +51,18 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region src
 
         TemplateDetail src;
-        src = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Name, parentId: aspNetCore?.Id);
+        src = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.Name, parentId: aspNetCore?.Id);
 
         #endregion
 
         #region Controller
 
         TemplateDetail controller;
-        controller = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Controller.Name, parentId: src.Id);
+        controller = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.Controller.Name, parentId: src.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Controller.ControllerName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Controller.ControllerName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Controller.ControllerPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Controller.ControllerPath),
             controller.Id);
 
         #endregion
@@ -74,16 +70,16 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region Application
 
         TemplateDetail application;
-        application = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Application.Name, parentId: src.Id);
+        application = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.Application.Name, parentId: src.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Application.ApplicationServiceName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Application.ApplicationServiceName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Application.ApplicationServicePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Application.ApplicationServicePath),
             application.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Application.AutoMapperName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Application.AutoMapperName,
             ControlType.Global,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Application.AutoMapperPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Application.AutoMapperPath),
             application.Id);
 
         #endregion
@@ -91,36 +87,36 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region ApplicationContracts
 
         TemplateDetail applicationContracts;
-        applicationContracts = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.Name, parentId: src.Id);
+        applicationContracts = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.Name, parentId: src.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.IApplicationServiceName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.IApplicationServiceName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.IApplicationServicePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.IApplicationServicePath),
             applicationContracts.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.CreateInputName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.CreateInputName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.CreateInputPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.CreateInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.UpdateInputName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.UpdateInputName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.UpdateInputPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.UpdateInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.DeleteInputName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.DeleteInputName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.DeleteInputPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.DeleteInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageInputName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageInputName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageInputPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageOutputName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageOutputName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.ApplicationContracts.PageOutputPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageOutputPath),
             applicationContracts.Id);
 
         #endregion
@@ -128,31 +124,31 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region Domain
 
         TemplateDetail domain;
-        domain = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.Name, parentId: src.Id);
+        domain = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.Domain.Name, parentId: src.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AggregateCodeName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AggregateCodePath),
             domain.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.EntityCodeName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Domain.EntityCodeName,
             ControlType.Entity,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.EntityCodePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Domain.EntityCodePath),
             domain.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeRepositoryName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AggregateCodeRepositoryName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeRepositoryPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AggregateCodeRepositoryPath),
             domain.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeManagerName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AggregateCodeManagerName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AggregateCodeManagerPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AggregateCodeManagerPath),
             domain.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AutoMapperName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AutoMapperName,
             ControlType.Global,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.Domain.AutoMapperPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.Domain.AutoMapperPath),
             domain.Id);
 
         # endregion
@@ -160,21 +156,21 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region DomainShared
 
         TemplateDetail domainShared;
-        domainShared = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.Name, parentId: src.Id);
+        domainShared = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.Name, parentId: src.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.AggregateCodeName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.AggregateCodeName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.AggregateCodePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.AggregateCodePath),
             domainShared.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EntityCodeName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.EntityCodeName,
             ControlType.Entity,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EntityCodePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.EntityCodePath),
             domainShared.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EnumName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.EnumName,
             ControlType.Enum,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.DomainShared.EnumPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.DomainShared.EnumPath),
             domainShared.Id);
 
         # endregion
@@ -182,76 +178,76 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         #region EntityFrameworkCore
 
         TemplateDetail entityFrameworkCore;
-        entityFrameworkCore = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.Name, parentId: src.Id);
+        entityFrameworkCore = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.Name, parentId: src.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.IDbContextName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.IDbContextName,
             ControlType.Global,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.IDbContextPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.IDbContextPath),
             entityFrameworkCore.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.DbContextName,
             ControlType.Global,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.DbContextPath),
             entityFrameworkCore.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.RepositoryName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.RepositoryName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.RepositoryPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.RepositoryPath),
             entityFrameworkCore.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingName,
+            StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingName,
             ControlType.Global,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingPath),
             entityFrameworkCore.Id);
         # endregion
         
         #region Vue3
         TemplateDetail vue3 = null;
-        if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConsts.Vue3.Name) == null)
+        if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConst.Vue3.Name) == null)
         {
-            vue3 = AddFolder(templateGroup, StandardTemplateDataSeedConsts.Vue3.Name);
+            vue3 = AddFolder(templateGroup, StandardTemplateDataSeedConst.Vue3.Name);
         }
         #endregion
 
         #region src
 
         TemplateDetail vueSrc;
-        vueSrc = AddFolder(templateGroup, StandardTemplateDataSeedConsts.AspNetCore.Src.Name, parentId: vue3?.Id);
+        vueSrc = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.Name, parentId: vue3?.Id);
 
         #endregion
         
         #region routes
         TemplateDetail route;
-        route = AddFolder(templateGroup, StandardTemplateDataSeedConsts.Vue3.Src.Routes.Name, parentId: vueSrc.Id);
+        route = AddFolder(templateGroup, StandardTemplateDataSeedConst.Vue3.Src.Routes.Name, parentId: vueSrc.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.Vue3.Src.Routes.RouteName,
+            StandardTemplateDataSeedConst.Vue3.Src.Routes.RouteName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Routes.RoutePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Routes.RoutePath),
             route.Id);
         #endregion
         
         #region views
         TemplateDetail view;
-        view = AddFolder(templateGroup, StandardTemplateDataSeedConsts.Vue3.Src.Views.Name, parentId: vueSrc.Id);
+        view = AddFolder(templateGroup, StandardTemplateDataSeedConst.Vue3.Src.Views.Name, parentId: vueSrc.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexName,
+            StandardTemplateDataSeedConst.Vue3.Src.Views.IndexName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexPath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Views.IndexPath),
             view.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexVueName,
+            StandardTemplateDataSeedConst.Vue3.Src.Views.IndexVueName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.IndexVuePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Views.IndexVuePath),
             view.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.Vue3.Src.Views.CreateVueName,
+            StandardTemplateDataSeedConst.Vue3.Src.Views.CreateVueName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.CreateVuePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Views.CreateVuePath),
             view.Id);
         AddFile(templateGroup,
-            StandardTemplateDataSeedConsts.Vue3.Src.Views.UpdateVueName,
+            StandardTemplateDataSeedConst.Vue3.Src.Views.UpdateVueName,
             ControlType.Aggregate,
-            await _fileLoader.LoadAsync(StandardTemplateDataSeedConsts.Vue3.Src.Views.UpdateVuePath),
+            await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Views.UpdateVuePath),
             view.Id);
         #endregion
 

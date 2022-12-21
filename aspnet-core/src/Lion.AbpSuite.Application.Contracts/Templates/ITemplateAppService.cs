@@ -27,5 +27,8 @@ public interface ITemplateAppService : IApplicationService
     Task<List<TemplateDto>> ListAsync();
 
     List<KeyValuePair<string, int>> GetControlTypeAsync();
+    
     List<KeyValuePair<string, int>> GetTemplateTypeAsync();
+
+    Task CopyTemplateAsync(CopyTemplateInput input);
 }

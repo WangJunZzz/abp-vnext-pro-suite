@@ -57,7 +57,7 @@ public class GeneratorManager : AbpSuiteDomainService
             Description = template.Description,
             Content = await RenderAsync(template.Content, new { context = generatorContext }),
             TemplateType = template.TemplateType,
-            Icon = AbpSuiteConsts.AntIconFile,
+            Icon = AbpSuiteConst.AntIconFile,
             IsFolder = false
         };
 
@@ -140,7 +140,7 @@ public class GeneratorManager : AbpSuiteDomainService
             Description = template.Description,
             Content = await RenderAsync(template.Content, new { context = generatorContext }),
             TemplateType = template.TemplateType,
-            Icon = AbpSuiteConsts.AntIconFile,
+            Icon = AbpSuiteConst.AntIconFile,
             IsFolder = false
         };
 
@@ -167,7 +167,7 @@ public class GeneratorManager : AbpSuiteDomainService
             Name = name,
             Title = name,
             TemplateType = TemplateType.Folder,
-            Icon = AbpSuiteConsts.AntIconFolder,
+            Icon = AbpSuiteConst.AntIconFolder,
             IsFolder = true,
             Content = string.Empty
         };

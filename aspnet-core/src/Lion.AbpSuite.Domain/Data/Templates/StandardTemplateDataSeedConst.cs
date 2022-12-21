@@ -1,6 +1,6 @@
-﻿namespace Lion.AbpSuite.Data;
+﻿namespace Lion.AbpSuite.Data.Templates;
 
-public class StandardTemplateDataSeedConsts
+public class StandardTemplateDataSeedConst
 {
     public const string TemplateGroupName = "Lion.AbpPro标准模板";
     /// <summary>
