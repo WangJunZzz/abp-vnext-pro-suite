@@ -1,10 +1,10 @@
-﻿using AutoMapper;
+﻿using  AutoMapper;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 using  {{ context.Project.NameSpace }}.Application.Contracts;
 
 namespace {{ context.Project.NameSpace }}.Application;
 
-public class {{ context.Project.ProjectName }}DomainAutoMapperProfile :Profile 
+public class {{ context.Project.ProjectName }}DomainAutoMapperProfile : Profile 
 {
     public {{ context.Project.ProjectName }}DomainAutoMapperProfile()
     {

@@ -1,6 +1,6 @@
-using Volo.Abp;
-using Volo.Abp.Domain.Services;
-using Volo.Abp.ObjectMapping;
+using  Volo.Abp;
+using  Volo.Abp.Domain.Services;
+using  Volo.Abp.ObjectMapping;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Domain;
@@ -39,11 +39,11 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
              {{- else ~}}
             {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
              {{- end ~}}
-           {{- if for.last; "\r\n"; else; ; end ~}}
+            {{- if for.last; "\r\n"; else; ; end ~}}
             {{-  end ~}}
         )
-        {
-            var entity = new {{ context.EntityModel.Code }}(id, {{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+        {   
+            var entity = new {{ context.EntityModel.Code }}(id, {{- for prop in context.EntityModel.Properties -}}{{- if for.first;  ""; else; ","; end ~}}{{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end -}}{{- end ~}});
             entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.InsertAsync(entity);
             return _objectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
         }   
@@ -66,7 +66,7 @@ public class {{ context.EntityModel.Code }}Manager : DomainService
         {
             var entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.FindAsync(id);
             if (entity == null) throw new UserFriendlyException($"{{ context.EntityModel.Description }}不存在");
-            entity.Update({{-  for prop in context.EntityModel.Properties -}} {{ prop.CodeCamelCase }},{{- if for.last; ""; else; ; end ~}} {{-  end ~}});
+            entity.Update({{- for prop in context.EntityModel.Properties -}}{{- if for.first;  ""; else; ","; end ~}}{{ prop.CodeCamelCase }}{{- if for.last; ""; else; ; end -}}{{- end ~}});
             entity = await  _{{ context.EntityModel.CodeCamelCase }}Repository.UpdateAsync(entity);
             return _objectMapper.Map<{{ context.EntityModel.Code }}, {{ context.EntityModel.Code }}Dto>(entity);            
         }     

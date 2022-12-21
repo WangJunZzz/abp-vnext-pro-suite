@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using  AutoMapper;
 using  {{ context.Project.NameSpace }}.Domain;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 

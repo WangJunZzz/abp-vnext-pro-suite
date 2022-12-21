@@ -1,4 +1,4 @@
-using Volo.Abp.Domain.Repositories;
+using  Volo.Abp.Domain.Repositories;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Domain;

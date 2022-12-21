@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using Volo.Abp.Data;
-using Volo.Abp.EntityFrameworkCore;
+using  Microsoft.EntityFrameworkCore;
+using  Volo.Abp.Data;
+using  Volo.Abp.EntityFrameworkCore;
 using  {{ context.Project.NameSpace }}.Domain;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 

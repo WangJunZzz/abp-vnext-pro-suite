@@ -1,7 +1,7 @@
-using Lion.AbpPro.Core;
-using Volo.Abp;
-using Volo.Abp.Domain.Entities.Auditing;
-using {{ context.Project.NameSpace }}.Domain.Shared;
+using  Lion.AbpPro.Core;
+using  Volo.Abp;
+using  Volo.Abp.Domain.Entities.Auditing;
+using  {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Domain;
 

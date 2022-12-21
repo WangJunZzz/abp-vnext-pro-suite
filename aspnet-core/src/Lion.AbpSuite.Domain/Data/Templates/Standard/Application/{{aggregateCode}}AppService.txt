@@ -1,5 +1,5 @@
-using Volo.Abp;
-using Volo.Abp.Application.Dtos;
+using  Volo.Abp;
+using  Volo.Abp.Application.Dtos;
 using  {{ context.Project.NameSpace }}.Domain.Shared;
 using  {{ context.Project.NameSpace }}.Application.Contracts;
 
