@@ -1,28 +1,23 @@
-﻿using System.IO.Compression;
-using Lion.AbpSuite.Files;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Lion.AbpSuite.Generators;
+﻿namespace Lion.AbpSuite.Generators;
 
 public class GeneratorAppService : AbpSuiteAppService, IGeneratorAppService
 {
     private readonly GeneratorManager _generatorManager;
     private readonly TemplateManager _templateManager;
     private readonly ProjectEntityManager _projectEntityManager;
-    private readonly EntityModelManager _entityModelManager;
-    private readonly ProjectManager _projectManager;
     private readonly TreeManager _treeManager;
     private readonly FileHelper _fileHelper;
 
-    public GeneratorAppService(GeneratorManager generatorManager, TemplateManager templateManager, ProjectEntityManager projectEntityManager,
-        EntityModelManager entityModelManager,
-        ProjectManager projectManager, TreeManager treeManager, FileHelper fileHelper)
+    public GeneratorAppService(
+        GeneratorManager generatorManager, 
+        TemplateManager templateManager,
+        ProjectEntityManager projectEntityManager,
+        TreeManager treeManager,
+        FileHelper fileHelper)
     {
         _generatorManager = generatorManager;
         _templateManager = templateManager;
         _projectEntityManager = projectEntityManager;
-        _entityModelManager = entityModelManager;
-        _projectManager = projectManager;
         _treeManager = treeManager;
         _fileHelper = fileHelper;
     }

@@ -2,7 +2,7 @@
 
     
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <RootNamespace>Lion.AbpSuite</RootNamespace>
     </PropertyGroup>
 
@@ -12,7 +12,6 @@
         <PackageReference Include="Humanizer.Core.zh-Hans" />
         <PackageReference Include="Lion.AbpPro.BasicManagement.EntityFrameworkCore" />
         <PackageReference Include="Lion.AbpPro.NotificationManagement.EntityFrameworkCore" />
-        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">

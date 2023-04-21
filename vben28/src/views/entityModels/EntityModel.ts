@@ -445,7 +445,7 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
           if (option.code == 'string') {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: true, required: true },
-              { field: 'minLength', ifShow: true, required: true },
+              { field: 'minLength', ifShow: true },
               { field: 'decimalPrecision', ifShow: false },
               { field: 'decimalScale', ifShow: false },
             ]);
@@ -504,6 +504,7 @@ export const createEntityModelPropertyFormSchema: FormSchema[] = [
     component: 'InputNumber',
     label: '最小长度',
     ifShow: false,
+    defaultValue: 0,
     componentProps: {
       max: 4096,
       min: 0,
@@ -625,7 +626,7 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
           if (option.code == 'string') {
             formActionType.updateSchema([
               { field: 'maxLength', ifShow: true, required: true },
-              { field: 'minLength', ifShow: true, required: true },
+              { field: 'minLength', ifShow: true },
               { field: 'decimalPrecision', ifShow: false },
               { field: 'decimalScale', ifShow: false },
             ]);
@@ -698,6 +699,7 @@ export const updateEntityModelPropertyFormSchema: FormSchema[] = [
     field: 'minLength',
     component: 'InputNumber',
     label: '最小长度',
+    defaultValue: 0,
     ifShow: false,
     componentProps: {
       max: 4096,

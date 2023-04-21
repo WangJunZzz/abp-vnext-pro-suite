@@ -1,6 +1,4 @@
-﻿using Lion.AbpSuite.Templates;
-
-namespace Lion.AbpSuite.Generators.Dto;
+﻿namespace Lion.AbpSuite.Generators.Dto;
 
 public class GeneratorCodeTreeOutput
 {

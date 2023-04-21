@@ -1,7 +1,4 @@
 using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
-using Lion.AbpPro.DataDictionaryManagement;
-using Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Aggregates;
-using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement;
 using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.Notifications.Aggregates;
@@ -21,10 +18,11 @@ namespace Lion.AbpSuite.EntityFrameworkCore
      * used modules (as explained above). See AbpSuiteMigrationsDbContext for migrations.
      */
     [ConnectionStringName("Default")]
-    public class AbpSuiteDbContext : AbpDbContext<AbpSuiteDbContext>, IAbpSuiteDbContext,
+    public class AbpSuiteDbContext : 
+        AbpDbContext<AbpSuiteDbContext>, 
+        IAbpSuiteDbContext,
         IBasicManagementDbContext,
-        INotificationManagementDbContext,
-        IDataDictionaryManagementDbContext
+        INotificationManagementDbContext
     {
         public DbSet<IdentityUser> Users { get; set; }
         public DbSet<IdentityRole> Roles { get; set; }
@@ -32,7 +30,11 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
         public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
         public DbSet<IdentityLinkUser> LinkUsers { get; set; }
+        public DbSet<FeatureGroupDefinitionRecord> FeatureGroups { get; set; }
+        public DbSet<FeatureDefinitionRecord> Features { get; set; }
         public DbSet<FeatureValue> FeatureValues { get; set; }
+        public DbSet<PermissionGroupDefinitionRecord> PermissionGroups { get; set; }
+        public DbSet<PermissionDefinitionRecord> Permissions { get; set; }
         public DbSet<PermissionGrant> PermissionGrants { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
@@ -40,13 +42,12 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         public DbSet<BackgroundJobRecord> BackgroundJobs { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        public DbSet<DataDictionary> DataDictionary { get; set; }
-
         public DbSet<Template> Templates { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<EntityModel> EntityModels { get; set; }
         public DbSet<DataType> DataTypes { get; set; }
         public DbSet<EnumType> EnumTypes { get; set; }
+
         public AbpSuiteDbContext(DbContextOptions<AbpSuiteDbContext> options)
             : base(options)
         {
@@ -54,23 +55,15 @@ namespace Lion.AbpSuite.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            NotificationManagementDbProperties.DbTablePrefix = "Abp";
-            DataDictionaryManagementDbProperties.DbTablePrefix = "Abp";
-
             base.OnModelCreating(builder);
-
-
+            
             builder.ConfigureAbpSuite();
 
             // 基础模块
             builder.ConfigureBasicManagement();
-
-
+            
             // 消息通知
             builder.ConfigureNotificationManagement();
-
-            //数据字典
-            builder.ConfigureDataDictionaryManagement();
         }
     }
 }

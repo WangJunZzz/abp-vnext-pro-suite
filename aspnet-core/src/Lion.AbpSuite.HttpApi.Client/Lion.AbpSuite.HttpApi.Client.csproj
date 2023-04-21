@@ -3,7 +3,7 @@
   
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Lion.AbpSuite</RootNamespace>
   </PropertyGroup>
 
@@ -15,7 +15,6 @@
 
     <PackageReference Include="Lion.AbpPro.BasicManagement.HttpApi.Client"/>
     <PackageReference Include="Lion.AbpPro.NotificationManagement.HttpApi.Client"/>
-    <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.HttpApi.Client"/>
   </ItemGroup>
 
 </Project>

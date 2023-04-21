@@ -47,8 +47,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "host", "host", "{8C1B8C6C-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lion.AbpSuite.HttpApi.Host", "host\Lion.AbpSuite.HttpApi.Host\Lion.AbpSuite.HttpApi.Host.csproj", "{FB20372D-6C96-4733-9AAC-12522F15CAA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lion.AbpSuite.FreeSqlRepository", "src\Lion.AbpSuite.FreeSqlRepository\Lion.AbpSuite.FreeSqlRepository.csproj", "{27C7A0E6-4C2E-4AFF-9DE7-1F526DDC0D18}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,10 +109,6 @@ Global
 		{FB20372D-6C96-4733-9AAC-12522F15CAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB20372D-6C96-4733-9AAC-12522F15CAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB20372D-6C96-4733-9AAC-12522F15CAA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27C7A0E6-4C2E-4AFF-9DE7-1F526DDC0D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27C7A0E6-4C2E-4AFF-9DE7-1F526DDC0D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27C7A0E6-4C2E-4AFF-9DE7-1F526DDC0D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27C7A0E6-4C2E-4AFF-9DE7-1F526DDC0D18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,7 +128,6 @@ Global
 		{EF480016-9127-4916-8735-D2466BDBC582} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{FB20372D-6C96-4733-9AAC-12522F15CAA6} = {8C1B8C6C-C518-4290-B070-622CCA6004DA}
-		{27C7A0E6-4C2E-4AFF-9DE7-1F526DDC0D18} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

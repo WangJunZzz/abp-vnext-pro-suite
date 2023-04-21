@@ -1,5 +1,4 @@
 using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
-using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 
 namespace Lion.AbpSuite.EntityFrameworkCore
@@ -8,7 +7,6 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         typeof(AbpSuiteDomainModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(BasicManagementEntityFrameworkCoreModule),
-        typeof(DataDictionaryManagementEntityFrameworkCoreModule),
         typeof(NotificationManagementEntityFrameworkCoreModule)
     )]
     public class AbpSuiteEntityFrameworkCoreModule : AbpModule

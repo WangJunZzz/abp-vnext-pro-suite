@@ -7,7 +7,7 @@ public class EntityModel : FullAuditedAggregateRoot<Guid>, IMultiTenant
 {
     public Guid? TenantId { get; private set; }
 
-    public Guid ProjectId { get; set; }
+    public Guid ProjectId { get; private set; }
 
     /// <summary>
     /// 编码

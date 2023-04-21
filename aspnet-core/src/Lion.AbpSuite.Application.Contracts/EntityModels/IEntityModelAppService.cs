@@ -1,6 +1,4 @@
-﻿using Lion.AbpSuite.EntityModels.Dto;
-
-namespace Lion.AbpSuite.EntityModels;
+﻿namespace Lion.AbpSuite.EntityModels;
 
 public interface IEntityModelAppService : IApplicationService
 {

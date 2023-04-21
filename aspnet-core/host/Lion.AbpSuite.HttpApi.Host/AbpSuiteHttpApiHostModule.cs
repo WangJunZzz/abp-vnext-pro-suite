@@ -1,7 +1,4 @@
-using Hangfire.Redis;
 using Lion.AbpPro;
-using Lion.AbpPro.DataDictionaryManagement;
-using Lion.AbpPro.NotificationManagement;
 using Swagger;
 
 namespace Lion.AbpSuite
@@ -16,42 +13,27 @@ namespace Lion.AbpSuite
         typeof(AbpAccountWebModule),
         typeof(AbpSuiteApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
-        typeof(AbpCachingStackExchangeRedisModule),
-        typeof(AbpBackgroundJobsHangfireModule)
+        typeof(AbpCachingStackExchangeRedisModule)
     )]
     public class AbpSuiteHttpApiHostModule : AbpModule
     {
-        public override void OnPostApplicationInitialization(
-            ApplicationInitializationContext context)
-        {
-            // 应用程序初始化的时候注册hangfire
-            // context.CreateRecurringJob();
-            base.OnPostApplicationInitialization(context);
-        }
-
-        public override void PostConfigureServices(ServiceConfigurationContext context)
-        {
-            NotificationManagementDbProperties.DbTablePrefix = "Abp";
-            DataDictionaryManagementDbProperties.DbTablePrefix = "Abp";
-        }
-
+        
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
             ConfigureCache(context);
             ConfigureSwaggerServices(context);
             ConfigureJwtAuthentication(context, configuration);
-            ConfigureHangfire(context);
             ConfigureMiniProfiler(context);
             ConfigureIdentity(context);
             ConfigureAuditLog(context);
+            ConfigurationSignalR(context);
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
             var configuration = context.GetConfiguration();
-            //app.UseRequestLog();
             app.UseAbpRequestLocalization();
             app.UseCorrelationId();
             app.UseStaticFiles();
@@ -76,43 +58,27 @@ namespace Lion.AbpSuite
 
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
-
             app.UseUnitOfWork();
             app.UseConfiguredEndpoints(endpoints => { endpoints.MapHealthChecks("/health"); });
-            app.UseHangfireDashboard("/hangfire", new DashboardOptions()
-            {
-                Authorization = new[] { new CustomHangfireAuthorizeFilter() },
-                IgnoreAntiforgeryToken = true
-            });
-
+            
             if (configuration.GetValue("Consul:Enabled", false))
             {
                 app.UseConsul();
             }
         }
-
- 
-   
-
-        private void ConfigureHangfire(ServiceConfigurationContext context)
+        
+        private void ConfigurationSignalR(ServiceConfigurationContext context)
         {
-            var redisStorageOptions = new RedisStorageOptions()
-            {
-                Db = context.Services.GetConfiguration().GetValue<int>("Hangfire:Redis:DB")
-            };
+            var redisConnection = context.Services.GetConfiguration()["Redis:Configuration"];
 
-            Configure<AbpBackgroundJobOptions>(options => { options.IsJobExecutionEnabled = true; });
-            context.Services.AddHangfireServer();
-            context.Services.AddHangfire(config =>
+            if (redisConnection.IsNullOrWhiteSpace())
             {
-                config.UseRedisStorage(ConnectionMultiplexer.Connect(context.Services.GetConfiguration().GetValue<string>("Hangfire:Redis:Host")), redisStorageOptions);
-                var delaysInSeconds = new[] { 10, 60, 60 * 3 }; // 重试时间间隔
-                const int Attempts = 3; // 重试次数
-                config.UseFilter(new AutomaticRetryAttribute() { Attempts = Attempts, DelaysInSeconds = delaysInSeconds });
-                config.UseFilter(new JobRetryLastFilter(Attempts));
-            });
+                throw new UserFriendlyException(message: "Redis连接字符串未配置.");
+            }
+
+            context.Services.AddSignalR().AddStackExchangeRedis(redisConnection, options => { options.Configuration.ChannelPrefix = "Lion.AbpPro"; });
         }
-
+        
         /// <summary>
         /// 配置MiniProfiler
         /// </summary>
@@ -124,8 +90,7 @@ namespace Lion.AbpSuite
         /// <summary>
         /// 配置JWT
         /// </summary>
-        private void ConfigureJwtAuthentication(ServiceConfigurationContext context,
-            IConfiguration configuration)
+        private void ConfigureJwtAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
             context.Services.AddAuthentication(options =>
                 {

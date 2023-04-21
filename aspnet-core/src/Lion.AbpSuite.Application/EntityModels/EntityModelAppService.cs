@@ -1,8 +1,4 @@
-﻿using Lion.AbpSuite.DataTypes;
-using Lion.AbpSuite.DataTypes.Dto;
-using Lion.AbpSuite.EnumTypes;
-
-namespace Lion.AbpSuite.EntityModels;
+﻿namespace Lion.AbpSuite.EntityModels;
 
 public class EntityModelAppService : AbpSuiteAppService, IEntityModelAppService
 {

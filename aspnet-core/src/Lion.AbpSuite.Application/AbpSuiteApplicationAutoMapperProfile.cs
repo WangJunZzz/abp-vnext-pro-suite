@@ -1,5 +1,3 @@
-using Lion.AbpSuite.DataTypes.Dto;
-
 namespace Lion.AbpSuite
 {
     public class AbpSuiteApplicationAutoMapperProfile : Profile

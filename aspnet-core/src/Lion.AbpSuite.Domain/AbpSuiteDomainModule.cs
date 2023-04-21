@@ -3,8 +3,7 @@ namespace Lion.AbpSuite
     [DependsOn(
         typeof(AbpSuiteDomainSharedModule),
         typeof(BasicManagementDomainModule),
-        typeof(NotificationManagementDomainModule),
-        typeof(DataDictionaryManagementDomainModule)
+        typeof(NotificationManagementDomainModule)
     )]
     public class AbpSuiteDomainModule : AbpModule
     {

@@ -37,7 +37,6 @@
 
       const [registerModal, { changeOkLoading, closeModal }] = useModalInner((data) => {
         resetSchema(updateEntityModelPropertyFormSchema);
-
         setFieldsValue({
           propertyId: data.record.id,
           id: data.record.entityModelId,
@@ -72,13 +71,13 @@
         if (data.record.dataTypeCode == 'string') {
           updateSchema([
             { field: 'maxLength', ifShow: true, required: true },
-            { field: 'minLength', ifShow: true, required: true },
+            { field: 'minLength', ifShow: true },
             { field: 'decimalPrecision', ifShow: false },
             { field: 'decimalScale', ifShow: false },
           ]);
           setFieldsValue({
             maxLength: data.record.maxLength,
-            minLength: data.record.maxLength,
+            minLength: data.record.minLength,
           });
         }
         if (data.record.dataTypeCode == 'int' || data.record.dataTypeCode == 'long') {

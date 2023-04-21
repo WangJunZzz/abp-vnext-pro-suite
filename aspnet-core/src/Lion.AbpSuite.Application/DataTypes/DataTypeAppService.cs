@@ -1,8 +1,4 @@
-﻿using Lion.AbpSuite.DataTypes.Dto;
-using Lion.AbpSuite.EnumTypes;
-using Lion.AbpSuite.EnumTypes.Dto;
-
-namespace Lion.AbpSuite.DataTypes;
+﻿namespace Lion.AbpSuite.DataTypes;
 
 public class DataTypeAppService : AbpSuiteAppService, IDataTypeAppService
 {

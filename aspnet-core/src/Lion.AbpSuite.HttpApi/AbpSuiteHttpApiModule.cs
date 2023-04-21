@@ -1,4 +1,4 @@
-using Lion.AbpPro.DataDictionaryManagement;
+
 using Lion.AbpSuite.Localization;
 
 namespace Lion.AbpSuite
@@ -6,8 +6,7 @@ namespace Lion.AbpSuite
     [DependsOn(
         typeof(AbpSuiteApplicationContractsModule),
         typeof(BasicManagementHttpApiModule),
-        typeof(NotificationManagementHttpApiModule),
-        typeof(DataDictionaryManagementHttpApiModule)
+        typeof(NotificationManagementHttpApiModule)
         )]
     public class AbpSuiteHttpApiModule : AbpModule
     {

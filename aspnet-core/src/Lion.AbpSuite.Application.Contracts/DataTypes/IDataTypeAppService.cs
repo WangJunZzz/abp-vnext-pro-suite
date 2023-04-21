@@ -1,6 +1,4 @@
-﻿using Lion.AbpSuite.DataTypes.Dto;
-
-namespace Lion.AbpSuite.DataTypes;
+﻿namespace Lion.AbpSuite.DataTypes;
 
 public interface IDataTypeAppService:IApplicationService
 {

@@ -1,6 +1,4 @@
-﻿using Lion.AbpSuite.Projects.Dto;
-
-namespace Lion.AbpSuite.Projects;
+﻿namespace Lion.AbpSuite.Projects;
 
 public class ProjectAppService : AbpSuiteAppService, IProjectAppService
 {

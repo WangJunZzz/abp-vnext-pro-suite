@@ -3,7 +3,7 @@
   
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Lion.AbpSuite</RootNamespace>
   </PropertyGroup>
 
@@ -15,7 +15,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     <PackageReference Include="Lion.AbpPro.BasicManagement.HttpApi" />
     <PackageReference Include="Lion.AbpPro.NotificationManagement.HttpApi" />
-    <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.HttpApi" />
   </ItemGroup>
 
 </Project>

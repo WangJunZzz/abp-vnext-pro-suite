@@ -29,11 +29,13 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
     {
         var templateGroup = await _templateRepository.FindByNameAsync(StandardTemplateDataSeedConst.TemplateGroupName);
 
+        if (templateGroup != null) return;
+
         #region 模板组
 
         if (templateGroup == null)
         {
-            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConst.TemplateGroupName, "系统初始化模板",_currentTenant.Id);
+            templateGroup = new Template(_guidGenerator.Create(), StandardTemplateDataSeedConst.TemplateGroupName, "系统初始化模板", _currentTenant.Id);
         }
 
         #endregion
@@ -152,7 +154,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
             domain.Id);
 
         # endregion
-        
+
         #region DomainShared
 
         TemplateDetail domainShared;
@@ -174,7 +176,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
             domainShared.Id);
 
         # endregion
-        
+
         #region EntityFrameworkCore
 
         TemplateDetail entityFrameworkCore;
@@ -199,14 +201,17 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
             ControlType.Global,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.EntityFrameworkCore.DbContextModelCreatingPath),
             entityFrameworkCore.Id);
+
         # endregion
-        
+
         #region Vue3
+
         TemplateDetail vue3 = null;
         if (templateGroup.TemplateDetails.FirstOrDefault(e => e.Name == StandardTemplateDataSeedConst.Vue3.Name) == null)
         {
             vue3 = AddFolder(templateGroup, StandardTemplateDataSeedConst.Vue3.Name);
         }
+
         #endregion
 
         #region src
@@ -215,8 +220,9 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
         vueSrc = AddFolder(templateGroup, StandardTemplateDataSeedConst.AspNetCore.Src.Name, parentId: vue3?.Id);
 
         #endregion
-        
+
         #region routes
+
         TemplateDetail route;
         route = AddFolder(templateGroup, StandardTemplateDataSeedConst.Vue3.Src.Routes.Name, parentId: vueSrc.Id);
         AddFile(templateGroup,
@@ -224,9 +230,11 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
             ControlType.Aggregate,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Routes.RoutePath),
             route.Id);
+
         #endregion
-        
+
         #region views
+
         TemplateDetail view;
         view = AddFolder(templateGroup, StandardTemplateDataSeedConst.Vue3.Src.Views.Name, parentId: vueSrc.Id);
         AddFile(templateGroup,
@@ -249,6 +257,7 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
             ControlType.Aggregate,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.Vue3.Src.Views.UpdateVuePath),
             view.Id);
+
         #endregion
 
         await _templateRepository.InsertAsync(templateGroup);

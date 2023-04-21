@@ -1,6 +1,4 @@
-﻿using Lion.AbpSuite.EntityModels;
-
-namespace Lion.AbpSuite.Projects;
+﻿namespace Lion.AbpSuite.Projects;
 
 public class ProjectEntityManager : AbpSuiteDomainService
 {

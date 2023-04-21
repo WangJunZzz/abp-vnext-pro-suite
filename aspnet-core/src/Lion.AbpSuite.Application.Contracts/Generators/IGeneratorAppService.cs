@@ -1,5 +1,4 @@
 ﻿using Lion.AbpSuite.Generators.Dto;
-using Lion.AbpSuite.Templates;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lion.AbpSuite.Generators;

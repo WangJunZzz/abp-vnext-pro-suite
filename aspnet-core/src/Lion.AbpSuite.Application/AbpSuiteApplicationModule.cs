@@ -1,14 +1,10 @@
-using Lion.AbpPro.DataDictionaryManagement;
-
 namespace Lion.AbpSuite
 {
     [DependsOn(
         typeof(AbpSuiteDomainModule),
         typeof(AbpSuiteApplicationContractsModule),
         typeof(BasicManagementApplicationModule),
-        typeof(NotificationManagementApplicationModule),
-        typeof(DataDictionaryManagementApplicationModule),
-        typeof(AbpSuiteFreeSqlModule)
+        typeof(NotificationManagementApplicationModule)
         )]
     public class AbpSuiteApplicationModule : AbpModule
     {
