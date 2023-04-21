@@ -20,10 +20,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
 
             services.Configure<AbpDbContextOptions>(options =>
             {
-                options.PreConfigure<AbpSuiteDbContext>(options =>
-                {
-                    options.DbContextOptions.UseBatchEF_Sqlite();
-                });
+              
                 options.Configure(context =>
                 {
                     context.DbContextOptions.UseSqlite(_sqliteConnection);
