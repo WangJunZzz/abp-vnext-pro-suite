@@ -95,6 +95,8 @@ public class ProjectEntityManager : AbpSuiteDomainService
                                 Value = currentEnumEnumTypeProperty.Value
                             });
                         }
+
+                        property.EnumType = enumType;
                     }
                 }
                 else
@@ -211,6 +213,7 @@ public class ProjectEntityManager : AbpSuiteDomainService
                         };
                     }
                 }
+
                 var dataType = property.IsEnum ? property.EnumType.Code : property.DataType.Code;
                 property.Null = FormatNull(detailEntityModelProperty.IsRequired, dataType);
                 child.Properties.Add(property);
