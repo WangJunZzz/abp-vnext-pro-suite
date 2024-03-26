@@ -1,26 +1,26 @@
 ﻿<Project>
     <!--    Lion.AbpPro包-->
     <ItemGroup>
-        <PackageReference Update="Lion.AbpPro.Core" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.Shared.Hosting.Microservices" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.Shared.Hosting.Gateways" Version="7.1.1.3"/>
+        <PackageReference Update="Lion.AbpPro.Core" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.Shared.Hosting.Microservices" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.Shared.Hosting.Gateways" Version="8.0.4.7"/>
         
-        <PackageReference Update="Lion.AbpPro.BasicManagement.Application" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.BasicManagement.Application.Contracts" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.BasicManagement.Domain" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.BasicManagement.Domain.Shared" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.BasicManagement.EntityFrameworkCore" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.BasicManagement.HttpApi" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.BasicManagement.HttpApi.Client" Version="7.1.1.3"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.Application" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.Application.Contracts" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.Domain" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.Domain.Shared" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.EntityFrameworkCore" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.HttpApi" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.BasicManagement.HttpApi.Client" Version="8.0.4.7"/>
 
 
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.Application" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.Application.Contracts" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.Domain" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.Domain.Shared" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.EntityFrameworkCore" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.HttpApi" Version="7.1.1.3"/>
-        <PackageReference Update="Lion.AbpPro.NotificationManagement.HttpApi.Client" Version="7.1.1.3"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.Application" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.Application.Contracts" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.Domain" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.Domain.Shared" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.EntityFrameworkCore" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.HttpApi" Version="8.0.4.7"/>
+        <PackageReference Update="Lion.AbpPro.NotificationManagement.HttpApi.Client" Version="8.0.4.7"/>
         
     </ItemGroup>
 </Project>
