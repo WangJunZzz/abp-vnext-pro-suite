@@ -30,6 +30,7 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
         public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
         public DbSet<IdentityLinkUser> LinkUsers { get; set; }
+        public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
         public DbSet<FeatureGroupDefinitionRecord> FeatureGroups { get; set; }
         public DbSet<FeatureDefinitionRecord> Features { get; set; }
         public DbSet<FeatureValue> FeatureValues { get; set; }
@@ -37,11 +38,13 @@ namespace Lion.AbpSuite.EntityFrameworkCore
         public DbSet<PermissionDefinitionRecord> Permissions { get; set; }
         public DbSet<PermissionGrant> PermissionGrants { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<SettingDefinitionRecord> SettingDefinitionRecords { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
         public DbSet<BackgroundJobRecord> BackgroundJobs { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+
         public DbSet<Template> Templates { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<EntityModel> EntityModels { get; set; }

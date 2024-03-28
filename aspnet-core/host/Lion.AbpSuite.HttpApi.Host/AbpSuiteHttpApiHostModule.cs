@@ -5,7 +5,7 @@ namespace Lion.AbpSuite
 {
     [DependsOn(
         typeof(AbpSuiteHttpApiModule),
-        typeof(SharedHostingMicroserviceModule),
+        typeof(AbpProSharedHostingMicroserviceModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(AbpSuiteEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
