@@ -37,24 +37,39 @@ public class StandardTemplateDataSeedConst
                 // 聚合根IApplicationService模板
                 public static string IApplicationServiceName = "I{{aggregateCode}}AppService.txt";
                 public static string IApplicationServicePath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/I{{aggregateCode}}AppService.txt";
-               
-                public static string CreateInputName = "Create{{aggregateCode}}Input.txt";
-                public static string CreateInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Create{{aggregateCode}}Input.txt";
                 
-                public static string UpdateInputName = "Update{{aggregateCode}}Input.txt";
-                public static string UpdateInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Update{{aggregateCode}}Input.txt";
+                public static string CreateAggregateCodeInputName = "Create{{aggregateCode}}Input.txt";
+                public static string CreateAggregateCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Create{{aggregateCode}}Input.txt";
                 
-                public static string DeleteInputName = "Delete{{aggregateCode}}Input.txt";
-                public static string DeleteInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Delete{{aggregateCode}}Input.txt";
+                public static string UpdateAggregateCodeInputName = "Update{{aggregateCode}}Input.txt";
+                public static string UpdateAggregateCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Update{{aggregateCode}}Input.txt";
                 
-                public static string PageInputName = "Page{{aggregateCode}}Input.txt";
-                public static string PageInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Page{{aggregateCode}}Input.txt";
+                public static string DeleteAggregateCodeInputName = "Delete{{aggregateCode}}Input.txt";
+                public static string DeleteAggregateCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Delete{{aggregateCode}}Input.txt";
                 
-                public static string PageOutputName = "Page{{aggregateCode}}Output.txt";
-                public static string PageOutputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Page{{aggregateCode}}Output.txt";
+                public static string PageAggregateCodeInputName = "Page{{aggregateCode}}Input.txt";
+                public static string PageAggregateCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Page{{aggregateCode}}Input.txt";
                 
+                public static string PageAggregateCodeOutputName = "Page{{aggregateCode}}Output.txt";
+                public static string PageAggregateCodeOutputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Page{{aggregateCode}}Output.txt";
+                
+                public static string CreateEntityCodeInputName = "Create{{entityCode}}Input.txt";
+                public static string CreateEntityCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Create{{entityCode}}Input.txt";
+
+                public static string UpdateEntityCodeInputName = "Update{{entityCode}}Input.txt";
+                public static string UpdateEntityCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Update{{entityCode}}Input.txt";
+
+                public static string DeleteEntityCodeInputName = "Delete{{entityCode}}Input.txt";
+                public static string DeleteEntityCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Delete{{entityCode}}Input.txt";
+
+                public static string PageEntityCodeInputName = "Page{{entityCode}}Input.txt";
+                public static string PageEntityCodeInputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Page{{entityCode}}Input.txt";
+
+                public static string PageEntityCodeOutputName = "Page{{entityCode}}Output.txt";
+                public static string PageEntityCodeOutputPath = "/Lion.AbpSuite/Data/Templates/Standard/ApplicationContracts/Page{{entityCode}}Output.txt";
+
             }
-            
+
             public static class  Domain
             {
                 public static string Name = "Domain";

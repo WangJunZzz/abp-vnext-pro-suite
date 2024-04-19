@@ -1,0 +1,36 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
+
+namespace {{ context.Project.NameSpace }}.Application.Contracts;
+
+/// <summary>
+/// 更新{{ context.EntityModel.Description }}
+/// </summary>
+public partial class Update{{ context.EntityModel.Code }}Input
+{
+    /// <summary>
+    /// {{ context.EntityModel.Description }}Id
+    /// </summary>
+    public Guid Id { get; set; }
+
+    {{~ for prop in context.EntityModel.Properties ~}}
+      {{~ if prop.IsEnum ~}}
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.EnumType.Code }} {{ prop.Code }} { get; set; }
+      {{~ else ~}}
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+        {{~ if prop.IsRequired ~}}
+    [Required(ErrorMessage = "{{prop.Description}}不能为空")]
+    public {{ prop.DataType.Code }} {{ prop.Code }} { get; set; }
+        {{~ else ~}}
+    public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get; set; }            
+        {{~ end ~}}
+      {{~ end ~}}
+    {{~ end ~}}     
+}
