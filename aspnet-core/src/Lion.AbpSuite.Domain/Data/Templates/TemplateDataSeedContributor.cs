@@ -124,27 +124,27 @@ public class TemplateDataSeedContributor : IDataSeedContributor, ITransientDepen
 
         AddFile(templateGroup,
             StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.CreateEntityCodeInputName,
-            ControlType.Aggregate,
+            ControlType.Entity,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.CreateEntityCodeInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
             StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.UpdateEntityCodeInputName,
-            ControlType.Aggregate,
+            ControlType.Entity,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.UpdateEntityCodeInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
             StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.DeleteEntityCodeInputName,
-            ControlType.Aggregate,
+            ControlType.Entity,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.DeleteEntityCodeInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
             StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageEntityCodeInputName,
-            ControlType.Aggregate,
+            ControlType.Entity,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageEntityCodeInputPath),
             applicationContracts.Id);
         AddFile(templateGroup,
             StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageEntityCodeOutputName,
-            ControlType.Aggregate,
+            ControlType.Entity,
             await _fileLoader.LoadAsync(StandardTemplateDataSeedConst.AspNetCore.Src.ApplicationContracts.PageEntityCodeOutputPath),
             applicationContracts.Id);
 
