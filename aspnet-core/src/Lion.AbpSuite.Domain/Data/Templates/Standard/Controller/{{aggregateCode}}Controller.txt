@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Volo.Abp.Application.Dtos;
 using {{ context.Project.NameSpace }}.Application.Contracts;
 
 namespace {{ context.Project.NameSpace }}.Controllers;
