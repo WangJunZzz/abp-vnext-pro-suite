@@ -101,6 +101,15 @@ public class GeneratorManager : AbpSuiteDomainService
             result.Add(code);
         }
 
+        foreach (var entity in treeEntityModelContexts.EntityModels)
+        {
+            foreach (var enumType in entity.EnumTypes)
+            {
+                var code = await GeneratorCodeAsync(template, project, treeEntityModelContexts, enumType);
+                result.Add(code);
+            }
+        }
+
         return result;
     }
 
