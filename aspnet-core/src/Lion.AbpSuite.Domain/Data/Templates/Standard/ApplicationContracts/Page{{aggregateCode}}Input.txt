@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Lion.AbpPro.Core;
 using {{ context.Project.NameSpace }}.Domain;
 using {{ context.Project.NameSpace }}.Domain.Shared;
 
