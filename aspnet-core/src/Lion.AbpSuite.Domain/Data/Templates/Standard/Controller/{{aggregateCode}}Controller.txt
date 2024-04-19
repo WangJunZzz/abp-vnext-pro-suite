@@ -1,11 +1,11 @@
-using  Microsoft.AspNetCore.Mvc;
-using  Swashbuckle.AspNetCore.Annotations;
-using  {{ context.Project.NameSpace }}.Application.Contracts;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using {{ context.Project.NameSpace }}.Application.Contracts;
 
-namespace {{ context.Project.NameSpace }}.Controller;
+namespace {{ context.Project.NameSpace }}.Controllers;
 
 [Route("{{ context.EntityModel.AggregateCodePluralized }}")]
-public class {{ context.EntityModel.AggregateCode }}Controller : AbpController, I{{ context.EntityModel.AggregateCode }}AppService
+public partial class {{ context.EntityModel.AggregateCode }}Controller : AbpController, I{{ context.EntityModel.AggregateCode }}AppService
 {
     private readonly I{{ context.EntityModel.AggregateCode }}AppService _{{ context.EntityModel.AggregateCodeCamelCase }}AppService;
 

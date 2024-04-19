@@ -1,34 +1,34 @@
-using  {{ context.Project.NameSpace }}.Domain;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Application.Contracts;
 
 /// <summary>
-/// 创建{{ context.EntityModel.Description }}
+/// 分页查询{{ context.EntityModel.Description }}输出
 /// </summary>
-public class Page{{ context.EntityModel.Code }}Output
+public partial class Page{{ context.EntityModel.Code }}Output
 {
-       /// <summary>
-       /// {{ context.EntityModel.Description }}Id
-       /// </summary>
-       public Guid Id { get; set; }
+    /// <summary>
+    /// {{ context.EntityModel.Description }}Id
+    /// </summary>
+    public Guid Id { get; set; }
 
-        {{~ for prop in context.EntityModel.Properties ~}}
-            {{~ if prop.IsEnum ~}}
-        /// <summary>
-        /// {{ prop.Description }}
-        /// </summary>
-        public {{ prop.EnumType.Code }} {{ prop.Code }} { get;  set; }
-            {{~ else ~}}
-        /// <summary>
-        /// {{ prop.Description }}
-        /// </summary>
-        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }
-            {{~ end ~}}
-       {{~ end ~}}  
-       
-        /// <summary>
-        /// 创建时间
-        /// </summary>       
-        public DateTime CreationTime { get; set; }     
+    {{~ for prop in context.EntityModel.Properties ~}}
+      {{~ if prop.IsEnum ~}}
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.EnumType.Code }} {{ prop.Code }} { get; set; }
+      {{~ else ~}}
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get; set; }
+      {{~ end ~}}
+    {{~ end ~}}  
+ 
+    /// <summary>
+    /// 创建时间
+    /// </summary>       
+    public DateTime CreationTime { get; set; }     
 }

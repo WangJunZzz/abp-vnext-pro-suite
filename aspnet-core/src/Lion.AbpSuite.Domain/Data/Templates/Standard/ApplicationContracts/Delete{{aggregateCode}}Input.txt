@@ -1,15 +1,15 @@
-using  {{ context.Project.NameSpace }}.Domain;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Application.Contracts;
 
 /// <summary>
 /// 删除{{ context.EntityModel.Description }}
 /// </summary>
-public class Delete{{ context.EntityModel.Code }}Input
+public partial class Delete{{ context.EntityModel.Code }}Input
 {
-       /// <summary>
-       /// {{ context.EntityModel.Description }}Id
-       /// </summary>
-       public Guid Id { get; set; }
+    /// <summary>
+    /// {{ context.EntityModel.Description }}Id
+    /// </summary>
+    public Guid Id { get; set; }
 }

@@ -1,15 +1,15 @@
-﻿using  AutoMapper;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
-using  {{ context.Project.NameSpace }}.Application.Contracts;
+﻿using AutoMapper;
+using {{ context.Project.NameSpace }}.Domain.Shared;
+using {{ context.Project.NameSpace }}.Application.Contracts;
 
 namespace {{ context.Project.NameSpace }}.Application;
 
-public class {{ context.Project.ProjectName }}DomainAutoMapperProfile : Profile 
+public partial class {{ context.Project.ProjectName }}DomainAutoMapperProfile : Profile 
 {
     public {{ context.Project.ProjectName }}DomainAutoMapperProfile()
     {
-       {{~ for model in context.AllEntityModels ~}}
-         CreateMap<{{ model.Code}}Dto, Page{{ model.Code}}Output>();
-       {{~ end ~}}
+      {{~ for model in context.AllEntityModels ~}}
+        CreateMap<{{ model.Code}}Dto, Page{{ model.Code}}Output>();
+      {{~ end ~}}
     }
 }

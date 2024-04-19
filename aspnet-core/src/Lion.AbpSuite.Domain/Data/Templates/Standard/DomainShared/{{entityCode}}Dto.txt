@@ -3,50 +3,50 @@ namespace {{ context.Project.NameSpace }}.Domain.Shared;
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public class {{ context.EntityModel.Code }}Dto 
+public partial class {{ context.EntityModel.Code }}Dto 
 {
-        /// <summary>
-        /// 主键Id
-        /// </summary>
-        public Guid Id { get; set; }
-        
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CreationTime { get; set; }  
-        
-        {{~ for prop in context.EntityModel.Properties ~}}
-            {{~ if prop.IsEnum ~}}
-        /// <summary>
-        /// {{ prop.Description }}
-        /// </summary>
-        public {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }
-            {{~ else ~}}
-        /// <summary>
-        /// {{ prop.Description }}
-        /// </summary>
-        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get;  set; }
-            {{~ end ~}}
-       {{~ end ~}}
-    
-      {{~ for prop in context.EntityModel.EntityModels ~}}
-        {{~ if  prop.RelationalType == 10 ~}}
-        /// <summary>
-        /// {{ prop.Description }} 一对一
-        /// </summary>
-        public {{ prop.Code }}Dto {{ prop.CodePluralized }}  { get;  set; } 
-          {{~ else ~}}
-        /// <summary>
-        /// {{ prop.Description }}  一对多
-        /// </summary>
-        public List<{{ prop.Code }}Dto> {{ prop.CodePluralized }}  { get;  set; }
-          {{~ end ~}}
+    /// <summary>
+    /// 主键Id
+    /// </summary>
+    public Guid Id { get; set; }
+
+    /// <summary>
+    /// 创建时间
+    /// </summary>
+    public DateTime CreationTime { get; set; }  
+
+    {{~ for prop in context.EntityModel.Properties ~}}
+      {{~ if prop.IsEnum ~}}
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.Code }} { get; set; }
+      {{~ else ~}}
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get; set; }
       {{~ end ~}}
-                    
-        private const string CacheKeyFormat = "i:{0}";
-      
-        public static string CalculateCacheKey(Guid id)
-        {
-            return string.Format(CacheKeyFormat, id);
-        }
+    {{~ end ~}}
+
+    {{~ for prop in context.EntityModel.EntityModels ~}}
+      {{~ if  prop.RelationalType == 10 ~}}
+    /// <summary>
+    /// {{ prop.Description }} 一对一
+    /// </summary>
+    public {{ prop.Code }}Dto {{ prop.CodePluralized }} { get; set; } 
+      {{~ else ~}}
+    /// <summary>
+    /// {{ prop.Description }}  一对多
+    /// </summary>
+    public List<{{ prop.Code }}Dto> {{ prop.CodePluralized }} { get; set; }
+      {{~ end ~}}
+    {{~ end ~}}
+
+    private const string CacheKeyFormat = "i:{0}";
+
+    public static string CalculateCacheKey(Guid id)
+    {
+        return string.Format(CacheKeyFormat, id);
+    }
 }

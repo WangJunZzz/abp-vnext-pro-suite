@@ -1,29 +1,29 @@
-using  Microsoft.EntityFrameworkCore;
-using  Volo.Abp;
-using  Volo.Abp.EntityFrameworkCore.Modeling;
-using  {{ context.Project.NameSpace }}.Domain;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
+using Microsoft.EntityFrameworkCore;
+using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
-public static class {{context.Project.ProjectName}}DbContextModelCreatingExtensions
+public static partial class {{context.Project.ProjectName}}DbContextModelCreatingExtensions
 {
-   public static void Configure{{context.Project.ProjectName}}(this ModelBuilder builder)
-   {
-         Check.NotNull(builder, nameof(builder));
-         {{~ for model in context.AllEntityModels ~}}
-         builder.Entity<{{ model.Code}}>(b =>
-         {
-             b.ToTable({{context.Project.ProjectName}}DomainConsts.DbTablePrefix + nameof({{ model.Code}}).Pluralize());
-             {{~ for property in model.Properties ~}}
-             {{~ if  property.IsRequired && property.IsDataType && property.DataType.Code == "string" ~}}
-             b.Property(e => e.{{ property.Code}}).IsRequired().HasMaxLength({{ property.MaxLength}}).HasComment("{{ property.Description}}");
-             {{~ else ~}}
-             b.Property(e => e.{{ property.Code}}).HasComment("{{ property.Description}}");
-             {{~ end ~}}
-             {{~ end ~}}
-             b.ConfigureByConvention();
-         });
-         {{~ end ~}}
-   }
+    public static void Configure{{context.Project.ProjectName}}(this ModelBuilder builder)
+    {
+        Check.NotNull(builder, nameof(builder));
+        {{~ for model in context.AllEntityModels ~}}
+        builder.Entity<{{ model.Code}}>(b =>
+        {
+            b.ToTable({{context.Project.ProjectName}}DomainConsts.DbTablePrefix + nameof({{ model.Code}}).Pluralize());
+          {{~ for property in model.Properties ~}}
+            {{~ if  property.IsRequired && property.IsDataType && property.DataType.Code == "string" ~}}
+            b.Property(e => e.{{ property.Code}}).IsRequired().HasMaxLength({{ property.MaxLength}}).HasComment("{{ property.Description}}");
+            {{~ else ~}}
+            b.Property(e => e.{{ property.Code}}).HasComment("{{ property.Description}}");
+            {{~ end ~}}
+          {{~ end ~}}
+            b.ConfigureByConvention();
+        });
+        {{~ end ~}}
+    }
 }
