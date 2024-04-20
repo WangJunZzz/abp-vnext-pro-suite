@@ -1,14 +1,15 @@
-using  Volo.Abp;
-using  Volo.Abp.Application.Dtos;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
-using  {{ context.Project.NameSpace }}.Application.Contracts;
+using Volo.Abp;
+using Volo.Abp.Application.Dtos;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
+using {{ context.Project.NameSpace }}.Application.Contracts;
 
 namespace {{ context.Project.NameSpace }}.Application;
 
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ context.EntityModel.Code }}AppService
+public partial class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ context.EntityModel.Code }}AppService
 {
     private readonly {{ context.EntityModel.Code }}Manager _{{ context.EntityModel.CodeCamelCase }}Manager;
 
@@ -16,7 +17,7 @@ public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ 
     {
         _{{ context.EntityModel.CodeCamelCase }}Manager = {{ context.EntityModel.CodeCamelCase }}Manager;
     }
-    
+
     /// <summary>
     /// 分页查询{{ context.EntityModel.Description }}
     /// </summary>
@@ -37,14 +38,14 @@ public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ 
     /// </summary>
     public Task CreateAsync(Create{{ context.EntityModel.Code }}Input input)
     {
-        return  _{{ context.EntityModel.CodeCamelCase }}Manager.CreateAsync(
-         GuidGenerator.Create() 
-         {{-  for prop in context.EntityModel.Properties -}}
-         {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
-         input.{{ prop.Code }}
-         {{- if for.last; "\r\n"; else; ; end ~}}
-         {{-  end ~}}
-				);
+        return _{{ context.EntityModel.CodeCamelCase }}Manager.CreateAsync(
+            GuidGenerator.Create() 
+        {{-  for prop in context.EntityModel.Properties -}}
+          {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
+            input.{{ prop.Code }}
+          {{- if for.last; "\r\n"; else; ; end ~}}
+        {{-  end ~}}
+			);
     }
 
     /// <summary>
@@ -52,14 +53,14 @@ public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ 
     /// </summary>
     public Task UpdateAsync(Update{{ context.EntityModel.Code }}Input input)
     { 
-        return  _{{ context.EntityModel.CodeCamelCase }}Manager.UpdateAsync(
-         input.Id
-         {{-  for prop in context.EntityModel.Properties -}}
-         {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
-         input.{{ prop.Code }}
-         {{- if for.last; "\r\n"; else; ; end ~}}
-         {{-  end ~}}
-         );
+        return _{{ context.EntityModel.CodeCamelCase }}Manager.UpdateAsync(
+            input.Id
+        {{-  for prop in context.EntityModel.Properties -}}
+          {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
+            input.{{ prop.Code }}
+          {{- if for.last; "\r\n"; else; ; end ~}}
+        {{-  end ~}}
+            );
     }
 
     /// <summary>
@@ -67,6 +68,6 @@ public class {{ context.EntityModel.Code }}AppService : ApplicationService, I{{ 
     /// </summary>
     public Task DeleteAsync(Delete{{ context.EntityModel.Code }}Input input)
     {
-        return  _{{ context.EntityModel.CodeCamelCase }}Manager.DeleteAsync(input.Id);
+        return _{{ context.EntityModel.CodeCamelCase }}Manager.DeleteAsync(input.Id);
     }          
 }

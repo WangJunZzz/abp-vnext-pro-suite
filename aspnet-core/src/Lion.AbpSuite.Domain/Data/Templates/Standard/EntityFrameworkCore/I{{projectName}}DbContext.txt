@@ -1,14 +1,14 @@
-using  Microsoft.EntityFrameworkCore;
-using  Volo.Abp.Data;
-using  Volo.Abp.EntityFrameworkCore;
-using  {{ context.Project.NameSpace }}.Domain;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
+using Microsoft.EntityFrameworkCore;
+using Volo.Abp.Data;
+using Volo.Abp.EntityFrameworkCore;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
-public interface I{{context.Project.ProjectName}}DbContext : IEfCoreDbContext
+public partial interface I{{context.Project.ProjectName}}DbContext : IEfCoreDbContext
 {
-        {{~ for model in context.AllEntityModels ~}}
-          DbSet<{{ model.Code}}> {{ model.CodePluralized}} { get; set; }
-        {{~ end ~}}
+  {{~ for model in context.AllEntityModels ~}}
+    DbSet<{{ model.Code}}> {{ model.CodePluralized}} { get; set; }
+  {{~ end ~}}
 }

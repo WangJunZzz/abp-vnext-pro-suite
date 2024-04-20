@@ -1,20 +1,20 @@
-using  Volo.Abp.Application.Services;
-using  {{ context.Project.NameSpace }}.Domain;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
+using Volo.Abp.Application.Dtos;
+using Volo.Abp.Application.Services;
+using {{ context.Project.NameSpace }}.Domain;
+using {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Application.Contracts;
-
 
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public interface I{{ context.EntityModel.Code }}AppService : IApplicationService
+public partial interface I{{ context.EntityModel.Code }}AppService : IApplicationService
 {
     /// <summary>
     /// 分页查询{{ context.EntityModel.Description }}
     /// </summary>
     Task<PagedResultDto<Page{{ context.EntityModel.Code }}Output>> PageAsync(Page{{ context.EntityModel.Code }}Input input);
-    
+
     /// <summary>
     /// 创建{{ context.EntityModel.Description }}
     /// </summary>    

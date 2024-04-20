@@ -1,117 +1,117 @@
-using  Lion.AbpPro.Core;
-using  Volo.Abp;
-using  Volo.Abp.Domain.Entities.Auditing;
-using  {{ context.Project.NameSpace }}.Domain.Shared;
+using Lion.AbpPro.Core;
+using Volo.Abp;
+using Volo.Abp.Domain.Entities.Auditing;
+using {{ context.Project.NameSpace }}.Domain.Shared;
 
 namespace {{ context.Project.NameSpace }}.Domain;
 
 /// <summary>
 /// {{ context.EntityModel.Description }}
 /// </summary>
-public class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot;  " FullAuditedAggregateRoot<Guid>"; else; " FullAuditedEntity<Guid>"; end }}
+public partial class {{ context.EntityModel.Code }} : {{ if context.EntityModel.IsRoot;  "FullAuditedAggregateRoot<Guid>"; else; "FullAuditedEntity<Guid>"; end }}
 {
-        private {{ context.EntityModel.Code }}()
-        {
-        {{~ for prop in context.EntityModel.EntityModels ~}}
-            {{~ if  prop.RelationalType == 20 ~}}
-            {{ prop.CodePluralized }} = new List<{{ prop.Code }}>();
-            {{~ end ~}}
-        {{~ end ~}}
-        }
- 
-               
-        public {{ context.EntityModel.Code }}(
-            Guid id
-            {{-  for prop in context.EntityModel.Properties -}}
-            {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
-            {{- if prop.IsEnum ~}}
-            {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
-           	{{- else ~}}
-            {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
-            {{- end ~}}
-            {{- if for.last; "\r\n"; else; ; end ~}}
-            {{-  end ~}}
+    private {{ context.EntityModel.Code }}()
+    {
+    {{~ for prop in context.EntityModel.EntityModels ~}}
+      {{~ if  prop.RelationalType == 20 ~}}
+        {{ prop.CodePluralized }} = new List<{{ prop.Code }}>();
+      {{~ end ~}}
+    {{~ end ~}}
+    }
+
+              
+    public {{ context.EntityModel.Code }}(
+        Guid id
+        {{-  for prop in context.EntityModel.Properties -}}
+        {{- if for.first;  ",\r\n"; else; ",\r\n"; end ~}}
+        {{- if prop.IsEnum ~}}
+        {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
+        {{- else ~}}
+        {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
+        {{- end ~}}
+        {{- if for.last; "\r\n"; else; ; end ~}}
+        {{-  end ~}}
         ) : base(id)
-        {
-             {{~  for prop in context.EntityModel.Properties ~}}
-             Set{{ prop.Code }}({{prop.CodeCamelCase}});
-             {{~  end ~}}
-        }
+    {
+        {{~  for prop in context.EntityModel.Properties ~}}
+        Set{{ prop.Code }}({{prop.CodeCamelCase}});
+        {{~  end ~}}
+    }
         
-        {{~ for prop in context.EntityModel.Properties ~}}
-            {{~ if prop.IsEnum ~}}
-        /// <summary>
-        /// {{ prop.Description }}
-        /// </summary>
-        public {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.Code }} { get; private set; }
-            {{~ else ~}}
-        /// <summary>
-        /// {{ prop.Description }}
-        /// </summary>
-        public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get; private set; }
-            {{~ end ~}}
-       {{~ end ~}}
-    
-      {{~ for prop in context.EntityModel.EntityModels ~}}
-        {{~ if  prop.RelationalType == 10 ~}}
-        /// <summary>
-        /// {{ prop.Description }} 一对一
-        /// </summary>
-        public {{ prop.Code }} {{ prop.CodePluralized }}  { get; private set; } 
-          {{~ else ~}}
-        /// <summary>
-        /// {{ prop.Description }}  一对多
-        /// </summary>
-        public List<{{ prop.Code }}> {{ prop.CodePluralized }}  { get; private set; }
-          {{~ end ~}}
-      {{~ end ~}}
-                    
-      {{~ for prop in context.EntityModel.Properties ~}}
+    {{~ for prop in context.EntityModel.Properties ~}}
         {{~ if prop.IsEnum ~}}
-        
-        /// <summary>
-        /// 设置{{ prop.Description }}
-        /// </summary>
-        private void Set{{ prop.Code }}({{ prop.EnumType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
-        {
-             {{ prop.Code }} = {{ prop.CodeCamelCase }};
-        }
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.Code }} { get; private set; }
         {{~ else ~}}
-        
-        /// <summary>
-        /// 设置{{ prop.Description }}
-        /// </summary>        
-        private void Set{{ prop.Code }}({{ prop.DataType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
-        {
-            {{~ if prop.DataType.Code=="string" ~}}
-                {{~ if prop.IsRequired ~}}
-            Guard.NotNullOrWhiteSpace({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}), ,{{prop.MaxLength}}, {{prop.MinLength}});
-                {{~ else ~}}
-            Guard.Length({{prop.CodeCamelCase}},nameof({{prop.CodeCamelCase}}),{{prop.MaxLength}},{{prop.MinLength}});
-                {{~ end ~}}
-            {{~ end ~}}
-            {{ prop.Code }} = {{ prop.CodeCamelCase }};
-        }     
+    /// <summary>
+    /// {{ prop.Description }}
+    /// </summary>
+    public {{ prop.DataType.Code }}{{prop.Null}} {{ prop.Code }} { get; private set; }
         {{~ end ~}}
+    {{~ end ~}}
+
+    {{~ for prop in context.EntityModel.EntityModels ~}}
+    {{~ if  prop.RelationalType == 10 ~}}
+    /// <summary>
+    /// {{ prop.Description }} 一对一
+    /// </summary>
+    public {{ prop.Code }} {{ prop.CodePluralized }} { get; private set; } 
+      {{~ else ~}}
+    /// <summary>
+    /// {{ prop.Description }}  一对多
+    /// </summary>
+    public List<{{ prop.Code }}> {{ prop.CodePluralized }} { get; private set; }
       {{~ end ~}}
+    {{~ end ~}}
+
+    {{~ for prop in context.EntityModel.Properties ~}}
+      {{~ if prop.IsEnum ~}}
+
+    /// <summary>
+    /// 设置{{ prop.Description }}
+    /// </summary>
+    private void Set{{ prop.Code }}({{ prop.EnumType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
+    {
+        {{ prop.Code }} = {{ prop.CodeCamelCase }};
+    }
+      {{~ else ~}}
+
+    /// <summary>
+    /// 设置{{ prop.Description }}
+    /// </summary>        
+    private void Set{{ prop.Code }}({{ prop.DataType.Code }}{{prop.Null}} {{prop.CodeCamelCase}})
+    {
+        {{~ if prop.DataType.Code=="string" ~}}
+            {{~ if prop.IsRequired ~}}
+        Guard.NotNullOrWhiteSpace({{prop.CodeCamelCase}}, nameof({{prop.CodeCamelCase}}), {{prop.MaxLength}}, {{prop.MinLength}});
+            {{~ else ~}}
+        Guard.Length({{prop.CodeCamelCase}}, nameof({{prop.CodeCamelCase}}), {{prop.MaxLength}}, {{prop.MinLength}});
+            {{~ end ~}}
+        {{~ end ~}}
+        {{ prop.Code }} = {{ prop.CodeCamelCase }};
+    }     
+      {{~ end ~}}
+    {{~ end ~}}
       
-        /// <summary>
-        /// 更新{{ context.EntityModel.Description }}
-        /// </summary> 
-        public void Update(
-            {{-  for prop in context.EntityModel.Properties -}}
-            {{- if for.first;  "\r\n"; else; ",\r\n"; end ~}}
-            {{- if prop.IsEnum ~}}
-            {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
-           	{{- else ~}}
-            {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
-            {{- end ~}}
-            {{- if for.last; "\r\n"; else; ; end ~}}
-            {{-  end ~}}
-        )
-        {
-           {{~ for prop in context.EntityModel.Properties ~}}
-             Set{{ prop.Code }}({{prop.CodeCamelCase}});
-           {{~ end ~}}
-        }
+    /// <summary>
+    /// 更新{{ context.EntityModel.Description }}
+    /// </summary> 
+    public void Update(
+        {{-  for prop in context.EntityModel.Properties -}}
+        {{- if for.first;  "\r\n"; else; ",\r\n"; end ~}}
+        {{- if prop.IsEnum ~}}
+        {{ prop.EnumType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
+        {{- else ~}}
+        {{ prop.DataType.Code }}{{prop.Null}} {{ prop.CodeCamelCase }}
+        {{- end ~}}
+        {{- if for.last; "\r\n"; else; ; end ~}}
+        {{-  end ~}}
+    )
+    {
+        {{~ for prop in context.EntityModel.Properties ~}}
+        Set{{ prop.Code }}({{prop.CodeCamelCase}});
+        {{~ end ~}}
+    }
 }

@@ -2,9 +2,9 @@ namespace {{ context.Project.NameSpace }}.EntityFrameworkCore;
 
 public static class EfCore{{ context.EntityModel.Code }}QueryableExtension
 {
-     public static IQueryable<{{ context.EntityModel.Code }}> IncludeDetails(this IQueryable<{{ context.EntityModel.Code }}> queryable, bool include = true)
-     {
-         if (!include) return queryable;
-         return queryable;
-     }
+    public static IQueryable<{{ context.EntityModel.Code }}> IncludeDetails(this IQueryable<{{ context.EntityModel.Code }}> queryable, bool include = true)
+    {
+        if (!include) return queryable;
+        return queryable;
+    }
 }
